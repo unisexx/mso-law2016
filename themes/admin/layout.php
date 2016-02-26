@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<? include '_header.php'?>
-		<div id="page">
+		<div id="page" style="position: relative;">
 		<?php echo $template['body']; ?>
 		</div><!--page-->
 	</body>

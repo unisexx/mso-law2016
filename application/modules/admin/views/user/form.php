@@ -21,9 +21,13 @@
 	</tr>
 	<tr>
 	  <th>วันที่</th>
-	  <td><span class="form-inline">
-	    <input type="text" class="form-control" id="exampleInputName10" value="<? echo date("d/m/y"); ?>" style="width:110px;" />
-	    <img src="images/calendar.png" alt="" width="24" height="24" /></span></td>
+	  <td>
+	  	<span class="form-inline">
+	    <div class="input-group date">
+		  <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+		</div>
+	    </span>
+	</td>
 	</tr>
 	<tr>
 	  <th>สังกัด</th>

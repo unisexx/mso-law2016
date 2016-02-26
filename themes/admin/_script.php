@@ -1,6 +1,15 @@
 <link rel="stylesheet" type="text/css" href="themes/admin/css/template.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="themes/admin/css/bootstrap.min.css">
+<link rel="stylesheet" href="media/js/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css" />
+<link media="screen" rel="stylesheet" href="themes/admin/css/colorbox.css" />
+<link href="themes/admin/css/bootstrap-switch.css" rel="stylesheet">
+<link rel="stylesheet" href="themes/admin/css/menu.css">
+<link rel="stylesheet" type="text/css" href="themes/admin/css/vtip.css" />
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
+<script src="themes/admin/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="themes/admin/js/cufon/cufon-yui.js"></script>
 <script type="text/javascript" src="themes/admin/js/cufon/supermarket_400.font.js"></script>
 <script type="text/javascript">
@@ -10,7 +19,6 @@
 
 <!-- Colorbox jquery -->
 <script src="themes/admin/js/jquery.colorbox.js"></script>
-<link media="screen" rel="stylesheet" href="themes/admin/css/colorbox.css" />
 <script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
@@ -36,13 +44,11 @@
 </script>
 
 <!-- Menu CSS -->
-<link rel="stylesheet" href="themes/admin/css/menu.css">
 <script src="themes/admin/js/menu.js"></script>
 
 
 <!-- Tooltip jquery -->
 <script type="text/javascript" src="themes/admin/js/vtip.js"></script>
-<link rel="stylesheet" type="text/css" href="themes/admin/css/vtip.css" />
 
 <!-- number format -->
 <script type="text/javascript" src="themes/admin/js/jquery.number.js"></script>
@@ -71,7 +77,6 @@ jQuery(function($){
 
 
 <!-- On / Off -->
-<link href="themes/admin/css/bootstrap-switch.css" rel="stylesheet">
 <script src="themes/admin/js/bootstrap-switch.js"></script>
     <script>
     $(function(argument) {
@@ -112,17 +117,26 @@ $(document).ready(function(){
 </script>
 
 
-<!-- bootstrap CSS -->
-<link rel="stylesheet" href="themes/admin/css/bootstrap.min.css">
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script>window.jQuery || document.write('<script src="themes/admin/js/jquery.min.js"><\/script>')</script>
+<script src="themes/admin/js/bootstrap.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="themes/admin/js/ie10-viewport-bug-workaround.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-
+<script src="media/js/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="media/js/bootstrap-datepicker/js/locales/bootstrap-datepicker.th.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.input-group.date').datepicker({
+			language: "th",
+			orientation: "bottom left",
+			todayHighlight: true,
+    		autoclose: true
+		});
+	});
+</script>

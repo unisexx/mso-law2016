@@ -38,7 +38,7 @@
 | the active record class
 */
 
-$active_group = 'local';
+$active_group = 'host';
 $active_record = TRUE;
 
 
@@ -58,10 +58,10 @@ $db['local']['swap_pre'] = '';
 $db['local']['autoinit'] = TRUE;
 $db['local']['stricton'] = FALSE;
 
-$db['host']['hostname'] = 'localhost';
-$db['host']['username'] = 'addfrien_d';
-$db['host']['password'] = 'xCBLnHa6l3';
-$db['host']['database'] = 'addfrien_d';
+$db['host']['hostname'] = 'mysql1.favouritehosting.com';
+$db['host']['username'] = 'c1law2016';
+$db['host']['password'] = 'L@w20!6';
+$db['host']['database'] = 'c1law2016';
 $db['host']['dbdriver'] = 'mysql';
 $db['host']['dbprefix'] = '';
 $db['host']['pconnect'] = TRUE;
