@@ -1,5 +1,5 @@
 <?php
-class User extends Admin_Controller {
+class User_groups extends Admin_Controller {
 
 	function __construct()
 	{
@@ -8,7 +8,7 @@ class User extends Admin_Controller {
 
 	function index()
 	{
-		$data['rs'] = new Sys_user();
+		$data['rs'] = new User_group();
 		if(@$_GET['search']){
 			$data['rs']->where('name LIKE "%'.$_GET['search'].'%"');
 			$data['rs']->or_where('lastname LIKE "%'.$_GET['search'].'%"');
@@ -18,12 +18,7 @@ class User extends Admin_Controller {
 		
 		$data['rs']->order_by('id','desc')->get_page();
 		// $data['rs']->check_last_query();
-		$this->template->build('user/index',$data);
-	}
-	
-	function form($id=false){
-		$data['rs'] = new Sys_user($id);
-		$this->template->build('user/form',$data);
+		$this->template->build('user_groups/index',$data);
 	}
 }
 ?>

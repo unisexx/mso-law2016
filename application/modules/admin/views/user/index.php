@@ -12,7 +12,7 @@
 </div>
 </div>
 <div id="btnBox">
-  <input type="button" title="เพิ่มผู้ใช้งาน" value="เพิ่มผู้ใช้งาน" onclick="document.location='<?=basename($_SERVER['PHP_SELF'])?>?act=form'" class="btn btn-warning vtip" />
+  <input type="button" title="เพิ่มผู้ใช้งาน" value="เพิ่มผู้ใช้งาน" onclick="document.location='admin/user/form'" class="btn btn-warning vtip" />
 </div>
 
 <?php echo $rs->pagination()?>

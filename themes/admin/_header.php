@@ -20,9 +20,9 @@
    
    <li class='last has-sub'><a href='#' style="cursor:default;"><span>ข้อมูลหลัก</span></a>
       <ul>
-      	 <li><a href='user.php'><span>ผู้ใช้งาน</span></a></li>
+      	 <li><a href='admin/user'><span>ผู้ใช้งาน</span></a></li>
          <li><a href='#' style="border-bottom:1px dotted #ccc; margin:0; padding:0;"></a></li>
-         <li><a href='department.php'><span>สังกัด</span></a></li>
+         <li><a href='admin/user_group'><span>สังกัด</span></a></li>
 		 <li><a href='position.php'><span>ตำแหน่ง</span></a></li>
          <li><a href='lawgroup.php'><span>กลุ่มกฎหมาย</span></a></li>
          <li><a href='lawcategory.php'><span>หมวดกฎหมาย</span></a></li>
