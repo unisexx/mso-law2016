@@ -38,6 +38,7 @@
   background: -o-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
   background: -ms-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
   background: linear-gradient(to bottom, #51bbd2 0%, #2d97af 100%);
+  z-index: 9999;
 }
 #cssmenu > ul {
   background: url('images/bg.png');

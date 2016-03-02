@@ -1,5 +1,5 @@
 <?php
-class User extends Admin_Controller {
+class Law_types extends Admin_Controller {
 
 	function __construct()
 	{
@@ -8,41 +8,41 @@ class User extends Admin_Controller {
 
 	function index()
 	{
-		$data['rs'] = new Sys_user();
+		$data['rs'] = new Law_type();
 		if(@$_GET['search']){
 			$data['rs']->where('name LIKE "%'.$_GET['search'].'%"');
-			$data['rs']->or_where('lastname LIKE "%'.$_GET['search'].'%"');
-			$data['rs']->or_where('username LIKE "%'.$_GET['search'].'%"');
-			$data['rs']->or_where('email LIKE "%'.$_GET['search'].'%"');
 		}
-		
+
 		$data['rs']->order_by('id','desc')->get_page();
 		// $data['rs']->check_last_query();
-		$this->template->build('user/index',$data);
+		$this->template->build('law_types/index',$data);
 	}
-	
+
 	function form($id=false){
-		$data['rs'] = new Sys_user($id);
-		$this->template->build('user/form',$data);
+		$data['rs'] = new Law_type($id);
+		$this->template->build('law_types/form',$data);
 	}
-	
+
 	function save($id=false){
 		if($_POST){
-			$rs = new Sys_user($id);
+			$_POST['unit_import'] = implode(',', $_POST['unit_import']);
+
+			$rs = new Law_type($id);
 			$rs->from_array($_POST);
 			$rs->save();
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
-		redirect('admin/user');
+		redirect('admin/law_types');
 	}
-	
+
 	function delete($id){
 		if($id){
-			$rs = new Sys_user($id);
+			$rs = new Law_type($id);
 			$rs->delete();
 			set_notify('success', 'ลบข้อมูลเรียบร้อย');
 		}
-		redirect('admin/user');
+		redirect('admin/law_types');
 	}
+
 }
 ?>

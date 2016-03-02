@@ -17,19 +17,19 @@
             <li><a href='#'><span>รายงานจำนวนผู้ใช้งานระบบ</span></a></li>
         </ul>
    </li>
-   
+
    <li class='last has-sub'><a href='#' style="cursor:default;"><span>ข้อมูลหลัก</span></a>
       <ul>
       	 <li><a href='admin/user'><span>ผู้ใช้งาน</span></a></li>
          <li><a href='#' style="border-bottom:1px dotted #ccc; margin:0; padding:0;"></a></li>
-         <li><a href='admin/user_group'><span>สังกัด</span></a></li>
-		 <li><a href='position.php'><span>ตำแหน่ง</span></a></li>
-         <li><a href='lawgroup.php'><span>กลุ่มกฎหมาย</span></a></li>
-         <li><a href='lawcategory.php'><span>หมวดกฎหมาย</span></a></li>
+         <li><a href='admin/user_groups'><span>สังกัด</span></a></li>
+		 <li><a href='admin/user_positions'><span>ตำแหน่ง</span></a></li>
+         <li><a href='admin/law_groups'><span>กลุ่มกฎหมาย</span></a></li>
+         <li><a href='admin/law_types'><span>หมวดกฎหมาย</span></a></li>
          <li><a href='lawtype.php'><span>ประเภทกฎหมาย</span></a></li>
          <li><a href='lawsubtype.php'><span>ประเภทย่อยกฎหมาย</span></a></li>
-         <li><a href='option.php'><span>Option กฎหมาย</span></a></li>
-         
+         <li><a href='admin/law_options'><span>Option กฎหมาย</span></a></li>
+
          <!--<li class='has-sub'><a href='#'><span>Product 2</span></a>
             <ul>
                <li><a href='#'><span>Sub Product</span></a></li>
@@ -42,4 +42,3 @@
 </div>
 
 <div class="clear" style="margin-bottom:20px;"></div>
-

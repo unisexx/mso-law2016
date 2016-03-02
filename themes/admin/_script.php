@@ -140,3 +140,7 @@ $(document).ready(function(){
 		});
 	});
 </script>
+
+
+<!-- <script src="media/js/validate/additional-methods.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="media/js/validate/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>

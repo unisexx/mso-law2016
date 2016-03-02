@@ -240,3 +240,5 @@ padding-left: 9px;
 .form-inline {
   > .date { width: 110px; }
 }
+
+label.error{color:#F44336;}
