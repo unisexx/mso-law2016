@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://".$_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']); 
+$config['base_url']	= "http://".$_SERVER['HTTP_HOST'].str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 /*
 |--------------------------------------------------------------------------
@@ -159,7 +159,7 @@ $config['directory_trigger'] 	= 'd'; // experimental not currently in use
 | Error Logging Threshold
 |--------------------------------------------------------------------------
 |
-| If you have enabled error logging, you can set an error threshold to 
+| If you have enabled error logging, you can set an error threshold to
 | determine what gets logged. Threshold options are:
 | You can enable error logging by setting a threshold over zero. The
 | threshold determines what gets logged. Threshold options are:

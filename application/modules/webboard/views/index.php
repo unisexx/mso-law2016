@@ -14,61 +14,17 @@
       </tr>
     </thead>
     <tbody>
+      <?foreach($rs as $row):?>
       <tr>
-        <td>2553</td>
-        <td>แผนพัฒนากฎหมาย ประจำปีงบประมาณ พ.ศ. 2553</td>
-        <td><a href="#"><img src="images/icon-pdf.png" width="16" height="16"></a></td>
+        <td><?=$row->id?></td>
+        <td><a href="webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a></td>
+        <td><?=$row->quiz_who?></td>
+        <td><?=number_format($row->quiz_view)?></td>
+        <td><?=$row->quiz_reply?></td>
       </tr>
-      <tr>
-        <td>2552</td>
-        <td>แบบฟอร์ม ( Template ) ในการพัฒนากฎหมายของส่วนราชการ</td>
-        <td><a href="#"><img src="images/icon-pdf.png" width="16" height="16"></a></td>
-      </tr>
-      <tr>
-        <td>2551</td>
-        <td>แบบฟอร์มในการพัฒนากฎหมายของส่วนราชการ</td>
-        <td><a href="#"><img src="images/icon-pdf.png" width="16" height="16"></a></td>
-      </tr>
-      <tr>
-        <td>2551</td>
-        <td>การพัฒนาหรือจัดระบบกฎหมายให้เป็นฐานข้อมูลทางกฎหมายอิเล็กทรอนิกส์และเผย แพร่บนเครือข่ายอินเตอร์เน็ต</td>
-        <td><a href="#"><img src="images/icon-pdf.png" width="16" height="16"></a></td>
-      </tr>
+      <?endforeach;?>
     </tbody>
   </table>
 </div>
 
-
-<div class="pages">
-  <ul>
-    <li class="preview">
-      <a href="#"><span> </span></a>
-    </li>
-    <li>
-      <a href="#">1 </a>
-    </li>
-    <li>
-      <a href="#">2 </a>
-    </li>
-    <li>
-      <a href="#">3 </a>
-    </li>
-    <li>
-      <a href="#">4 </a>
-    </li>
-    <li>
-      <a href="#">5 </a>
-    </li>
-    <li>
-      <a href="#">.... </a>
-    </li>
-    <li>
-      <a href="#">78</a>
-    </li>
-    <li class="next">
-      <a href="#"><span> </span></a>
-    </li>
-    <div class="clear"></div>
-  </ul>
-</div>
-<div class="clearfix">&nbsp;</div>
+<?=$rs->pagination_front();?>

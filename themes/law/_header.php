@@ -48,9 +48,9 @@
 </div>
 <div class="topmenu">
   <ul>
-    <li class="active-home">
-      <a href="home">หน้าแรก</a>
-    </li>
+    <a href="home">
+      <li class="active-home">หน้าแรก</li>
+    </a>
     <li>
       <a href="#">แสดงข้อมูลแบบกลุ่ม</a>
     </li>

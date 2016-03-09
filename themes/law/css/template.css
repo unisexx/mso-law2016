@@ -16,6 +16,7 @@
 }
 
 /*:focus {outline: 0;}*/
+label.error{color:#F44336;}
 
 #top{height:146px; background-image:url(../images/bg-top.jpg); background-repeat:repeat-x; border-radius:0;}
 .name{margin-top:3px;}
@@ -118,7 +119,8 @@
 
 
 /*PAGINATION*/
-.pages{	padding: 0em 11em;}
+.pages{	text-align: center;}
+.pages ul{display: inline-block; padding: 0;}
 .pages ul li{
 	margin: 1em 1em 0em 0em;
 	padding: 0.3em 0.8em;
@@ -135,8 +137,9 @@
 	-ms-transition: all 0.3s ease-out;
 	-o-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
+	font-size: 1.3em;
 }
-.pages ul li a{	color:#BEBEBE;	font-size: 1.3em;}
+.pages ul li a{	color:#BEBEBE;	/*font-size: 1.3em;*/}
 .pages ul li a span
 {
 	background: url(../images/spriteimg.png);
@@ -147,11 +150,11 @@
 .pages li.preview a span {	background-position: -68px -8px;}
 .pages li.next a span{	background-position: -112px -8px;}
 .pages ul li a img{	vertical-align: middle;}
-.pages ul li:hover{	background-color:#485460;}
+.pages ul li:hover,.pages ul li.currentpage,li.disabled{	background-color:#485460; color:#BEBEBE;}
 
 .pages li:nth-child(1){	margin-right: 3.5em;}
 .pages li:nth-child(7),.pages li:nth-child(7):hover{	background: none;}
-.pages li:nth-child(9){	margin-left: 3.5em;}
+.pages li:nth-child(9),.pages li.next{	margin-left: 3.5em;}
 
 
 .download{color:white; float:left; width:50%; }
@@ -197,3 +200,11 @@ a.pollAll:hover{text-decoration:underline; color:#337cbb;  }
 .status{width:81; height:22px; background-image: url(../images/bg-status.png); background-repeat:no-repeat; display:block; padding-top:2px;}
 .line-result{  border-bottom: 1px dashed #cccec3;  }
 .title-result { color:#0383a3;  }
+
+/*WEBBOARD*/
+#webboard h4{
+	color : #777777;
+	margin: 15px 0 15px 0;
+	text-decoration: underline;
+}
+#webboard .small{color:#777;}

@@ -1,4 +1,4 @@
-<?php 
+<?php
 if ( ! function_exists('mysql_to_th'))
 {
 	function mysql_to_th($datetime = '',$format = 'S' ,$time = FALSE)
@@ -12,16 +12,16 @@ if ( ! function_exists('mysql_to_th'))
 		{
 			$month_th = array( 1 =>'ม.ค.',2 => 'ก.พ.',3=>'มี.ค.',4=>'เม.ย',5=>'พ.ค.',6=>'มิ.ย',7=>'ก.ค.',8=>'ส.ค.',9=>'ก.ย.',10=>'ต.ค.',11=>'พ.ย.',12=>'ธ.ค.');
 		}
-		
+
 		$datetime = mysql_to_unix($datetime);
-		
-		$r = date('d', $datetime).' '.$month_th[date('n', $datetime)].' '.(date('Y', $datetime) + 543); 
+
+		$r = date('d', $datetime).' '.$month_th[date('n', $datetime)].' '.(date('Y', $datetime) + 543);
 
 		if($time)
 		{
 				$r .= ' - '.date('H', $datetime).':'.date('i', $datetime);
 		}
-	
+
 		return $r;
 	}
 }
@@ -94,21 +94,21 @@ function db_to_th($datetime = '', $time = TRUE ,$format = 'F')
 
 		if($time)
 		{
-				$r .= ' - '.date('H', $datetime).':'.date('i', $datetime);
+				$r .= ' - '.date('H', $datetime).':'.date('i', $datetime).' น.';
 		}
 
 		return $r;
 	}
 }
 
-function DB2Date($Dt){ 
+function DB2Date($Dt){
 	if(($Dt!=NULL)&&($Dt != '0000-00-00')){
 		@list($date,$time) = explode(" ",$Dt);
 		list($y,$m,$d) = explode("-",$date);
 		return $d."/".$m."/".($y+543);
 	}else{
 		$Dt = "";
-		return $Dt; 
+		return $Dt;
 	}
 }
 
@@ -139,12 +139,12 @@ if ( ! function_exists('mysql_to_relative'))
 		$periods = array("วินาที", "นาที", "ชั่วโมง", "วัน", "สัปดาห์",
 		"เดือน", "ปี", "สิบปี");
 		$lengths = array("60","60","24","7","4.35","12","10");
-		
-		if ($difference > 0) 
+
+		if ($difference > 0)
 		{ // this was in the past
 			$ending = "ที่ผ่านมา";
-		} 
-		else 
+		}
+		else
 		{ // this was in the future
 			$difference = -$difference;
 			$ending = "to go";
@@ -164,26 +164,26 @@ if ( ! function_exists('mysql_to_relative'))
         $startDate = mysql_to_unix($datefrom);
         $lastDate = ($dateto)?mysql_to_unix($dateto):now();
         $differnce = $startDate - $lastDate;
-        $differnce = ($differnce / (60*60*24)); 
+        $differnce = ($differnce / (60*60*24));
         return (int)$differnce;
     }
-	  
+
 	function timeDiff($firstTime,$lastTime)
 	{
 	// convert to unix timestamps
 	$firstTime=strtotime($firstTime);
 	$lastTime=strtotime($lastTime);
-	
+
 	// perform subtraction to get the difference (in seconds) between times
 	$timeDiff=$lastTime-$firstTime;
 	$timeDiff= ($timeDiff / (60*60*24));
 	// return the difference
 	return (int)$timeDiff;
 	}
-	
+
 	//Usage :
 	//echo timeDiff("2002-04-16 10:00:00","2002-03-16 18:56:32");
-	
+
 	function datetime2date($datetime){
 	    $date = explode(" ", $datetime);
         return $date[0];

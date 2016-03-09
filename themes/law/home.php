@@ -1,4 +1,6 @@
-<html><head>
+<html>
+  <head>
+    <base href="<?php echo base_url(); ?>" />
     <link rel="icon" href="D:\MyJob\m-so-58\template-Lawwwww\html-law\images\favicon.ico">
     <title><?php echo $template['title'] ?></title>
     <meta charset="utf-8">
