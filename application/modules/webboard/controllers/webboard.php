@@ -11,5 +11,9 @@ class Webboard extends Public_Controller {
 		$this->template->build('index');
 	}
 
+	function form(){
+		
+	}
+
 }
 ?>

@@ -38,13 +38,13 @@
 | the active record class
 */
 
-$active_group = 'host';
+$active_group = 'local';
 $active_record = TRUE;
 
 
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
-$db['local']['password'] = '';
+$db['local']['password'] = '1234';
 $db['local']['database'] = 'law2016';
 $db['local']['dbdriver'] = 'mysql';
 $db['local']['dbprefix'] = '';
