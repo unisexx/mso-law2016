@@ -128,4 +128,13 @@ if(!function_exists('get_domain'))
 	  return false;
 	}
 }
+
+if(!function_exists('get_webboard_quiz_name'))
+{
+	function get_webboard_quiz_name($id){
+    $CI =& get_instance();
+    $rs = new Law_quiz($id);
+    return $rs->quiz_title;
+	}
+}
 ?>

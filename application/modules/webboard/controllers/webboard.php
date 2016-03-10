@@ -8,7 +8,30 @@ class Webboard extends Public_Controller {
 
 	function index()
 	{
-		$this->template->build('index');
+		$data['rs'] = new Law_quiz();
+		$data['rs']->where('quiz_status = 1');
+		$data['rs']->order_by('id','desc')->get_page();
+		$this->template->build('index',$data);
+	}
+
+	function view($id){
+		$data['quiz'] = new Law_quiz($id);
+		$data['answer'] = new Law_answer();
+		$data['answer']->where('quiz_id = '.$id.' and answer_status = 1')->order_by('id','asc')->get();
+		$this->template->build('view',$data);
+	}
+
+	function save_answer(){
+		if($_POST){
+			$_POST['answer_status'] = 1;
+			$_POST['answer_createdate'] = date("Y-m-d H:i:s");
+
+			$rs = new Law_answer();
+			$rs->from_array($_POST);
+			$rs->save();
+			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
+		}
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	function form(){
