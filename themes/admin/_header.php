@@ -2,7 +2,7 @@
 <ul>
    <li class='active'><a href='law.php'><span>ข้อมูลกฎหมาย</span></a></li>
    <li><a href='privilege.php'><span>สิทธิประโยชน์</span></a></li>
-   <li><a href='board.php'><span>กระทู้</span></a></li>
+   <li><a href='admin/webboard'><span>กระทู้</span></a></li>
    <li><a href='devlaw.php'><span>แผนพัฒนากฎหมาย</span></a></li>
    <li><a href='resolution.php'><span>มติ ครม.</span></a></li>
    <li><a href='committee.php'><span>คณะกรรมการ</span></a></li>
