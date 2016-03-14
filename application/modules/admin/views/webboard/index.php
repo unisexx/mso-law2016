@@ -42,3 +42,10 @@
 </table>
 
 <?php echo $rs->pagination()?>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});
+</script>
