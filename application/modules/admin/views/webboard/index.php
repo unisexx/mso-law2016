@@ -36,7 +36,7 @@
 	  <td><?=$row->quiz_who?></td>
 	  <td><?=mysql_to_th($row->quiz_createdate)?></td>
 	  <td><?=mysql_to_th($row->law_answer->order_by('id','desc')->answer_createdate)?></td>
-	  <td><input id="switch-size" type="checkbox" data-size="small" data-on-color="success" class="chkOnOff" <?if($row->quiz_status == 1){echo "checked";}?>></td>
+	  <td><input id="switch-size" data-status="<?=$row->quiz_status?>" type="checkbox" data-size="small" data-on-color="success" class="chkOnOff" <?if($row->quiz_status == 1){echo "checked";}?>></td>
   </tr>
   <?endforeach;?>
 </table>
@@ -46,6 +46,13 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	$('.chkOnOff').click(function(){
+		console.log($(this).attr('data-status'));
+		// $.get('admin/webboard/ajax_status',{
+			// 'topic_id' : topic_id,
+			// 'question_id' : question_id,
+			// 'answer_id' : selected_value,
+		// });
+	});
 });
 </script>
