@@ -13,9 +13,16 @@ class Webboard extends Admin_Controller {
 		$this->template->build('webboard/index',$data);
 	}
 	
+	function form($id){
+		$data['rs'] = new Law_quiz($id);
+		$this->template->build('webboard/form',$data);
+	}
+	
 	function ajax_status(){
-		if($_GET){
-			
+		if($_GET['state'] == 'true'){
+			$this->db->query("UPDATE law_quizs SET quiz_status = 1 WHERE id = ".$_GET['id']);
+		}else{
+			$this->db->query("UPDATE law_quizs SET quiz_status = 2 WHERE id = ".$_GET['id']);
 		}
 	}
 	

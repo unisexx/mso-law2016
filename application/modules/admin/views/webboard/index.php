@@ -19,7 +19,7 @@
 <table class="tblist">
 <tr>
   <th>#</th>
-  <th><img src="themes/admin/images/pin.png" width="16" height="16" class="vtip" title="ปักหมุดกระทู้" /></th>
+  <!-- <th><img src="themes/admin/images/pin.png" width="16" height="16" class="vtip" title="ปักหมุดกระทู้" /></th> -->
   <th>หัวข้อกระทู้</th>
   <th>ความคิดเห็น</th>
   <th>ผู้โพสกระทู้</th>
@@ -30,13 +30,15 @@
   <?foreach($rs as $key=>$row):?>
   <tr>
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
-	  <td><input name="checkbox" type="checkbox" id="checkbox" checked="checked" /></td>
-	  <td><a href="#"><?=$row->quiz_title?></a></td>
+	  <!-- <td><input name="checkbox" type="checkbox" id="checkbox" checked="checked" /></td> -->
+	  <td><a href="admin/webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a></td>
 	  <td><?=$row->law_answer->count()?></td>
 	  <td><?=$row->quiz_who?></td>
 	  <td><?=mysql_to_th($row->quiz_createdate)?></td>
 	  <td><?=mysql_to_th($row->law_answer->order_by('id','desc')->answer_createdate)?></td>
-	  <td><input id="switch-size" data-status="<?=$row->quiz_status?>" type="checkbox" data-size="small" data-on-color="success" class="chkOnOff" <?if($row->quiz_status == 1){echo "checked";}?>></td>
+	  <td>
+	  	<input id="switch-size" data-status="<?=$row->quiz_status?>" data-row-id="<?=$row->id?>" type="checkbox" data-size="small" data-on-color="success" class="chkOnOff" <?if($row->quiz_status == 1){echo "checked";}?> name="status">
+	  </td>
   </tr>
   <?endforeach;?>
 </table>
@@ -46,13 +48,15 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('.chkOnOff').click(function(){
-		console.log($(this).attr('data-status'));
-		// $.get('admin/webboard/ajax_status',{
-			// 'topic_id' : topic_id,
-			// 'question_id' : question_id,
-			// 'answer_id' : selected_value,
-		// });
+	$('input[name="status"]').on('switchChange.bootstrapSwitch', function(event, state) {
+	  // console.log(this); // DOM element
+	  // console.log(event); // jQuery event
+	  // console.log(state); // true | false
+	  // console.log($(this).attr('data-row-id'));
+	  $.get('admin/webboard/ajax_status',{
+	  	id : $(this).attr('data-row-id'),
+	  	state : state
+	  });
 	});
 });
 </script>
