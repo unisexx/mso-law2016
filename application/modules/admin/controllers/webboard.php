@@ -13,6 +13,12 @@ class Webboard extends Admin_Controller {
 		$this->template->build('webboard/index',$data);
 	}
 	
+	function ajax_status(){
+		if($_GET){
+			
+		}
+	}
+	
 	// function form($id=false){
 		// $data['rs'] = new Sys_user($id);
 		// $this->template->build('user/form',$data);
