@@ -1,0 +1,22 @@
+<div id="webboard">
+  <span class="title-law2">กระทู้ ถาม-ตอบ (สร้างคำถามใหม่)</span>
+  <div class="line1">&nbsp;</div>
+
+  <form method="post" action="webboard/save_quiz">
+	  <div class="form-group">
+	    <label for="title">หัวข้อ</label>
+	    <input type="text" class="form-control" id="title" placeholder="หัวข้อ" name="quiz_title">
+	  </div>
+	  <div class="form-group">
+	    <label for="detail">รายละเอียด</label>
+	    <textarea id="detail" class="form-control" name="quiz_detail" rows="8" placeholder="รายละเอียด"></textarea>
+	  </div>
+	  <div class="form-group">
+	    <label for="title">ชื่อผู้ตั้งคำถาม</label>
+	    <input type="text" class="form-control" id="title" placeholder="ชื่อผู้ตั้งคำถาม" name="quiz_who">
+	  </div>
+	  <button type="submit" class="btn btn-info">ตั้งคำถาม</button>
+	</form>
+  
+  
+</div>

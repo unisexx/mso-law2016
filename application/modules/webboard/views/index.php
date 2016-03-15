@@ -1,4 +1,4 @@
-<div id="news-law">
+<div id="webboard">
   <span class="title-law2">กระทู้ ถาม-ตอบ</span>
   <div class="line1">&nbsp;</div>
 
@@ -20,7 +20,7 @@
         <td><a href="webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a></td>
         <td><?=$row->quiz_who?></td>
         <td><?=number_format($row->quiz_view)?></td>
-        <td><?=$row->quiz_reply?></td>
+        <td><?=$row->law_answer->count()?></td>
       </tr>
       <?endforeach;?>
     </tbody>

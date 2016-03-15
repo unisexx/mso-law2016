@@ -17,8 +17,23 @@ class Webboard extends Public_Controller {
 	function view($id){
 		$data['quiz'] = new Law_quiz($id);
 		$data['answer'] = new Law_answer();
-		$data['answer']->where('quiz_id = '.$id.' and answer_status = 1')->order_by('id','asc')->get();
+		$data['answer']->where('law_quiz_id = '.$id.' and answer_status = 1')->order_by('id','asc')->get();
+		
+		$data['quiz']->counter('quiz_view');
 		$this->template->build('view',$data);
+	}
+	
+	function save_quiz(){
+		if($_POST){
+			$_POST['quiz_status'] = 1;
+			$_POST['quiz_createdate'] = date("Y-m-d H:i:s");
+
+			$rs = new Law_quiz();
+			$rs->from_array($_POST);
+			$rs->save();
+			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
+		}
+		redirect('webboard');
 	}
 
 	function save_answer(){
@@ -29,9 +44,14 @@ class Webboard extends Public_Controller {
 			$rs = new Law_answer();
 			$rs->from_array($_POST);
 			$rs->save();
+			
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+	
+	function form(){
+		$this->template->build('form');
 	}
 
 	function form(){

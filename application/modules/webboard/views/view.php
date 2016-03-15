@@ -17,13 +17,13 @@
   </div>
   <hr>
   <?endforeach;?>
-  <h4>ตอบคำถาม</h4>
+  <!-- <h4>ตอบคำถาม</h4> -->
   <form id="webboard_answer" class="form-horizontal" action="webboard/save_answer" method="post">
     <textarea class="form-control" name="answer_detail" rows="8" placeholder="รายละเอียด"></textarea>
     <br>
     <input class="form-control" type="text" name="answer_who" placeholder="ชื่อ">
     <br>
-    <input type="hidden" name="quiz_id" value="<?=$quiz->id?>">
+    <input type="hidden" name="law_quiz_id" value="<?=$quiz->id?>">
     <input class="btn btn-info" type="submit" value="ตอบคำถาม">
   </form>
 </div>
