@@ -54,9 +54,5 @@ class Webboard extends Public_Controller {
 		$this->template->build('form');
 	}
 
-	function form(){
-		
-	}
-
 }
 ?>
