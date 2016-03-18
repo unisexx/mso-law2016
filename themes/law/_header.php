@@ -58,7 +58,7 @@
       <a href="webboard">กระทู้ ถาม-ตอบ</a>
     </li>
     <li>
-      <a href="plan">แผนพัฒนากฎหมาย</a>
+      <a href="law_plans">แผนพัฒนากฎหมาย</a>
     </li>
     <li>
       <a href="#">หน่วยงานกฎหมายอื่น</a>

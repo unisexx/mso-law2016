@@ -17,7 +17,12 @@
       <?foreach($rs as $row):?>
       <tr>
         <td><?=$row->id?></td>
-        <td><a href="webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a></td>
+        <td>
+        	<a href="webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a>
+        	<?if($row->quiz_sticky == 1):?>
+        		&nbsp;<img src="themes/admin/images/pin.png" width="16" height="16" class="vtip" title="ปักหมุดกระทู้">
+        	<?endif;?>
+        </td>
         <td><?=$row->quiz_who?></td>
         <td><?=number_format($row->quiz_view)?></td>
         <td><?=$row->law_answer->count()?></td>

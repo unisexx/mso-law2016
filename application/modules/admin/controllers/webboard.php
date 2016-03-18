@@ -9,7 +9,7 @@ class Webboard extends Admin_Controller {
 	function index()
 	{
 		$data['rs'] = new Law_quiz();
-		$data['rs']->order_by('id','desc')->get_page();
+		$data['rs']->order_by('quiz_sticky','desc')->order_by('id','desc')->get_page();
 		$this->template->build('webboard/index',$data);
 	}
 	
@@ -22,7 +22,13 @@ class Webboard extends Admin_Controller {
 		if($_GET['state'] == 'true'){
 			$this->db->query("UPDATE law_quizs SET quiz_status = 1 WHERE id = ".$_GET['id']);
 		}else{
-			$this->db->query("UPDATE law_quizs SET quiz_status = 2 WHERE id = ".$_GET['id']);
+			$this->db->query("UPDATE law_quizs SET quiz_status = 0 WHERE id = ".$_GET['id']);
+		}
+	}
+	
+	function ajax_sticky(){
+		if($_GET){
+			$this->db->query("UPDATE law_quizs SET quiz_sticky = ".$_GET['quiz_sticky']." WHERE id = ".$_GET['id']);
 		}
 	}
 	

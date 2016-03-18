@@ -7,7 +7,7 @@
     </div>
   <!-- <input type="text" class="form-control" id="exampleInputName10" style="width:110px;" />
     <img src="images/calendar.png" alt="" width="24" height="24" /> -->
-  <button type="submit" class="btn btn-info"><img src="images/search.png" width="16" height="16" />Search</button>
+  <button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
 </form>
 
   
@@ -19,7 +19,7 @@
 <table class="tblist">
 <tr>
   <th>#</th>
-  <!-- <th><img src="themes/admin/images/pin.png" width="16" height="16" class="vtip" title="ปักหมุดกระทู้" /></th> -->
+  <th><img src="themes/admin/images/pin.png" width="16" height="16" class="vtip" title="ปักหมุดกระทู้" /></th>
   <th>หัวข้อกระทู้</th>
   <th>ความคิดเห็น</th>
   <th>ผู้โพสกระทู้</th>
@@ -30,7 +30,7 @@
   <?foreach($rs as $key=>$row):?>
   <tr>
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
-	  <!-- <td><input name="checkbox" type="checkbox" id="checkbox" checked="checked" /></td> -->
+	  <td><input name="quiz_sticky" type="checkbox" value="1" data-row-id="<?=$row->id?>" <?=($row->quiz_sticky == 1)?'checked="checked"':'';?>/></td>
 	  <td><a href="admin/webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a></td>
 	  <td><?=$row->law_answer->count()?></td>
 	  <td><?=$row->quiz_who?></td>
@@ -48,6 +48,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	// สถานะ เปิด-ปิด
 	$('input[name="status"]').on('switchChange.bootstrapSwitch', function(event, state) {
 	  // console.log(this); // DOM element
 	  // console.log(event); // jQuery event
@@ -58,5 +59,21 @@ $(document).ready(function(){
 	  	state : state
 	  });
 	});
+	
+	// ปักหมุด
+	$("input[name='quiz_sticky']").change(function() { 
+        if($(this).is(":checked")) { 
+			$.get('admin/webboard/ajax_sticky',{
+			  	id : $(this).attr('data-row-id'),
+			  	quiz_sticky : 1
+			});
+        } else {
+            $.get('admin/webboard/ajax_sticky',{
+			  	id : $(this).attr('data-row-id'),
+			  	quiz_sticky : 0
+			});
+        }
+    }); 
+	
 });
 </script>

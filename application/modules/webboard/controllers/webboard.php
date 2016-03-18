@@ -10,7 +10,7 @@ class Webboard extends Public_Controller {
 	{
 		$data['rs'] = new Law_quiz();
 		$data['rs']->where('quiz_status = 1');
-		$data['rs']->order_by('id','desc')->get_page();
+		$data['rs']->order_by('quiz_sticky','desc')->order_by('id','desc')->get_page();
 		$this->template->build('index',$data);
 	}
 

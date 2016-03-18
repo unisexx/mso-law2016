@@ -5,6 +5,7 @@
 <link href="themes/admin/css/bootstrap-switch.css" rel="stylesheet">
 <link rel="stylesheet" href="themes/admin/css/menu.css">
 <link rel="stylesheet" type="text/css" href="themes/admin/css/vtip.css" />
+<link rel="stylesheet" href="media/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
 
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

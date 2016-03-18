@@ -1,5 +1,5 @@
 <?php
-class Plan extends Public_Controller {
+class Law_plans extends Public_Controller {
 
 	function __construct()
 	{

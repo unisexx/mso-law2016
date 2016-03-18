@@ -13,7 +13,7 @@ if($this->uri->segment(1) == "webboard" && $this->uri->segment(2) == "view" && i
 }
 
 /************** PLAN **************/
-if($this->uri->segment(1) == "plan"){
+if($this->uri->segment(1) == "law_plans"){
  	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">แผนพัฒนากฎหมาย</li>';
 }
 ?>

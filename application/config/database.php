@@ -38,7 +38,7 @@
 | the active record class
 */
 
-$active_group = 'local';
+$active_group = 'host';
 $active_record = TRUE;
 
 
