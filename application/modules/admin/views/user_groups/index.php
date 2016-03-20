@@ -24,7 +24,7 @@
   <th>จัดการ</th>
   </tr>
   <?foreach($rs as $key=>$row):?>
-	<tr>
+  <tr class="<?=alternator('','odd');?>">
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
 	  <td><?=$row->name?></td>
 	  <td><a href="admin/user_groups/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/user_groups/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>

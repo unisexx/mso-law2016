@@ -137,4 +137,15 @@ if(!function_exists('get_webboard_quiz_name'))
     return $rs->quiz_title;
 	}
 }
+
+if(!function_exists('get_usergroup_name'))
+{
+	function get_usergroup_name($id){
+		if($id != ""){
+			$CI =& get_instance();
+		    $rs = $CI->db->query('select name from user_groups where id = '.$id)->result_array();
+		    return $rs[0]['name'];
+		}
+	}
+}
 ?>

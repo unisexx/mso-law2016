@@ -9,11 +9,10 @@ class Law_types extends Admin_Controller {
 	function index()
 	{
 		$data['rs'] = new Law_type();
-		if(@$_GET['search']){
-			$data['rs']->where('name LIKE "%'.$_GET['search'].'%"');
-		}
+		if(@$_GET['search']){$data['rs']->where('name LIKE "%'.$_GET['search'].'%"');}
+		if(@$_GET['law_group_id']){$data['rs']->where('law_group_id = '.$_GET['law_group_id']);}
 
-		$data['rs']->order_by('id','desc')->get_page();
+		$data['rs']->order_by('id','asc')->get_page();
 		// $data['rs']->check_last_query();
 		$this->template->build('law_types/index',$data);
 	}
@@ -25,6 +24,7 @@ class Law_types extends Admin_Controller {
 
 	function save($id=false){
 		if($_POST){
+			$_POST['name'] = lang_encode($_POST['name']);
 			$_POST['unit_import'] = implode(',', $_POST['unit_import']);
 
 			$rs = new Law_type($id);

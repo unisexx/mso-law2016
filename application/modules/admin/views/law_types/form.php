@@ -5,8 +5,8 @@
 
 <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#thai" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
-    <li role="presentation"><a href="#english" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
+    <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
+    <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
   </ul>
 
 <!-- Tab panes -->
@@ -16,13 +16,14 @@
         <tr>
           <th>กลุ่มกฎหมาย<span class="Txt_red_12"> *</span></th>
           <td>
-            <?=form_dropdown('lawg_id',get_option('id','name','law_groups order by id asc'),@$rs->lawg_id,'class="form-control" style="width:auto;"','-- กรุณาเลือกกลุ่มกฎหมาย --');?>
+            <?=form_dropdown('law_group_id',get_option('id','name','law_groups order by id asc'),@$rs->law_group_id,'class="form-control" style="width:auto;"','-- กรุณาเลือกกลุ่มกฎหมาย --');?>
           </td>
         </tr>
         <tr>
           <th>ชื่อหมวดกฎหมาย<span class="Txt_red_12"> *</span></th>
           <td>
-            <input type="text" class="form-control" name="name" style="width:500px;" value="<?=$rs->name?>" />
+            <input rel="th" type="text" class="form-control" name="name[th]" style="width:500px;" value="<?=lang_decode($rs->name,'th')?>" />
+            <input rel="en" type="text" class="form-control" name="name[en]" style="width:500px;" value="<?=lang_decode($rs->name,'en')?>" />
           </td>
         </tr>
         <tr>
@@ -59,57 +60,6 @@
         </tr>
         </table>
     </div>
-
-    <div role="tabpanel" class="tab-pane" id="english">
-        <table class="tbadd">
-        <tr>
-          <th>Law Group<span class="Txt_red_12"> *</span></th>
-          <td><select name="select2" class="form-control" style="width:auto;">
-            <option>-- Select Law Group --</option>
-            <option>ในภารกิจ</option>
-            <option>กฎหมายประกอบภารกิจ</option>
-          </select></td>
-        </tr>
-        <tr>
-          <th>Name of the Law Category<span class="Txt_red_12"> *</span></th>
-          <td>
-            <input type="text" class="form-control" id="exampleInputName" style="width:500px;" />
-          </td>
-        </tr>
-        <tr>
-          <th>Import format</th>
-          <td><select name="select2" class="form-control" style="width:auto;">
-            <option>-- Select Import format --</option>
-            <option>สิทธิการนำเข้าแบบ ในภารกิจ</option>
-            <option>สิทธิการนำเข้าแบบ ในภารกิจ ไม่มีคาบข้าม</option>
-            <option>สิทธิการนำเข้าแบบ รัฐธรรมนูญ</option>
-            <option>สิทธิการนำเข้าแบบ ระหว่างประเทศ</option>
-          </select></td>
-        </tr>
-        <tr>
-          <th>Picture</th>
-          <td>
-            <span class="form-inline">
-            <input type="text" disabled="disabled" class="form-control" id="exampleInputName2" style="width:200px;" />
-              <input name="input3" type="button" title="คลิกเพื่อเลือกรูป" value="คลิกเพื่อเลือกรูป"  class="btn btn-success"/></span>
-          </td>
-        </tr>
-        <tr>
-          <th>Permission<span class="Txt_red_12"> *</span></th>
-          <td>
-          <span><input type="checkbox" name="checkbox" id="checkbox" /> ศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร	</span>
-          <span><input type="checkbox" name="checkbox" id="checkbox" /> สำนักงานปลัด(กองนิติการ)</span><br />
-          <span><input type="checkbox" name="checkbox" id="checkbox" /> กรมพัฒนาสังคมและสวัสดิการ</span>
-          <span><input type="checkbox" name="checkbox" id="checkbox" /> สำนักงานกิจการสตรีและสถาบันครอบครัว</span><br />
-          <span><input type="checkbox" name="checkbox2" id="checkbox2" /> กรมกิจการเด็กและเยาวชน</span>
-          <span><input type="checkbox" name="checkbox2" id="checkbox2" /> กรมผู้สูงอายุ</span><br />
-          <span><input type="checkbox" name="checkbox3" id="checkbox3" /> สถาบันพัฒนาองค์กรชุมชน</span>
-          <span><input type="checkbox" name="checkbox4" id="checkbox4" /> การเคหะแห่งชาติ </span> <br />
-          <span><input type="checkbox" name="checkbox4" id="checkbox4" /> สำนักงานส่งเสริมและพัฒนาคุณภาพชีวิตคนพิการแห่งชาติ</span></td>
-        </tr>
-        </table>
-
-    </div>
 </div>
 
 <div id="btnBoxAdd">
@@ -126,18 +76,26 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
+	$("[rel=en]").hide();
+	
+	$(".lang a").click(function(){
+		$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+		$(this).closest('li').addClass('active').siblings().removeClass('active');
+		return false;
+	})
+	
 	$("#law_types_frm").validate({
 	    rules:
 	    {
 	    	lawg_id:{required: true},
-        name:{required: true},
-        'unit_import[]':{required: true}
+	        name:{required: true},
+	        'unit_import[]':{required: true}
 	    },
 	    messages:
 	    {
 	    	lawg_id:{required: "กรุณาเลือกกลุ่มกฎหมาย"},
-        name:{required: "กรุณากรอกชื่อหมวดกฎหมาย"},
-        'unit_import[]':{required: "กรุณาเลือกอย่างน้อย 1 รายการ"}
+	        name:{required: "กรุณากรอกชื่อหมวดกฎหมาย"},
+	        'unit_import[]':{required: "กรุณาเลือกอย่างน้อย 1 รายการ"}
 	    }
     });
 });

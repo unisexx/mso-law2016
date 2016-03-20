@@ -26,7 +26,7 @@
   <th>จัดการ</th>
   </tr>
   <?foreach($rs as $key=>$row):?>
-  <tr>
+  <tr class="<?=alternator('','odd');?>">
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
 	  <td><?=$row->plan_name?></td>
 	  <td><?=$row->plan_year?></td>

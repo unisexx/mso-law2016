@@ -5,6 +5,7 @@
   <div class="col-xs-4">
     <input type="text" class="form-control " name="search" placeholder="ชื่อหมวดกฎหมาย" value="<?=@$_GET['search']?>">
   </div>
+  <?=form_dropdown('law_group_id', get_option('id','name','law_groups order by name asc'), @$_GET['law_group_id'],'class="form-control" style="width:auto;"','-- ทุกกลุ่มกฎหมาย --');?>
   <button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
 </form>
 
@@ -27,12 +28,20 @@
   <th>จัดการ</th>
   </tr>
   <?foreach($rs as $key=>$row):?>
-	<tr>
+  <tr class="<?=alternator('','odd');?>">
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
-	  <td><?=$row->name?></td>
-    <td></td>
-    <td></td>
-    <td></td>
+	  <td><?=lang_decode($row->name)?></td>
+	  <td><?=$row->law_datalaw->count();?></td>
+      <td><?=lang_decode($row->law_group->name)?></td>
+      <td>
+      		<?
+      			$user_groups = explode(",", $row->unit_import);
+				foreach ($user_groups as $item)
+				{
+					echo "• ".get_usergroup_name($item)."<br>";
+				}
+      		?>
+      </td>
 	  <td><a href="admin/law_types/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_types/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
 	</tr>
   <?endforeach;?>

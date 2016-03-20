@@ -8,7 +8,7 @@
 	<tr>
 	  <th>ตำแหน่ง</th>
 	  <td>
-	  	<?=form_dropdown('position',get_option('name','name','user_position order by id asc'),@$rs->position,'class="form-control" style="width:auto;"','-- เลือกตำแหน่ง --');?>
+	  	<?=form_dropdown('position',get_option('name','name','user_positions order by id asc'),@$rs->position,'class="form-control" style="width:auto;"','-- เลือกตำแหน่ง --');?>
 	</td>
 	</tr>
 	<tr>

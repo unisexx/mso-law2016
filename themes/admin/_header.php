@@ -26,8 +26,8 @@
 		 <li><a href='admin/user_positions'><span>ตำแหน่ง</span></a></li>
          <li><a href='admin/law_groups'><span>กลุ่มกฎหมาย</span></a></li>
          <li><a href='admin/law_types'><span>หมวดกฎหมาย</span></a></li>
-         <li><a href='lawtype.php'><span>ประเภทกฎหมาย</span></a></li>
-         <li><a href='lawsubtype.php'><span>ประเภทย่อยกฎหมาย</span></a></li>
+         <li><a href='admin/law_maintypes'><span>ประเภทกฎหมาย</span></a></li>
+         <li><a href='admin/law_submaintypes'><span>ประเภทย่อยกฎหมาย</span></a></li>
          <li><a href='admin/law_options'><span>Option กฎหมาย</span></a></li>
 
          <!--<li class='has-sub'><a href='#'><span>Product 2</span></a>
