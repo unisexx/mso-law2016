@@ -14,45 +14,45 @@
 
 
         <div id="highlight" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#highlight" data-slide-to="0" class="active"></li>
-          <li data-target="#highlight" data-slide-to="1"></li>
-          <li data-target="#highlight" data-slide-to="2"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-          <div class="item active">
-            <img src="themes/law/images/slide01.png" width="863" height="266">
-            <!-- <div class="carousel-caption">
-              ...
-            </div> -->
-          </div>
-          <div class="item">
-            <img src="themes/law/images/slide01.png" width="863" height="266">
-            <!-- <div class="carousel-caption">
-              ...
-            </div> -->
-          </div>
-          <div class="item">
-            <img src="themes/law/images/slide01.png" width="863" height="266">
-            <!-- <div class="carousel-caption">
-              ...
-            </div> -->
-          </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#highlight" role="button" data-slide="prev">
-          <i class="icon-prev fa fa-angle-left"></i>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#highlight" role="button" data-slide="next">
-          <i class="icon-next fa fa-angle-right"></i>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+	        <!-- Indicators -->
+	        <ol class="carousel-indicators">
+	          <li data-target="#highlight" data-slide-to="0" class="active"></li>
+	          <li data-target="#highlight" data-slide-to="1"></li>
+	          <li data-target="#highlight" data-slide-to="2"></li>
+	        </ol>
+	
+	        <!-- Wrapper for slides -->
+	        <div class="carousel-inner" role="listbox">
+	          <div class="item active">
+	            <img src="themes/law/images/slide01.png" width="863" height="266">
+	            <!-- <div class="carousel-caption">
+	              ...
+	            </div> -->
+	          </div>
+	          <div class="item">
+	            <img src="themes/law/images/slide01.png" width="863" height="266">
+	            <!-- <div class="carousel-caption">
+	              ...
+	            </div> -->
+	          </div>
+	          <div class="item">
+	            <img src="themes/law/images/slide01.png" width="863" height="266">
+	            <!-- <div class="carousel-caption">
+	              ...
+	            </div> -->
+	          </div>
+	        </div>
+	
+	        <!-- Controls -->
+	        <a class="left carousel-control" href="#highlight" role="button" data-slide="prev">
+	          <i class="icon-prev fa fa-angle-left"></i>
+	          <span class="sr-only">Previous</span>
+	        </a>
+	        <a class="right carousel-control" href="#highlight" role="button" data-slide="next">
+	          <i class="icon-next fa fa-angle-right"></i>
+	          <span class="sr-only">Next</span>
+	        </a>
+		</div>
       <!-----------------------------------EnD Slide------------------------------------------------------------------------------------------------->
 
 
@@ -74,53 +74,11 @@
         <?php echo modules::run('home/inc_newlaw'); ?>
         <!-----------------------------------กฎหมายใหม่...------------------------------------------------------------------------------------------------->
 
-
-        <div id="cat-law">
-          <span class="title-law1">กฎหมายประเภทต่างๆ</span>
-          <div class="line1">&nbsp;</div>
-          <div data-interval="false" class="carousel slide" data-ride="carousel" id="cat-laww">
-            <div class="carousel-inner">
-              <div class="item active" id="cate">
-                <ul>
-                  <li class="cat1">
-                    <a href="#">&nbsp;<br><div class="text-cat">กฎหมายเด็กและเยาวชน</div></a>
-                  </li>
-                  <li class="cat2">
-                    <a href="#">&nbsp;<br><div class="text-cat">กลุ่มกฎหมายการส่งเสริม<br>และพัฒนาคุณภาพชีวิต<br>คนพิการ</div></a>
-                  </li>
-                  <li class="cat3">
-                    <a href="#">&nbsp;<br><div class="text-cat">กฎหมายผู้สูงอายุ</div></a>
-                  </li>
-                  <li class="cat4">
-                    <a href="#">&nbsp;<br><div class="text-cat">กฎหมายสวัสดิการสังคม</div></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="item">
-                <div class="item active" id="cate">
-                  <ul>
-                    <li class="cat5">
-                      <a href="#">&nbsp;<br><div class="text-cat">กฎหมายพัฒนาชุมชนและสังคม</div></a>
-                    </li>
-                    <li class="cat6">
-                      <a href="#">&nbsp;<br><div class="text-cat">กฎหมายป้องกันและปราบปราม<br>การค้ามนุษย์และการค้าประเวณี<br>และควบคุมการขอทาน</div></a>
-                    </li>
-                    <li class="cat7">
-                      <a href="#">&nbsp;<br><div class="text-cat">กฎหมายสตรีและสถาบันครอบครัว</div></a>
-                    </li>
-                    <li class="cat8">
-                      <a href="#">&nbsp;<br><div class="text-cat">กฎหมายจัดตั้งกระทรวง</div></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <a class="left carousel-control" href="#carousel-example" data-slide="prev" id="arrow-left-cat"><i class="arrow-left"></i></a>
-            <a class="right carousel-control" href="#carousel-example" data-slide="next" id="arrow-right-cat"><i class="arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="clearfix">&nbsp;</div>
+		<?php echo modules::run('home/inc_lawtype'); ?>
         <!-----------------------------------กฎหมายประเภทต่างๆ------------------------------------------------------------------------------------------------->
+        
+        
+        
         <div id="cat-group">
           <span class="title-law1">กฎหมาย แสดงข้อมูลแบบกลุ่ม</span>
           <div id="bgcat-group">

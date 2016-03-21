@@ -138,14 +138,19 @@ if(!function_exists('get_webboard_quiz_name'))
 	}
 }
 
-if(!function_exists('get_usergroup_name'))
+if(!function_exists('get_usergroup_array'))
 {
-	function get_usergroup_name($id){
-		if($id != ""){
-			$CI =& get_instance();
-		    $rs = $CI->db->query('select name from user_groups where id = '.$id)->result_array();
-		    return $rs[0]['name'];
+	function get_usergroup_array(){
+		$CI =& get_instance();
+		$rs = new User_group();
+		$rs->order_by('id','asc')->get();
+		
+		$user_group = array();
+		foreach($rs as $row){
+			$user_group[$row->id] = $row->name;
 		}
+		
+		return $user_group;
 	}
 }
 ?>

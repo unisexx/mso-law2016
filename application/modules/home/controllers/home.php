@@ -26,6 +26,13 @@ class Home extends Public_Controller {
 		$this->load->view('inc_newlaw',$data);
 	}
 
+	function inc_lawtype(){
+		$data['rs'] = new Law_type();
+		$data['rs']->where('law_group_id = 1');
+		$data['rs']->order_by('id','asc')->get();
+		$this->load->view('inc_lawtype',$data);
+	}
+	
 	function info(){
 		// phpinfo();
 	}

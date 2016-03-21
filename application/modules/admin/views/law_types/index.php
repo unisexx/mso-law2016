@@ -1,3 +1,5 @@
+<?$usergroup_name = get_usergroup_array();?>
+
 <h3>หมวดกฎหมาย</h3>
 <div id="search">
 <div id="searchBox">
@@ -38,7 +40,7 @@
       			$user_groups = explode(",", $row->unit_import);
 				foreach ($user_groups as $item)
 				{
-					echo "• ".get_usergroup_name($item)."<br>";
+					echo "• ".@$usergroup_name[$item]."<br>";
 				}
       		?>
       </td>
