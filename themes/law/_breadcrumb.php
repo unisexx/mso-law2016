@@ -17,9 +17,14 @@ if($this->uri->segment(1) == "law_plans"){
  	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">แผนพัฒนากฎหมาย</li>';
 }
 
-/************** "WEBLINKS" **************/
+/************** WEBLINKS **************/
 if($this->uri->segment(1) == "weblinks"){
  	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">หน่วยงานกฎหมายอื่น</li>';
+}
+
+/************** Law Type **************/
+if($this->uri->segment(1) == "law_types" && $this->uri->segment(2) == "index" && is_numeric($this->uri->segment(3))){
+	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">'.get_law_type_name($this->uri->segment(3)).'</li>';
 }
 ?>
 

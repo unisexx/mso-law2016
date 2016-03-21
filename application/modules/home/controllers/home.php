@@ -30,6 +30,7 @@ class Home extends Public_Controller {
 		$data['rs'] = new Law_type();
 		$data['rs']->where('law_group_id = 1');
 		$data['rs']->order_by('id','asc')->get();
+		// $data['rs']->check_last_query();
 		$this->load->view('inc_lawtype',$data);
 	}
 	

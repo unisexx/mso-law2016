@@ -138,6 +138,15 @@ if(!function_exists('get_webboard_quiz_name'))
 	}
 }
 
+if(!function_exists('get_law_type_name'))
+{
+	function get_law_type_name($id){
+    $CI =& get_instance();
+    $rs = new Law_type($id);
+    return lang_decode($rs->name);
+	}
+}
+
 if(!function_exists('get_usergroup_array'))
 {
 	function get_usergroup_array(){
@@ -151,6 +160,26 @@ if(!function_exists('get_usergroup_array'))
 		}
 		
 		return $user_group;
+	}
+}
+
+if(!function_exists('get_datalaw_status_array'))
+{
+	function get_datalaw_status_array($id){
+    $status = array('1'=>'บังคับใช้','2'=>'ยกเลิก','3'=>'อยู่ระหว่างพิจารณา');
+    return $status[$id];
+	}
+}
+
+if(!function_exists('file_icon'))
+{
+	function file_icon($file){
+	    $ext = pathinfo($file, PATHINFO_EXTENSION);
+		if($ext == 'doc'){
+			return '<img src="themes/law/images/icon-word.png" width="16" height="16" class="icon-hover">';
+		}else{
+			return '<img src="themes/law/images/icon-pdf.png" width="16" height="16" class="icon-hover">';
+		}
 	}
 }
 ?>
