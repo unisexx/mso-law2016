@@ -23,7 +23,7 @@ if($this->uri->segment(1) == "weblinks"){
 }
 
 /************** Law Type **************/
-if($this->uri->segment(1) == "law_types" && $this->uri->segment(2) == "index" && is_numeric($this->uri->segment(3))){
+if($this->uri->segment(1) == "law" && $this->uri->segment(2) == "type_list" && is_numeric($this->uri->segment(3))){
 	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">'.get_law_type_name($this->uri->segment(3)).'</li>';
 }
 ?>

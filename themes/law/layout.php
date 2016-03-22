@@ -7,8 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <? include "_inc.php";?>
       <?php echo $template['metadata'] ?>
-  </head>
-  <body>
+  </head><body>
     <div class="navbar navbar-default navbar-static-top" id="top">
       <div class="container">
         <? include "_header.php";?>
@@ -19,4 +18,4 @@
 
     </div>
   </body>
-  </html>
+</html>

@@ -38,7 +38,7 @@
 | the active record class
 */
 
-$active_group = 'host';
+$active_group = 'mso';
 $active_record = TRUE;
 
 
@@ -73,6 +73,22 @@ $db['host']['dbcollat'] = 'utf8_general_ci';
 $db['host']['swap_pre'] = '';
 $db['host']['autoinit'] = TRUE;
 $db['host']['stricton'] = FALSE;
+
+$db['mso']['hostname'] = 'localhost';
+$db['mso']['username'] = 'lawdb';
+$db['mso']['password'] = 'lawpwd';
+$db['mso']['database'] = 'law2016';
+$db['mso']['dbdriver'] = 'mysql';
+$db['mso']['dbprefix'] = '';
+$db['mso']['pconnect'] = TRUE;
+$db['mso']['db_debug'] = TRUE;
+$db['mso']['cache_on'] = FALSE;
+$db['mso']['cachedir'] = '';
+$db['mso']['char_set'] = 'utf8';
+$db['mso']['dbcollat'] = 'utf8_general_ci';
+$db['mso']['swap_pre'] = '';
+$db['mso']['autoinit'] = TRUE;
+$db['mso']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

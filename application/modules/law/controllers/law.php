@@ -1,12 +1,12 @@
 <?php
-class Law_types extends Public_Controller {
+class Law extends Public_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
 	}
 
-	function index($id)
+	function type_list($id)
 	{
 		$data['rs'] = new Law_type($id);
 		
@@ -16,7 +16,12 @@ class Law_types extends Public_Controller {
 		$data['laws']->where('law_type_id = '.$id);
 		$data['laws']->order_by('id','desc')->get_page();
 		
-		$this->template->build('index',$data);
+		$this->template->build('type_list',$data);
+	}
+	
+	function view($id){
+		$data['rs'] = new Law_datalaw($id);
+		$this->template->build('view',$data);
 	}
 	
 }

@@ -1,7 +1,7 @@
 <style type="text/css" media="screen">
 	.search{padding:10px; background: rgba(158, 158, 158, 0.46);}
 </style>
-<div id="plan">
+<div id="type-list">
   <span class="title-law2"><?=lang_decode($rs->name)?></span>
   <div class="line1">&nbsp;</div>
 	
@@ -28,7 +28,7 @@
 	    </div>
 	  </div>
 	</form>
-	
+
   <table class="table table-striped" id="tb-plan">
     <thead>
       <tr>
@@ -40,7 +40,7 @@
     <tbody>
     	<?foreach($laws as $row):?>
     	<tr>
-    		<td><?=str_replace("|"," ",$row->name_th)?></td>
+    		<td><a href="law/view/<?=$row->id?>"><?=str_replace("|"," ",$row->name_th)?></a></td>
     		<td class="text-center"><?=get_datalaw_status_array($row->status)?></td>
     		<td class="text-center">
     			<a href="<?=$row->filename_th?>"><?=file_icon($row->filename_th)?></a>

@@ -45,7 +45,7 @@
       	<?foreach($rs as $key=>$row):?>
       	<?=(($key%$item)==0 && ($key != 0))? '</ul></div><div class="item"  id="cate"><ul>' : '' ;?>
 		<li class="lawtype_cat<?=$row->id?>">
-            <a href="law_types/index/<?=$row->id?>">
+            <a href="law/type_list/<?=$row->id?>">
             	<div id="overlay">
 			    <span id="plus"><i class="fa fa-search fa-2x"></i></span>
 			  </div>	
