@@ -15,7 +15,7 @@ function style_date($date){
         <?=style_date($row->notic_date)?>
       </span>
       <span id="<?=alternator('news-law1', 'news-law2');?>">
-        <a href="#"><?=str_replace("|"," ",$row->name_th)?></a>
+        <a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a>
       </span>
     </li>
     <?endforeach;?>

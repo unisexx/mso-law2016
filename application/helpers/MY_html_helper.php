@@ -138,12 +138,30 @@ if(!function_exists('get_webboard_quiz_name'))
 	}
 }
 
+if(!function_exists('get_law_groups_name'))
+{
+	function get_law_groups_name($id){
+    $CI =& get_instance();
+    $rs = new Law_group($id);
+    return lang_decode($rs->name);
+	}
+}
+
 if(!function_exists('get_law_type_name'))
 {
 	function get_law_type_name($id){
     $CI =& get_instance();
     $rs = new Law_type($id);
     return lang_decode($rs->name);
+	}
+}
+
+if(!function_exists('get_law_submaintypes_name'))
+{
+	function get_law_submaintypes_name($id){
+    $CI =& get_instance();
+    $rs = new Law_submaintype($id);
+    return lang_decode($rs->typeName);
 	}
 }
 
@@ -163,10 +181,18 @@ if(!function_exists('get_usergroup_array'))
 	}
 }
 
-if(!function_exists('get_datalaw_status_array'))
+if(!function_exists('get_datalaw_status'))
 {
-	function get_datalaw_status_array($id){
+	function get_datalaw_status($id){
     $status = array('1'=>'บังคับใช้','2'=>'ยกเลิก','3'=>'อยู่ระหว่างพิจารณา');
+    return $status[$id];
+	}
+}
+
+if(!function_exists('get_law_version_versiontype_status'))
+{
+	function get_law_version_version_type_status($id){
+    $status = array("1"=>"ยกเลิก","2"=>"แก้ไข","3"=>"เพิ่มเติม","4"=>"แก้ไข / เพิ่มเติม");   
     return $status[$id];
 	}
 }
@@ -180,6 +206,28 @@ if(!function_exists('file_icon'))
 		}else{
 			return '<img src="themes/law/images/icon-pdf.png" width="16" height="16" class="icon-hover">';
 		}
+	}
+}
+
+if(!function_exists('get_law_group_text'))
+{
+	function get_law_group_text($id){
+		$CI =& get_instance();
+	   $law_datalaw = $CI->db->query("select * from law_datalaws where id = ".$id)->$row();
+	   
+	   $txt1 = get_law_groups_name($law_datalaw->law_group_id);
+	   $txt2 = get_law_type_name($law_datalaw->law_type_id);
+	   $groupLaw = "$txt1 > $txt2 "; 
+	   if($law_datalaw->category_id==10){
+	      $txt3 = $db->covertID2Name(LAW_TYPE,$value[type_id]);
+	      $txt4 = $db->covertID2Name(LAW_SUBMAINTYPE,$value[subtype_id]);
+	      $groupLaw .=  "> $txt3[name] > $txt4[typeName]";
+	   }elseif($law_datalaw->category_id!=11 && $law_datalaw->category_id!=10){  
+	      $txt3 = $db->covertID2Name(LAW_MAINTYPE,$value[type_id]);  
+	      $txt4 = $db->covertID2Name(LAW_SUBMAINTYPE,$value[subtype_id]); 
+	      $groupLaw .=  "> $txt3[typeName] > $txt4[typeName]"; 
+	   }        
+    return $status[$id];
 	}
 }
 ?>

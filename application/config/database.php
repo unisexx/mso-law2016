@@ -38,7 +38,7 @@
 | the active record class
 */
 
-$active_group = 'mso';
+$active_group = 'fd';
 $active_record = TRUE;
 
 
@@ -58,21 +58,21 @@ $db['local']['swap_pre'] = '';
 $db['local']['autoinit'] = TRUE;
 $db['local']['stricton'] = FALSE;
 
-$db['host']['hostname'] = 'mysql1.favouritehosting.com';
-$db['host']['username'] = 'c1law2016';
-$db['host']['password'] = 'L@w20!6';
-$db['host']['database'] = 'c1law2016';
-$db['host']['dbdriver'] = 'mysql';
-$db['host']['dbprefix'] = '';
-$db['host']['pconnect'] = TRUE;
-$db['host']['db_debug'] = TRUE;
-$db['host']['cache_on'] = FALSE;
-$db['host']['cachedir'] = '';
-$db['host']['char_set'] = 'utf8';
-$db['host']['dbcollat'] = 'utf8_general_ci';
-$db['host']['swap_pre'] = '';
-$db['host']['autoinit'] = TRUE;
-$db['host']['stricton'] = FALSE;
+$db['fd']['hostname'] = 'mysql1.favouritehosting.com';
+$db['fd']['username'] = 'c1law2016';
+$db['fd']['password'] = 'L@w20!6';
+$db['fd']['database'] = 'c1law2016';
+$db['fd']['dbdriver'] = 'mysql';
+$db['fd']['dbprefix'] = '';
+$db['fd']['pconnect'] = TRUE;
+$db['fd']['db_debug'] = TRUE;
+$db['fd']['cache_on'] = FALSE;
+$db['fd']['cachedir'] = '';
+$db['fd']['char_set'] = 'utf8';
+$db['fd']['dbcollat'] = 'utf8_general_ci';
+$db['fd']['swap_pre'] = '';
+$db['fd']['autoinit'] = TRUE;
+$db['fd']['stricton'] = FALSE;
 
 $db['mso']['hostname'] = 'localhost';
 $db['mso']['username'] = 'lawdb';
