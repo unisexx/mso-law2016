@@ -52,7 +52,7 @@
       <li class="active-home">หน้าแรก</li>
     </a>
     <li>
-      <a href="#">แสดงข้อมูลแบบกลุ่ม</a>
+      <a href="law/group_list">แสดงข้อมูลแบบกลุ่ม</a>
     </li>
     <li>
       <a href="webboard">กระทู้ ถาม-ตอบ</a>

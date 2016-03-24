@@ -22,12 +22,17 @@ if($this->uri->segment(1) == "weblinks"){
  	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">หน่วยงานกฎหมายอื่น</li>';
 }
 
-/************** Law Type **************/
+/************** Law type_list **************/
 if($this->uri->segment(1) == "law" && $this->uri->segment(2) == "type_list" && is_numeric($this->uri->segment(3))){
 	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">'.get_law_type_name($this->uri->segment(3)).'</li>';
 }
 
-/************** LAW **************/
+/************** Law group_list **************/
+if($this->uri->segment(1) == "law" && $this->uri->segment(2) == "group_list"){
+	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">แสดงข้อมูลแบบกลุ่ม</li>';
+}
+
+/************** Law view **************/
 if($this->uri->segment(1) == "law" && $this->uri->segment(2) == "view" && is_numeric($this->uri->segment(3))){
 	$breadcrumb = '<li><a href="home">หน้าแรก</a></li><li class="active">รายละเอียดกฎหมาย</li>';
 }

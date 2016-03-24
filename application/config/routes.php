@@ -34,7 +34,7 @@
 
 $route['default_controller'] = "home";
 
-$route['zadmin'] = 'users/admin/auth/login';
+$route['admin'] = 'users/admin/auth/login';
 // 
 // 
 // $route['categories/admin/categories/save'] = "categories/admin/categories/save";

@@ -9,16 +9,16 @@
 	  <div class="form-group">
 	    <!-- <label for="maintype" class="col-sm-2 control-label">ประเภทกฎหมาย</label> -->
 	    <div class="col-sm-3">
-	      <?=form_dropdown('law_maintype_id', get_option('id','typeName','law_maintypes order by id asc'), @$_GET['law_maintype_id'],'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมาย --');?>
+	      <?=form_dropdown('law_maintype_id', get_option('id','typeName','law_maintypes order by id asc'), @$_GET['law_maintype_id'],'class="form-control" style="width:auto;"','--- เลือกประเภทกฎหมาย ---');?>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <!-- <label for="submaintype" class="col-sm-2 control-label">ประเภทย่อยกฎหมาย</label> -->
 	    <div id="submaintype" class="col-sm-3">
 	    	<?if(@$_GET['law_maintype_id']):?>
-	    		<?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes where law_maintype_id = '.$_GET['law_maintype_id'].' order by typeName asc'), @$_GET['law_submaintype_id'],' class="form-control" style="width:auto;"','-- เลือกประเภทย่อยกฎหมาย --');?>
+	    		<?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes where law_maintype_id = '.$_GET['law_maintype_id'].' order by typeName asc'), @$_GET['law_submaintype_id'],' class="form-control" style="width:auto;"','--- เลือกประเภทย่อยกฎหมาย ---');?>
 	    	<?else:?>
-	    		<?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes order by typeName asc'), @$_GET['law_submaintype_id'],'disabled class="form-control" style="width:auto;"','-- เลือกประเภทย่อยกฎหมาย --');?>
+	    		<?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes order by typeName asc'), @$_GET['law_submaintype_id'],'disabled class="form-control" style="width:auto;"','--- เลือกประเภทย่อยกฎหมาย ---');?>
 	    	<?endif;?>
 	    </div>
 	  </div>

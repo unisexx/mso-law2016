@@ -34,6 +34,17 @@ class Home extends Public_Controller {
 		$this->load->view('inc_lawtype',$data);
 	}
 	
+	function inc_group_list(){
+		 // function นี้เหมือนก้อบมาจาก law/group_list
+		$data['laws'] = new Law_datalaw();
+		if(@$_GET['law_group_id']){$data['laws']->where('law_group_id = '.$_GET['law_group_id']);}
+		if(@$_GET['law_type_id']){$data['laws']->where('law_type_id = '.$_GET['law_type_id']);}
+		$data['laws']->where("law_maintype_id not in ('2', '5')");
+		$data['laws']->where('apply_power_id is not null');
+		$data['laws']->order_by('law_maintype_id','asc')->order_by('law_submaintype_id','asc')->order_by('name_th','asc')->get(10);
+		$this->load->view('inc_group_list',$data);
+	}
+	
 	function info(){
 		// phpinfo();
 	}

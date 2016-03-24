@@ -152,9 +152,9 @@ label.error{color:#F44336;}
 .pages ul li a img{	vertical-align: middle;}
 .pages ul li:hover,.pages ul li.currentpage,li.disabled{	background-color:#485460; color:#BEBEBE;}
 
-.pages li:nth-child(1){	margin-right: 3.5em;}
+/*.pages li:nth-child(1){	margin-right: 3.5em;}
 .pages li:nth-child(7),.pages li:nth-child(7):hover{	background: none;}
-.pages li:nth-child(9),.pages li.next{	margin-left: 3.5em;}
+.pages li:nth-child(9),.pages li.next{	margin-left: 3.5em;}*/
 
 
 .download{color:white; float:left; width:50%; }

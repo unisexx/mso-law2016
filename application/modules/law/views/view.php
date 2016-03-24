@@ -4,6 +4,7 @@
   <span class="title-law2"><?=str_replace("|"," ",$rs->name_th)?></span>
   <div class="line1">&nbsp;</div>
 	
+	<div class="pull-right" style="margin-bottom:10px;"><small class="text-muted"><?=get_law_group_text($rs->id)?></small></div>
 	<table class="table table-bordered">
 		<tr>
 			<th>ชื่อกฎหมาย</th>
@@ -20,7 +21,7 @@
 		<tr>
 			<th>อาศัยอำนาจกฎหมาย</th>
 			<td>
-				<div>ประเภทกฎหมายย่อยอาศัยอำนาจ  :  <?=$rs->apply_power_group != ""? get_law_submaintypes_name($rs->apply_power_group) : '-' ;?></div>
+				<div>ประเภทกฎหมายย่อยอาศัยอำนาจ  :  <?=$rs->apply_power_group != ""? get_law_submaintype_name($rs->apply_power_group) : '-' ;?></div>
 				<div>อาศัยอำนาจกฎหมาย  : 
 					<?
 						$sql = "select * from law_datalaws where id='$rs->apply_power_id'";
