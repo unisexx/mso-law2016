@@ -1,4 +1,14 @@
 <?php
+/*
+ * --- หมายเหตุ ---
+ * เปลี่ยนชื่อฟิลด์เทเบิ้ล law_datalaws จากเว็บเก่าเป็นชื่อใหม่ดังนี้
+ * group_id 		เปลี่ยนชื่อเป็น 		law_group_id
+ * category_id 	เปลี่ยนชื่อเป็น 		law_type_id
+ * type_id 			เปลี่ยนชื่อเป็น 		law_maintype_id
+ * subtype_id 	เปลี่ยนชื่อเป็น 		law_submaintype_id
+ * 
+ * */
+ 
 class Law extends Public_Controller {
 
 	function __construct()
@@ -11,8 +21,8 @@ class Law extends Public_Controller {
 		$data['rs'] = new Law_type($id);
 		
 		$data['laws'] = new Law_datalaw();
-		if(@$_GET['law_maintype_id']){$data['laws']->where('type_id = '.$_GET['law_maintype_id']);}
-		if(@$_GET['law_submaintype_id']){$data['laws']->where('subtype_id = '.$_GET['law_submaintype_id']);}
+		if(@$_GET['law_maintype_id']){$data['laws']->where('law_maintype_id = '.$_GET['law_maintype_id']);}
+		if(@$_GET['law_submaintype_id']){$data['laws']->where('law_submaintype_id = '.$_GET['law_submaintype_id']);}
 		$data['laws']->where('law_type_id = '.$id);
 		$data['laws']->order_by('id','desc')->get_page();
 		

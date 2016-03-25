@@ -31,7 +31,7 @@
   <tr class="<?=alternator('','odd');?>">
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
 	  <td><input name="quiz_sticky" type="checkbox" value="1" data-row-id="<?=$row->id?>" <?=($row->quiz_sticky == 1)?'checked="checked"':'';?>/></td>
-	  <td><a href="admin/webboard/view/<?=$row->id?>"><?=$row->quiz_title?></a></td>
+	  <td><a href="admin/webboard/form/<?=$row->id?>"><?=$row->quiz_title?></a></td>
 	  <td><?=$row->law_answer->count()?></td>
 	  <td><?=$row->quiz_who?></td>
 	  <td><?=mysql_to_th($row->quiz_createdate)?></td>

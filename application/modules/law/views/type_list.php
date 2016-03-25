@@ -40,7 +40,7 @@
     <tbody>
     	<?foreach($laws as $row):?>
     	<tr>
-    		<td><a href="law/view/<?=$row->id?>"><?=str_replace("|"," ",$row->name_th)?></a></td>
+    		<td><a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a></td>
     		<td class="text-center"><?=get_datalaw_status($row->status)?></td>
     		<td class="text-center">
     			<a href="<?=$row->filename_th?>"><?=file_icon($row->filename_th)?></a>

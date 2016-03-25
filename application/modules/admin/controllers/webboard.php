@@ -15,6 +15,9 @@ class Webboard extends Admin_Controller {
 	
 	function form($id){
 		$data['rs'] = new Law_quiz($id);
+		$data['answer'] = new Law_answer();
+		$data['answer']->where('law_quiz_id = '.$id)->order_by('id','asc')->get();
+		
 		$this->template->build('webboard/form',$data);
 	}
 	
@@ -26,34 +29,19 @@ class Webboard extends Admin_Controller {
 		}
 	}
 	
+	function ajax_status_answer(){
+		if($_GET['state'] == 'true'){
+			$this->db->query("UPDATE law_answers SET answer_status = 1 WHERE id = ".$_GET['id']);
+		}else{
+			$this->db->query("UPDATE law_answers SET answer_status = 0 WHERE id = ".$_GET['id']);
+		}
+	}
+	
 	function ajax_sticky(){
 		if($_GET){
 			$this->db->query("UPDATE law_quizs SET quiz_sticky = ".$_GET['quiz_sticky']." WHERE id = ".$_GET['id']);
 		}
 	}
 	
-	// function form($id=false){
-		// $data['rs'] = new Sys_user($id);
-		// $this->template->build('user/form',$data);
-	// }
-// 	
-	// function save($id=false){
-		// if($_POST){
-			// $rs = new Sys_user($id);
-			// $rs->from_array($_POST);
-			// $rs->save();
-			// set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
-		// }
-		// redirect('admin/user');
-	// }
-// 	
-	// function delete($id){
-		// if($id){
-			// $rs = new Sys_user($id);
-			// $rs->delete();
-			// set_notify('success', 'ลบข้อมูลเรียบร้อย');
-		// }
-		// redirect('admin/user');
-	// }
 }
 ?>

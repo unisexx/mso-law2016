@@ -16,7 +16,14 @@
 		</tr>
 		<tr>
 			<th>ดาวน์โหลด</th>
-			<td><a href="<?=$rs->filename_th?>"><?=file_icon($rs->filename_th)?></a></td>
+			<td>
+				<?if($rs->filename_th != ""):?>
+					th : <a href="<?=$rs->filename_th?>"><?=file_icon($rs->filename_th)?></a> &nbsp;&nbsp;
+				<?endif;?>
+				<?if($rs->filename_eng != ""):?>
+					eng : <a href="<?=$rs->filename_eng?>"><?=file_icon($rs->filename_eng)?></a>
+				<?endif;?>
+			</td>
 		</tr>
 		<tr>
 			<th>อาศัยอำนาจกฎหมาย</th>
