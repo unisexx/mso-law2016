@@ -133,6 +133,7 @@ $(document).ready(function(){
 <script src="media/js/bootstrap-datepicker/js/locales/bootstrap-datepicker.th.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$.fn.datepicker.defaults.format = "dd/mm/yyyy";
 		$('.input-group.date').datepicker({
 			language: "th",
 			orientation: "bottom left",

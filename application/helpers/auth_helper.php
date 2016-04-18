@@ -45,7 +45,7 @@ function user_login($id=FALSE)
 {
 	$CI =& get_instance();
 	$id = ($id)?$id:$CI->session->userdata('id');
-	$user = new User($id);
+	$user = new Sys_user($id);
 	return $user;
 }
 

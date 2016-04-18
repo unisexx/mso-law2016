@@ -24,7 +24,18 @@ class Law_plans extends Admin_Controller {
 
 	function save($id=false){
 		if($_POST){
+			$_POST['plan_name'] = lang_encode($_POST['plan_name']);
+			
 			$rs = new Law_plan($id);
+			
+			if($_FILES['plan_file']['name'])
+			{
+				if($rs->id){
+					$rs->delete_file($rs->id,'uploads/law_plans','plan_file');
+				}
+				$_POST['plan_file'] = $rs->upload($_FILES['plan_file'],'uploads/law_plans/');
+			}
+			
 			$rs->from_array($_POST);
 			$rs->save();
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
