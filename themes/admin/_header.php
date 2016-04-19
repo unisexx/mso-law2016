@@ -5,7 +5,7 @@
    <li><a href='admin/webboard'><span>กระทู้</span></a></li>
    <li><a href='admin/law_plans'><span>แผนพัฒนากฎหมาย</span></a></li>
    <li><a href='admin/law_resolutions'><span>มติ ครม.</span></a></li>
-   <li><a href='committee.php'><span>คณะกรรมการ</span></a></li>
+   <li><a href='admin/law_committees'><span>คณะกรรมการ</span></a></li>
    <li class='has-sub'><a href='#' style="cursor:default;"><span>รายงาน</span></a>
    		<ul>
         	<li><a href='#'><span>รายงานสถิติจำนวนผู้เข้าชม</span></a></li>
