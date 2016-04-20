@@ -65,7 +65,11 @@
 
 
 <div id="btnBoxAdd">
-  <input type="hidden" name="resolution_createby" value="<?=user_login()->id?>">
+	<?if($rs->id == ""):?>
+  	<input type="hidden" name="resolution_createby" value="<?=user_login()->id?>">
+  <?else:?>
+  	<input type="hidden" name="resolution_updateby" value="<?=user_login()->id?>">
+  <?endif;?>
   <input name="input" type="submit" title="บันทึก" value="บันทึก" class="btn btn-primary" style="width:100px;"/>
   <input name="input2" type="button" title="ย้อนกลับ" value="ย้อนกลับ"  onclick="history.back(-1)"  class="btn btn-default" style="width:100px;"/>
 </div>

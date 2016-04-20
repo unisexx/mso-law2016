@@ -1,7 +1,7 @@
 <div id='cssmenu'>
 <ul>
    <li class='active'><a href='law.php'><span>ข้อมูลกฎหมาย</span></a></li>
-   <li><a href='privilege.php'><span>สิทธิประโยชน์</span></a></li>
+   <li><a href='admin/law_privileges'><span>สิทธิประโยชน์</span></a></li>
    <li><a href='admin/webboard'><span>กระทู้</span></a></li>
    <li><a href='admin/law_plans'><span>แผนพัฒนากฎหมาย</span></a></li>
    <li><a href='admin/law_resolutions'><span>มติ ครม.</span></a></li>

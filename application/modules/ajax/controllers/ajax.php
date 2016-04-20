@@ -30,5 +30,15 @@ Class Ajax extends Public_Controller
 			$this->load->view('get_law_group_list_data',$data);
 		}
 	}
+	
+	function get_law_data(){
+		if($_GET){
+			if(@$_GET['search']){$condition = ' and name_th LIKE "%'.$_GET['search'].'%" ';}
+			
+			$sql = "select id, name_th, status from law_datalaws where 1=1 ".$condition." order by id desc";
+        	$data['rs'] = $this->db->query($sql)->result();
+			$this->load->view('get_law_data',$data);
+		}
+	}
 }
 ?>

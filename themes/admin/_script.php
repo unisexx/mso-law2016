@@ -23,7 +23,7 @@
 <script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
-				$(".inline").colorbox({inline:true, width:"90%"});
+				$(".inline").colorbox({inline:true, width:"90%", height:"75%"});
 				$(".inline2").colorbox({inline:true, width:"100%"});
 				$(".callbacks").colorbox({
 					onOpen:function(){ alert('onOpen: colorbox is about to open'); },

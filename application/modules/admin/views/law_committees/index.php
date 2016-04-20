@@ -3,16 +3,12 @@
 <div id="searchBox">
 <form class="form-inline">
   <div class="col-xs-3">
-    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อคณะกรรมการ">
+    <input type="text" class="form-control " placeholder="ชื่อคณะกรรมการ" name="search" value="<?=@$_GET['search']?>">
     </div>
-    <select name="select2" class="form-control" style="width:auto;">
-    <option selected="selected">-- ทุกประเภทคณะกรรมการ --</option>
-    <option>คณะกรรมการตามมติ ครม.</option>
-    <option>คณะกรรมการจากการแต่งตั้ง(โดยกฎหมาย)</option>
-  </select>
-    <input type="text" class="form-control" id="exampleInputName10" style="width:110px;" />
+    <?=form_dropdown('law_committee_type_id',get_option('id','name','law_committee_types order by id asc'),@$_GET['law_committee_type_id'],'class="form-control" style="width:auto;"','-- เลือกประเภทคณะกรรมการ --');?>
+    <!-- <input type="text" class="form-control" id="exampleInputName10" style="width:110px;" />
     <img src="themes/admin/images/calendar.png" alt="" width="24" height="24" /> - <input type="text" class="form-control" id="exampleInputName10" style="width:110px;" />
-    <img src="themes/admin/images/calendar.png" alt="" width="24" height="24" />
+    <img src="themes/admin/images/calendar.png" alt="" width="24" height="24" /> -->
   <button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
 </form>
 
@@ -23,18 +19,7 @@
   <input type="button" title="เพิ่มคณะกรรมการ" value="เพิ่มคณะกรรมการ" onclick="document.location='admin/law_committees/form'" class="btn btn-warning vtip" />
 </div>
 
-<div class="paginationTG">
-	<ul>
-    <li style="margin-right:10px;">หน้าที่</li>
-	<li class="currentpage">1</li><li ><a href=''>2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li><a href="">6</a></li>
-	<li><a href="">7</a></li> . . . <li ><a href="">19</a></li>
-	<li><a href="">20</a></li><li ><a href="">21</a></li>
-	</ul>
-</div>
+<?php echo $rs->pagination()?>
 
 <table class="tblist">
 <tr>
@@ -45,57 +30,16 @@
   <th>ชื่อ - นามสกุล</th>
   <th>จัดการ</th>
   </tr>
-<tr>
-  <td>1</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
+  <?foreach($rs as $key=>$row):?>
+  <tr class="<?=alternator('','odd');?>">
+	  <td><?=($key+1)+$rs->paged->current_row?></td>
+	  <td><?=$row->committee_year?></td>
+	  <td><?=$row->law_committee_type->name?></td>
+	  <td><?=$row->committee_dateappoint?></td>
+	  <td><?=lang_decode($row->committee_name)?></td>
+	  <td><a href="admin/law_committees/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_committees/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>
-<tr class="odd">
-  <td>2</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
-<tr>
-  <td>3</td>
-  <td class="odd">&nbsp;</td>
-  <td class="odd">&nbsp;</td>
-  <td class="odd">&nbsp;</td>
-  <td class="odd">&nbsp;</td>
-  <td class="odd cursor"><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
-<tr class="odd">
-  <td>4</td>
-  <td align="left">&nbsp;</td>
-  <td align="left">&nbsp;</td>
-  <td align="left">&nbsp;</td>
-  <td align="left">&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
-<tr>
-  <td>5</td>
-  <td align="left" class="odd">&nbsp;</td>
-  <td align="left" class="odd">&nbsp;</td>
-  <td align="left" class="odd">&nbsp;</td>
-  <td align="left" class="odd">&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
+  <?endforeach;?>
 </table>
 
-<div class="paginationTG">
-	<ul>
-    <li style="margin-right:10px;">หน้าที่</li>
-	<li class="currentpage">1</li><li ><a href=''>2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li><a href="">6</a></li>
-	<li><a href="">7</a></li> . . . <li ><a href="">19</a></li>
-	<li><a href="">20</a></li><li ><a href="">21</a></li>
-  </ul>
-</div>
+<?php echo $rs->pagination()?>
