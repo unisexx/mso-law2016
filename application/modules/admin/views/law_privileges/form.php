@@ -23,7 +23,7 @@
           <td>
 		  	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="rdate" value="<?=$rs->rdate?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control" name="pri_date" value="<?=$rs->pri_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
 		</td>
@@ -47,6 +47,16 @@
                 <th style="width:60%">ชื่อกฎหมาย</th>
                 <th style="width:10%">ลบ</th>
 			  </tr>
+			  	<?if(isset($laws)):?>
+			    <?foreach($laws as $row):?>
+			    <tr>
+			    	<td><?=str_replace("|"," ",$row->law_datalaw->name_th)?></td>
+			    	<td>
+			    		<input type="hidden" name="law_datalaw_id[]" value="<?=$row->law_datalaw_id?>">
+			    		<img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td>
+			    </tr>
+			    <?endforeach;?>
+			    <?endif;?>
             </table></td>
         </tr>
         </table>       
@@ -61,7 +71,7 @@
 	  <?else:?>
 	  	<input type="hidden" name="update_by" value="<?=user_login()->id?>">
 	  <?endif;?>
-  <input name="input" type="button" title="บันทึก" value="บันทึก" class="btn btn-primary" style="width:100px;"/>
+  <input name="input" type="submit" title="บันทึก" value="บันทึก" class="btn btn-primary" style="width:100px;"/>
   <input name="input2" type="button" title="ย้อนกลับ" value="ย้อนกลับ"  onclick="history.back(-1)"  class="btn btn-default" style="width:100px;"/>
 </div>
 
@@ -109,6 +119,10 @@ $(function() {
 		},function(data){
 			$("#lawData").html(data);
 		});
+	});
+	
+	$('table').on('click', '.delLawBtn', function() {
+		$(this).closest('tr').fadeOut(300, function(){ $(this).remove(); });
 	});
 });
 </script>

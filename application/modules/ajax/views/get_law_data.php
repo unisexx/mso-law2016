@@ -20,7 +20,7 @@
 			
 			var lawId = $(this).attr('data-row-id');
 			var lawName = $(this).attr('data-row-name');
-			$('.tbSublist tr:last').after('<tr><td>'+lawName+'</td><td><input type="hidden" name="teacherID[]" value="'+lawId+'"><img src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td></tr>');	
+			$('.tbSublist tr:last').after('<tr><td>'+lawName+'</td><td><input type="hidden" name="law_datalaw_id[]" value="'+lawId+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');	
 		});
 	});
 </script>

@@ -15,18 +15,7 @@
   <input type="button" title="เพิ่มสิทธิประโยชน์" value="เพิ่มสิทธิประโยชน์" onclick="document.location='admin/law_privileges/form'" class="btn btn-warning vtip" />
 </div>
 
-<div class="paginationTG">
-	<ul>
-    <li style="margin-right:10px;">หน้าที่</li>
-	<li class="currentpage">1</li><li ><a href=''>2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li><a href="">6</a></li>
-	<li><a href="">7</a></li> . . . <li ><a href="">19</a></li>
-	<li><a href="">20</a></li><li ><a href="">21</a></li>
-	</ul>
-</div>
+<?php echo $rs->pagination()?>
 
 <table class="tblist">
 <tr>
@@ -36,52 +25,21 @@
   <th>ดาวน์โหลด</th>
   <th>จัดการ</th>
   </tr>
-<tr>
-  <td>1</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
+  <?foreach($rs as $key=>$row):?>
+  <tr class="<?=alternator('','odd');?>">
+	  <td><?=($key+1)+$rs->paged->current_row?></td>
+	  <td><?=lang_decode($row->pri_name)?></td>
+	  <td width="800">
+	  	<ul>
+	  	<?foreach($row->law_link_privilege->get() as $item):?>
+	  		<li style="list-style: disc;"><?=str_replace("|"," ",$item->law_datalaw->name_th)?></li>
+	  	<?endforeach;?>
+	  	</ul>
+	  </td>
+	  <td><a href="uploads/law_privileges/<?=$row->pri_file?>" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+	  <td><a href="admin/law_privileges/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_privileges/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>
-<tr class="odd">
-  <td>2</td>
-  <td>&nbsp;</td>
-  <td class="odd cursor">&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
-<tr>
-  <td>3</td>
-  <td class="odd">&nbsp;</td>
-  <td>&nbsp;</td>
-  <td class="odd cursor">&nbsp;</td>
-  <td class="odd cursor"><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
-<tr class="odd">
-  <td>4</td>
-  <td align="left">&nbsp;</td>
-  <td class="odd cursor">&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
-<tr>
-  <td>5</td>
-  <td align="left" class="odd">&nbsp;</td>
-  <td>&nbsp;</td>
-  <td>&nbsp;</td>
-  <td><a href="<?=basename($_SERVER['PHP_SELF'])?>?act=form"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-  </tr>
+  <?endforeach;?>
 </table>
 
-<div class="paginationTG">
-	<ul>
-    <li style="margin-right:10px;">หน้าที่</li>
-	<li class="currentpage">1</li><li ><a href=''>2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li><a href="">6</a></li>
-	<li><a href="">7</a></li> . . . <li ><a href="">19</a></li>
-	<li><a href="">20</a></li><li ><a href="">21</a></li>
-  </ul>
-</div>
+<?php echo $rs->pagination()?>
