@@ -64,7 +64,7 @@
 			<th>ประกาศในราชกิจจานุเบกษา</th>
 			<td>
 				<div>เล่มที่ : <?=$rs->gazette_numerative?></div>
-				<div>ตอน : <?=$rs->gazette_data?></div>
+				<div><?if($rs->gazette_section == 1){echo"ตอน";}elseif($rs->gazette_section == 2){echo"ตอนที่";}?> : <?=$rs->gazette_data?></div>
 				<div>วันที่ประกาศ : <?=$rs->gazete_notice_date?></div>
 			</td>
 		</tr>

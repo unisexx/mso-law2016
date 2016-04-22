@@ -1,12 +1,12 @@
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='law.php'><span>ข้อมูลกฎหมาย</span></a></li>
+   <li class='active'><a href='admin/law_datalaws'><span>ข้อมูลกฎหมาย</span></a></li>
    <li><a href='admin/law_privileges'><span>สิทธิประโยชน์</span></a></li>
    <li><a href='admin/webboard'><span>กระทู้</span></a></li>
    <li><a href='admin/law_plans'><span>แผนพัฒนากฎหมาย</span></a></li>
    <li><a href='admin/law_resolutions'><span>มติ ครม.</span></a></li>
    <li><a href='admin/law_committees'><span>คณะกรรมการ</span></a></li>
-   <li class='has-sub'><a href='#' style="cursor:default;"><span>รายงาน</span></a>
+   <li class='has-sub'><a href='javascript:void(0)' style="cursor:default;"><span>รายงาน</span></a>
    		<ul>
         	<li><a href='#'><span>รายงานสถิติจำนวนผู้เข้าชม</span></a></li>
         	<li><a href='#'><span>รายงานสถิติข้อมูลคำค้น</span></a></li>
@@ -18,7 +18,7 @@
         </ul>
    </li>
 
-   <li class='last has-sub'><a href='#' style="cursor:default;"><span>ข้อมูลหลัก</span></a>
+   <li class='last has-sub'><a href='javascript:void(0)' style="cursor:default;"><span>ข้อมูลหลัก</span></a>
       <ul>
       	 <li><a href='admin/user'><span>ผู้ใช้งาน</span></a></li>
          <li><a href='#' style="border-bottom:1px dotted #ccc; margin:0; padding:0;"></a></li>
