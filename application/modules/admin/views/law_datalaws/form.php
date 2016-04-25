@@ -38,17 +38,17 @@
         </tr>
         <tr>
           <th>ชื่อกฎหมาย<span class="Txt_red_12"> *</span></th>
-          <td><input type="text" class="form-control" id="exampleInputName7" style="width:800px;" />
-            
+          <td>
+          	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" value="<?=str_replace("|"," ",$rs->name_th)?>" />
             </td>
         </tr>
         <tr>
           <th>เล่มที่ / ตอน<span class="Txt_red_12"> *</span></th>
           <td>
-          	<span class="form-inline"><input type="text" class="form-control" id="exampleInputName7" style="width:100px; margin-right:30px;" name="gazette_numerative" />
-            <input name="gazette_section" value="1" type="radio" /> ตอน  
-        	<input name="gazette_section" value="2" type="radio" /> ตอนที่ 
-            <input type="text" class="form-control" id="exampleInputName3" style="width:200px;" name="gazette_data" /></span></td>
+          	<span class="form-inline"><input type="text" class="form-control" id="exampleInputName7" style="width:100px; margin-right:30px;" name="gazette_numerative" value="<?=$rs->gazette_numerative?>" />
+            <input name="gazette_section" value="1" type="radio" <?=$rs->gazette_section==1?"checked":"";?> /> ตอน  
+        	<input name="gazette_section" value="2" type="radio" <?=$rs->gazette_section==2?"checked":"";?>/> ตอนที่ 
+            <input type="text" class="form-control" id="exampleInputName3" style="width:200px;" name="gazette_data" value="<?=$rs->gazette_data?>" /></span></td>
         </tr>
         <tr>
           <th>วันที่ประกาศในราชกิจจานุเบกษา<span class="Txt_red_12"> *</span></th>
@@ -81,12 +81,32 @@
               <th style="width:20%">รูปแบบ</th>
               <th style="width:10%">ลบ</th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>พระราชบัญญัติการรับเด็กเป็นบุตรบุญธรรม(ฉบับที่2)พ.ศ.2533</td>
-              <td>คาบ</td>
-              <td><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-            </tr>
+            <?
+				$sql = "select * from law_overlap_or_skip where code='$rs->oos_code' ";
+				$law_overlap_or_skip = $this->db->query($sql)->result();
+			?>
+			<?if($law_overlap_or_skip):?>
+			<?foreach($law_overlap_or_skip as $row_cross):?>
+				<?
+					$sql = "select * from law_datalaws where id='$row_cross->ov_sk_law'";
+					$datalaw = $this->db->query($sql)->row();
+				?>
+				<tr>
+		              <td>1</td>
+		              <td><?=str_replace("|"," ",$datalaw->name_th)?></td>
+		              <td>
+		              		<?
+								if($datalaw->law_group_id == 1 && $datalaw->law_type_id == 1 && $datalaw->law_maintype_id == 1 &&  $datalaw->law_submaintype_id == 1){ 
+									echo "คาบ"; 
+								}else{ 
+									echo "ข้าม";
+								}
+							?>
+		              </td>
+		              <td><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
+	            </tr>
+            <?endforeach;?>
+			<?endif;?>
           </table></td>
         </tr>
         <tr>
@@ -111,35 +131,50 @@
         </tr>
         <tr>
           <th>วันที่ประกาศใช้</th>
-          <td><span class="form-inline">
-            <input type="text" class="form-control" id="exampleInputName" value="" style="width:110px;" />
-            <img src="themes/admin/images/calendar.png" alt="" width="24" height="24" /></span></td>
+          <td>
+          	<span class="form-inline">
+		    <div class="input-group date">
+			  <input type="text" class="form-control" name="notic_date" value="<?=$rs->notic_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			</div>
+		    </span>
+		 </td>
         </tr>
         <tr>
           <th>วันที่นำเข้า</th>
-          <td><span class="form-inline">
-            <input type="text" class="form-control" id="exampleInputName4" value="" style="width:110px;" />
-            <img src="themes/admin/images/calendar.png" alt="" width="24" height="24" /></span></td>
+          <td>
+          	<span class="form-inline">
+		    <div class="input-group date">
+			  <input type="text" class="form-control" name="import_date" value="<?=$rs->import_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			</div>
+		    </span>
+		 </td>
         </tr>
         <tr>
           <th>วันที่บังคับใช้</th>
-          <td><span class="form-inline">
-            <input type="text" class="form-control" id="exampleInputName5" value="" style="width:110px;" />
-            <img src="themes/admin/images/calendar.png" alt="" width="24" height="24" /></span></td>
+          <td>
+          	<span class="form-inline">
+		    <div class="input-group date">
+			  <input type="text" class="form-control" name="use_date" value="<?=$rs->use_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			</div>
+		    </span>
+		 </td>
         </tr>
         <tr>
           <th>สถานะการใช้</th>
-          <td><span>
-            <input type="radio" name="radio" id="radio" value="radio" />
-        บังคับใช้ </span> <span>
-        <input type="radio" name="radio" id="radio2" value="radio" />
-        อยู่ระหว่างพิจารณา</span> <span>
-        <input type="radio" name="radio" id="radio3" value="radio" />
-        ยกเลิก</span></td>
+          <td>
+          	<span><input type="radio" name="status" id="radio" value="1" <?=$rs->status == 1?"checked":"";?> />บังคับใช้ </span> 
+          	<span><input type="radio" name="status" id="radio2" value="3" <?=$rs->status == 3?"checked":"";?> />อยู่ระหว่างพิจารณา</span> 
+          	<span><input type="radio" name="status" id="radio3" value="2" <?=$rs->status == 2?"checked":"";?> />ยกเลิก</span>
+          </td>
         </tr>
         <tr>
           <th>แนบเอกสารกฎหมาย</th>
-          <td><input type="file" name="fileField" class="form-control" id="fileField" /></td>
+          <td>
+          	<?if($rs->filename_th != ""):?>
+          		<a href="uploads/law_datalaw/<?=$rs->filename_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_th?></a>
+          	<?endif;?>
+          	<input type="file" name="filename_th" class="form-control" id="fileField" />
+          </td>
         </tr>
         <tr>
           <th>Option</th>
@@ -183,108 +218,81 @@
 </form>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ผูกกฎหมาย (คาบ/ข้าม) -->
 <!-- This contains the hidden content for inline calls -->
-		<div style='display:none'>
-			<div id='inline_bind_th' style='padding:10px; background:#fff;'>
-            <h3>การผูกกฎหมาย</h3>
-<div id="search">
-<div id="searchBox">
-<form class="form-inline">
-  <div class="col-xs-4">
-    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อกฎหมาย">
-  </div><br /><br />
-  <select name="select6" class="form-control" style="width:auto;">
-    <option selected="selected">-- ทุกกลุ่มกฎหมาย --</option>
-    <option>ในภารกิจ</option>
-    <option>กฎหมายประกอบภารกิจ</option>
-  </select>
-  <select name="select7" class="form-control" style="width:auto;">
-    <option selected="selected">-- ทุกหมวดกฎหมาย --</option>
-    <option>กฎหมายเด็กและเยาวชน</option>
-    <option>กลุ่มกฎหมายการส่งเสริมและพัฒนาคุณภาพชีวิตคนพิการ</option>
-    <option>กฎหมายผู้สูงอายุ</option>
-    <option>กฎหมายสวัสดิการสังคม</option>
-  </select><br />
-  <select name="select7" class="form-control" style="width:auto;">
-    <option selected="selected">-- ทุกประเภทกฎหมาย --</option>
-    <option>กฎหมายแม่บท (กฎหมายหลัก)</option>
-    <option>อนุบัญญัติ</option>
-    <option>มาตรการทางการบริหาร</option>
-  </select>
-  <select name="select8" class="form-control" style="width:auto;">
-    <option>-- ทุกประเภทย่อยกฎหมาย --</option>
-  </select>
-<button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
-</form>
-</div>
-</div>
-
-
-<div class="paginationTG">
-	<ul>
-    <li style="margin-right:10px;">หน้าที่</li>
-	<li class="currentpage">1</li><li ><a href=''>2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li><a href="">6</a></li>
-	<li><a href="">7</a></li> . . . <li ><a href="">19</a></li>
-	<li><a href="">20</a></li><li ><a href="">21</a></li>
-	</ul>
-</div>
-
-<table class="tblist">
-<tr>
-  <th align="left">ลำดับ</th>
-  <th align="left">เลือก</th>
-  <th align="left">ชื่อกฎหมาย</th>
-  <th align="left" style="width:25%">ชนิด คาบ / ข้าม</th>
-  <th align="left">สถานะ</th>
-  </tr>
-<tr>
-  <td>1</td>
-  <td><input type="checkbox" name="checkbox" id="checkbox" value="detail" /></td>
-  <td>พระราชบัญญัติการรับเด็กเป็นบุตรบุญธรรม (ฉบับที่ 2) พ.ศ. 2533
-    <div class="dvDetail"><textarea rows="3" class="form-control " style="width:400px;" placeholder="รายละเอียด"></textarea></div>
-  </td>
-  <td>คาบ</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr class="odd">
-  <td>2</td>
-  <td><input type="checkbox" name="checkbox2" id="checkbox2" /></td>
-  <td>พระราชบัญญัติการรับเด็กเป็นบุตรบุญธรรม (ฉบับที่ 2) พ.ศ. 2533</td>
-  <td>คาบ</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr>
-  <td>3</td>
-  <td class="odd"><input type="checkbox" name="checkbox3" id="checkbox3" /></td>
-  <td class="odd">พระราชบัญญัติคุ้มครองเด็ก พ.ศ. 2546</td>
-  <td>คาบ</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr class="odd">
-  <td>4</td>
-  <td align="left"><input type="checkbox" name="checkbox4" id="checkbox4" /></td>
-  <td align="left">พระราชบัญญัติส่งเสริมการพัฒนาเด็กและเยาวชนแห่งชาติ พ.ศ. 2550</td>
-  <td>คาบ</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr>
-  <td>5</td>
-  <td align="left" class="odd"><input type="checkbox" name="checkbox5" id="checkbox5" /></td>
-  <td align="left" class="odd">พระราชบัญญัติหอพัก พ.ศ. 2507</td>
-  <td>คาบ</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-</table>
-<div id="btnBoxAdd">
-  <input name="input" type="button" title="บันทึกเพิ่มรายการ" value="บันทึกเพิ่มรายการ" class="btn btn-primary" />
-</div>    
-            
-			</div>
+<div style='display:none'>
+	<div id='inline_bind_th' style='padding:10px; background:#fff;'>
+    <h3>การผูกกฎหมาย</h3>
+		<div id="search">
+		<div id="searchBox">
+		<form id="cross_law_form" class="form-inline">
+		  <div class="col-xs-4">
+		    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อกฎหมาย" name="search">
+		  </div><br><br>
+		  <div>
+			  <?=form_dropdown('law_group_id',get_option('id','name','law_groups order by id asc'),@$_GET['law_group_id'],'class="form-control" style="width:auto;"','-- ทุกกลุ่มกฎหมาย --');?>
+			  <span id="cross_lawtype">
+            	<select name="select3" class="form-control" style="width:auto;" readonly>
+	              <option selected="selected">-- ทุกหมวดกฎหมาย --</option>
+	            </select>
+            </span>
+		  </div>
+		  <div style="margin-top: 6px;">
+			   <?=form_dropdown('law_maintype_id',get_option('id','typeName','law_maintypes order by typeName asc'),@$_GET['law_maintype_id'],'class="form-control" style="width:auto;"','-- ทุกประเภทกฎหมาย --');?>
+			  <span id="cross_lawsubmaintype">
+	            <select name="select5" class="form-control" style="width:auto;" readonly>
+	              <option>-- ทุกประเภทย่อยกฎหมาย --</option>
+	            </select>
+              </span>
+			<button id="searchCrossLawBtn" type="button" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
 		</div>
+		</form>
+		</div>
+		</div>
+		
+		<div id="crosslawData"></div>
+		
+		<div id="btnBoxAdd">
+		  <input name="input" type="button" title="บันทึกเพิ่มรายการ" value="บันทึกเพิ่มรายการ" class="btn btn-primary" />
+		</div>    
+    
+	</div>
+</div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
 <!-- This contains the hidden content for inline calls -->
@@ -377,6 +385,29 @@
         
         
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- This contains the hidden content for inline calls -->
 		<div style='display:none'>
 			<div id='inline_option_th' style='padding:10px; background:#fff;'>
@@ -424,6 +455,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
 $(function() {
 	$("[rel=en]").hide();
@@ -453,5 +498,55 @@ $(function() {
 			$("#lawsubmaintype").html(data);
 		});
 	});
+	
+	$('#cross_law_form').on('change', "select[name='law_group_id']", function() {
+		$('.loading').show();
+		$.get('ajax/get_select_lawtype',{
+			'law_group_id' : $(this).val()
+		},function(data){
+			$('.loading').hide();
+			$("#cross_lawtype").html(data);
+		});
+	});
+	
+	$('#cross_law_form').on('change', "select[name='law_maintype_id']", function() {
+		$('.loading').show();
+		$.get('ajax/get_select_submaintype',{
+			'law_maintype_id' : $(this).val()
+		},function(data){
+			$('.loading').hide();
+			$("#cross_lawsubmaintype").html(data);
+		});
+	});
+	
+	$("#searchCrossLawBtn").click(function(){
+		$.get('ajax/get_cross_law_data',{
+			'search' : $(this).closest("form").find('input[name=search]').val(),
+			'law_group_id' : $(this).closest("form").find('select[name=law_group_id]').val(),
+			'law_type_id' : $(this).closest("form").find('select[name=law_type_id]').val(),
+			'law_maintype_id' : $(this).closest("form").find('select[name=law_maintype_id]').val(),
+			'law_submaintype_id' : $(this).closest("form").find('select[name=law_submaintype_id]').val()
+		},function(data){
+			$("#crosslawData").html(data);
+		});
+	});
+	
+	<?php if(@$rs->id != ""):?>
+		$.get('ajax/get_select_lawtype',{
+			'law_group_id' : $('select[name=law_group_id]').val(),
+			'law_type_id' : <?=$rs->law_type_id?>
+		},function(data){
+			$('.loading').hide();
+			$("#lawtype").html(data);
+		});
+		
+		$.get('ajax/get_select_submaintype',{
+			'law_maintype_id' : $('select[name=law_maintype_id]').val(),
+			'law_submaintype_id' : <?=$rs->law_submaintype_id?>
+		},function(data){
+			$('.loading').hide();
+			$("#lawsubmaintype").html(data);
+		});
+	<?php endif;?>
 });
 </script>

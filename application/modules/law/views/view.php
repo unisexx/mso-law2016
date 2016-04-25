@@ -116,7 +116,7 @@
 							$datalaw = $this->db->query($sql)->row();
 						?>
 						<?if($datalaw):?>
-							<div><a href="law/view/<?=$datalaw->id?>" target="_blank"><?=str_replace("|"," ",$datalaw->name_th)?></a> <span class="pull-right"><?=$rows->ov_sk_type?></span></div>
+							<div><a href="law/view/<?=$datalaw->id?>" target="_blank"><?=str_replace("|"," ",$datalaw->name_th)?></a> <span class="pull-right"><?=$row->ov_sk_type?></span></div>
 						<?endif;?>
 					<?endforeach;?>
 				<?else:?>
