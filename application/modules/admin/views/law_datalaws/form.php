@@ -1,6 +1,6 @@
 <h3>ข้อมูลกฎหมาย (เพิ่ม / แก้ไข)</h3>
 
-<form method="post" enctype="multipart/form-data" action="admin/law_privileges/save/<?=$rs->id?>">
+<form method="post" enctype="multipart/form-data" action="admin/law_datalaws/save/<?=$rs->id?>">
 <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
@@ -39,7 +39,7 @@
         <tr>
           <th>ชื่อกฎหมาย<span class="Txt_red_12"> *</span></th>
           <td>
-          	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" value="<?=str_replace("|"," ",$rs->name_th)?>" />
+          	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" name="name_th" value="<?=str_replace("|"," ",$rs->name_th)?>" />
             </td>
         </tr>
         <tr>
@@ -74,14 +74,28 @@
           <div id="btnBox" style="margin-bottom:10px;">
           <a class='inline' href="#inline_bind_th"><input type="button" value="เพิ่มการผูกกฎหมาย" title="เพิ่มการผูกกฎหมาย" class="btn btn-warning vtip" /></a>
         </div>
-          <table class="tbSublist">
+          <table class="tbSublist tbCrossSublist autocount">
             <tr>
               <th style="width:10%">#</th>
               <th style="width:60%">ชื่อกฎหมาย</th>
               <th style="width:20%">รูปแบบ</th>
               <th style="width:10%">ลบ</th>
             </tr>
-            <?
+            <?if(isset($law_overlaps)):?>
+		    <?foreach($law_overlaps as $key=>$row):?>
+		    <tr>
+		    	<td><?=$key+1?></td>
+		    	<td><?=get_law_name($row->ov_sk_law)?></td>
+		    	<td><?=$row->ov_sk_type?></td>
+		    	<td>
+		    		<input type="hidden" name="ov_sk_law[]" value="<?=$row->ov_sk_law?>">
+		    		<input type="hidden" name="ov_sk_type[]" value="<?=$row->ov_sk_type?>">
+		    		<input type="hidden" name="ov_sk_description[]" value="<?=$row->ov_sk_description?>">
+		    		<img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td>
+		    </tr>
+		    <?endforeach;?>
+		    <?endif;?>
+            <!-- <?
 				$sql = "select * from law_overlap_or_skip where code='$rs->oos_code' ";
 				$law_overlap_or_skip = $this->db->query($sql)->result();
 			?>
@@ -106,7 +120,7 @@
 		              <td><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
 	            </tr>
             <?endforeach;?>
-			<?endif;?>
+			<?endif;?> -->
           </table></td>
         </tr>
         <tr>
@@ -189,7 +203,7 @@
           <th>แนบเอกสารกฎหมาย</th>
           <td>
           	<?if($rs->filename_th != ""):?>
-          		<a href="uploads/law_datalaw/<?=$rs->filename_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_th?></a>
+          		<a href="uploads/law_datalaws/<?=$rs->filename_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_th?></a>
           	<?endif;?>
           	<input type="file" name="filename_th" class="form-control" id="fileField" />
           </td>
@@ -229,7 +243,7 @@
 
 
 <div id="btnBoxAdd">
-  <input name="input" type="button" title="บันทึก" value="บันทึก" class="btn btn-primary" style="width:100px;"/>
+  <input name="input" type="submit" title="บันทึก" value="บันทึก" class="btn btn-primary" style="width:100px;"/>
   <input name="input2" type="button" title="ย้อนกลับ" value="ย้อนกลับ"  onclick="history.back(-1)"  class="btn btn-default" style="width:100px;"/>
 </div>
 
@@ -282,11 +296,7 @@
 		</div>
 		
 		<div id="crosslawData"></div>
-		
-		<div id="btnBoxAdd">
-		  <input name="input" type="button" title="บันทึกเพิ่มรายการ" value="บันทึกเพิ่มรายการ" class="btn btn-primary" />
-		</div>    
-    
+
 	</div>
 </div>
         
@@ -567,4 +577,13 @@ $(function() {
 		});
 	<?php endif;?>
 });
+
+function autoCountTableRow(){
+	// add Table Class Name "autocount"
+	$('.autocount tr td:first-child').each(function(i){
+		// $(this).before('<td>'+(i+1)+'</td>');
+		$(this).html('');
+		$(this).append((i+1));
+	});
+}
 </script>

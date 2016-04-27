@@ -238,6 +238,14 @@ if(!function_exists('get_law_group_text'))
 	   }        
     return $groupLaw;
 	}
-   
+}
+
+if(!function_exists('get_law_name'))
+{
+	function get_law_name($id){
+		$CI =& get_instance();
+		$law_datalaw = $CI->db->query("select name_th from law_datalaws where id = ".$id)->row();
+		return str_replace("|"," ",$law_datalaw->name_th);
+	}
 }
 ?>

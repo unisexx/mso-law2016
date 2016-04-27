@@ -20,16 +20,57 @@ class Law_datalaws extends Admin_Controller {
 
 	function form($id=false){
 		$data['rs'] = new Law_datalaw($id);
+		
+		// ผูกกฎหมาย (คาบ/ข้าม)
+		if($id!=""){
+			$data['law_overlaps'] = new Law_overlap_or_skip();
+			$data['law_overlaps']->where('law_datalaw_id = '.$id)->get();
+		}
+		
 		$this->template->build('law_datalaws/form',$data);
 	}
 
 	function save($id=false){
 		if($_POST){
-			$_POST['name'] = lang_encode($_POST['name']);
-			
 			$rs = new Law_datalaw($id);
+			
+			if($_FILES['filename_th']['name'])
+			{
+				if($rs->id){
+					$rs->delete_file($rs->id,'uploads/law_datalaws','filename_th');
+				}
+				$_POST['filename_th'] = $rs->upload($_FILES['filename_th'],'uploads/law_datalaws/');
+			}
+			
 			$rs->from_array($_POST);
 			$rs->save();
+			
+			// หา max id
+			if(@$id){
+				$law_datalaw_id = $id;
+			}else{
+				$row = $this->db->query('SELECT MAX(id) AS maxid FROM law_datalaws')->row();
+				if ($row) {
+				    $law_datalaw_id = $row->maxid; 
+				}
+			}
+			
+			// ผูกกฎหมาย (คาบ/ข้าม)
+			if(@$_POST['ov_sk_law']){
+				// ลบข้อมูลเก่า
+				@$this->db->where('law_datalaw_id', $law_datalaw_id)->delete('law_overlap_or_skips');
+
+				foreach($_POST['ov_sk_law'] as $key=>$value){
+					$law = new Law_overlap_or_skip();
+					$law->ov_sk_law = $value;
+					$law->ov_sk_type = $_POST['ov_sk_type'][$key];
+					$law->ov_sk_description = $_POST['ov_sk_description'][$key];
+					$law->law_datalaw_id = $law_datalaw_id;
+					$law->save();
+				}
+			}
+			
+			
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
 		redirect('admin/law_datalaws');

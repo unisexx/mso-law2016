@@ -5,7 +5,7 @@ class Law_datalaw extends ORM
 	
 	public $has_one = array('law_group','law_type');
 	
-	public $has_many = array('law_link_privilege');
+	public $has_many = array('law_link_privilege','law_overlap_or_skip');
 
 	public function __construct($id = NULL)
 	{
