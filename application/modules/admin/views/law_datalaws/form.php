@@ -86,13 +86,13 @@
 				$law_overlap_or_skip = $this->db->query($sql)->result();
 			?>
 			<?if($law_overlap_or_skip):?>
-			<?foreach($law_overlap_or_skip as $row_cross):?>
+			<?foreach($law_overlap_or_skip as $key=>$row_cross):?>
 				<?
 					$sql = "select * from law_datalaws where id='$row_cross->ov_sk_law'";
 					$datalaw = $this->db->query($sql)->row();
 				?>
 				<tr>
-		              <td>1</td>
+		              <td><?=$key+1?></td>
 		              <td><?=str_replace("|"," ",$datalaw->name_th)?></td>
 		              <td>
 		              		<?
@@ -121,6 +121,24 @@
               <th style="width:20%">รูปแบบ</th>
               <th style="width:10%">ลบ</th>
               </tr>
+              <?
+					$sql = "select * from law_version where code='$rs->version_code' ";
+					$law_versions = $this->db->query($sql)->result();
+				?>
+				<?if($law_versions):?>
+						<?foreach($law_versions as $key=>$row_version):?>
+							<?
+								$sql = "select * from law_datalaws where id='$row_version->law_id_select'";
+								$datalaw = $this->db->query($sql)->row();
+							?>
+							<tr>
+				                <td><?=$key+1?></td>
+				                <td><?=str_replace("|"," ",$datalaw->name_th)?></td>
+				                <td>แก้ไข</td>
+				                <td><img src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
+				              </tr>
+						<?endforeach;?>
+				<?endif;?>
               <tr>
                 <td>1</td>
                 <td>พระราชบัญญัติคุ้มครองเด็กพ.ศ.2546</td>
