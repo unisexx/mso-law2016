@@ -576,6 +576,13 @@ $(function() {
 			$("#lawsubmaintype").html(data);
 		});
 	<?php endif;?>
+	
+	$('table').on('click', '.delLawBtn', function() {
+		$(this).closest('tr').fadeOut(300, function(){ 
+			$(this).remove(); 
+			autoCountTableRow();
+		});
+	});
 });
 
 function autoCountTableRow(){

@@ -183,9 +183,16 @@ if ( ! function_exists('mysql_to_relative'))
 
 	//Usage :
 	//echo timeDiff("2002-04-16 10:00:00","2002-03-16 18:56:32");
-
 	function datetime2date($datetime){
 	    $date = explode(" ", $datetime);
         return $date[0];
+	}
+	
+	// convert switch between Date and Year
+	// 28/04/2016 => 2016-04-28
+	function switchDateYear($date){
+		$xxx = str_replace("/","-",$date);
+		$newDate = date("Y-m-d", strtotime($xxx));
+		return $newDate;
 	}
 ?>
