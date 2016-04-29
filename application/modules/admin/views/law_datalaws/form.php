@@ -55,7 +55,7 @@
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="gazete_notice_date" value="<?=$rs->gazete_notice_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" name="gazete_notice_date" data-date-language="th-th" value="<?=DB2Date($rs->gazete_notice_date)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
 		 </td>
@@ -166,7 +166,7 @@
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="notic_date" value="<?=$rs->notic_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" data-date-language="th-th" name="notic_date" value="<?=DB2Date($rs->notic_date)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
 		 </td>
@@ -176,7 +176,7 @@
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="import_date" value="<?=$rs->import_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" data-date-language="th-th" name="import_date" value="<?=DB2Date($rs->import_date)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
 		 </td>
@@ -186,7 +186,7 @@
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="use_date" value="<?=$rs->use_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" data-date-language="th-th" name="use_date" value="<?=DB2Date($rs->use_date)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
 		 </td>

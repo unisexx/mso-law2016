@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="themes/admin/css/template.css"/>
 <link rel="stylesheet" href="themes/admin/css/bootstrap.min.css">
-<link rel="stylesheet" href="media/js/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css" />
 <link media="screen" rel="stylesheet" href="themes/admin/css/colorbox.css" />
 <link href="themes/admin/css/bootstrap-switch.css" rel="stylesheet">
 <link rel="stylesheet" href="themes/admin/css/menu.css">
@@ -129,7 +128,19 @@ $(document).ready(function(){
 <script src="themes/admin/js/ie10-viewport-bug-workaround.js"></script>
 
 
-<script src="media/js/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="media/js/bootstrap-datepicker-thai-thai/css/datepicker.css" />
+<script src="media/js/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker.js"></script>
+<script src="media/js/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js"></script>
+<script src="media/js/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".datepickerTH").datepicker({ autoclose: true });
+	});
+</script>
+
+<!-- <link rel="stylesheet" href="media/js/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css" /> -->
+<!-- <script src="media/js/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
 <script src="media/js/bootstrap-datepicker/js/locales/bootstrap-datepicker.th.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -141,8 +152,22 @@ $(document).ready(function(){
     		autoclose: true
 		});
 	});
-</script>
-
+</script> -->
 
 <!-- <script src="media/js/validate/additional-methods.min.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="media/js/validate/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+<!-- load jQuery 1.4.2  For Datepicker TH -->
+<!-- <script type="text/javascript" src="themes/admin/js/jquery-1.4.2.min.js"></script>
+<link rel="stylesheet" href="media/js/date_input/date_input.css" type="text/css" media="screen">
+<script type="text/javascript" src="media/js/date_input/jquery.date_input.min.js"></script>
+<script type="text/javascript" src="media/js/date_input/jquery.date_input.th_TH.js"></script>
+<script type="text/javascript">
+var jQuery_1_4_2 = $.noConflict(true);
+$(document).ready(function(){
+jQuery_1_4_2("input.datepicker").date_input();
+});
+</script> -->

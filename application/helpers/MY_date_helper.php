@@ -195,4 +195,18 @@ if ( ! function_exists('mysql_to_relative'))
 		$newDate = date("Y-m-d", strtotime($xxx));
 		return $newDate;
 	}
+
+if ( ! function_exists('th2mysqldate'))
+{
+	function th2mysqldate($date){
+		$month_th = array( "01" =>'ม.ค.',"02" => 'ก.พ.',"03"=>'มี.ค.',"04"=>'เม.ย.',"05"=>'พ.ค.',"06"=>'มิ.ย.','07'=>'ก.ค.',"08"=>'ส.ค.',"09"=>'ก.ย.',"10"=>'ต.ค.',"11"=>'พ.ย.',"12"=>'ธ.ค.');
+			
+		$newdate = explode(" ",$date);
+		$day = $newdate[0];
+		$month = array_search ($newdate[1], $month_th);
+		$year = ($newdate[2] - 543);
+		
+		return $year."-".$month."-".$day;
+	}
+}
 ?>

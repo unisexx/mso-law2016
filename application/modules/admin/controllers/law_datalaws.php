@@ -42,10 +42,10 @@ class Law_datalaws extends Admin_Controller {
 				$_POST['filename_th'] = $rs->upload($_FILES['filename_th'],'uploads/law_datalaws/');
 			}
 			
-			$_POST['gazete_notice_date'] = mysql_to_th(switchDateYear($_POST['gazete_notice_date']));
-			$_POST['notic_date'] = mysql_to_th(switchDateYear($_POST['notic_date']));
-			$_POST['import_date'] = mysql_to_th(switchDateYear($_POST['import_date']));
-			$_POST['use_date'] = mysql_to_th(switchDateYear($_POST['use_date']));
+			$_POST['gazete_notice_date'] = Date2DB($_POST['gazete_notice_date']);
+			$_POST['notic_date'] = Date2DB($_POST['notic_date']);
+			$_POST['import_date'] = Date2DB($_POST['import_date']);
+			$_POST['use_date'] = Date2DB($_POST['use_date']);
 			
 			$rs->from_array($_POST);
 			$rs->save();
