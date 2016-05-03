@@ -57,6 +57,26 @@ class Convert extends Admin_Controller {
 		
 		echo "Finish !!!";
 	}
+
+	// แปลงวัน mysql Date Format (20/10/2014 = > 2016-11-04)
+	function thdate2DB_2(){
+		
+		$sql = "select id, rdate from sys_users order by id asc";
+		$rs = $this->db->query($sql)->result();
+		
+		foreach($rs as $row){
+				
+			$sql = "UPDATE sys_users
+						SET 
+						rdate='".@switchDateYear($row->rdate)."'
+						WHERE id= ".@$row->id;
+			$this->db->query($sql);
+			
+			echo "ID : ".$row->id." Complete<br>";
+		}
+		
+		echo "Finish !!!";
+	}
 	
 }
 ?>

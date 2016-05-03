@@ -29,6 +29,9 @@ class User extends Admin_Controller {
 	function save($id=false){
 		if($_POST){
 			$rs = new Sys_user($id);
+			
+			$_POST['rdate'] = Date2DB($_POST['rdate']);
+			
 			$rs->from_array($_POST);
 			$rs->save();
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');

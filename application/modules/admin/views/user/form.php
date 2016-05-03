@@ -19,13 +19,13 @@
 	</tr>
 	<tr>
 	  <th>วันที่</th>
-	  <td>
-	  	<span class="form-inline">
-	    <div class="input-group date">
-		  <input type="text" class="form-control" name="rdate" value="<?=$rs->rdate?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-		</div>
-	    </span>
-	</td>
+		<td>
+	      	<span class="form-inline">
+		    <div class="input-group date">
+			  <input type="text" class="form-control datepickerTH" name="rdate" data-date-language="th-th" value="<?=DB2Date($rs->rdate)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			</div>
+		    </span>
+		 </td>
 	</tr>
 	<tr>
 	  <th>สังกัด</th>
