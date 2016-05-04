@@ -56,5 +56,16 @@ Class Ajax extends Public_Controller
 			$this->load->view('get_cross_law_data',$data);
 		}
 	}
+	
+	function get_related_law_data(){
+		if($_GET){
+			$condition = " 1=1 ";
+			if(@$_GET['search']){$condition .= ' and name_th LIKE "%'.$_GET['search'].'%" ';}
+			
+			$sql = "select id, name_th, status from law_datalaws where ".$condition." order by id desc";
+        	$data['rs'] = $this->db->query($sql)->result();
+			$this->load->view('get_related_law_data',$data);
+		}
+	}
 }
 ?>

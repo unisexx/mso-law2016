@@ -153,12 +153,6 @@
 				              </tr>
 						<?endforeach;?>
 				<?endif;?>
-              <tr>
-                <td>1</td>
-                <td>พระราชบัญญัติคุ้มครองเด็กพ.ศ.2546</td>
-                <td>แก้ไข</td>
-                <td><img src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-              </tr>
             </table></td>
         </tr>
         <tr>
@@ -322,94 +316,27 @@
         
         
         
-        
+<!-- กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม) -->
 <!-- This contains the hidden content for inline calls -->
-		<div style='display:none'>
-			<div id='inline_related_th' style='padding:10px; background:#fff;'>
-			
-            <h3>กฎหมายที่เกี่ยวข้อง</h3>
-<div id="search">
-<div id="searchBox">
-<form class="form-inline">
-  <div class="col-xs-4">
-    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อกฎหมาย">
-  </div>
-  <button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
-</form>
-</div>
-</div>
-
-
-<div class="paginationTG">
-	<ul>
-    <li style="margin-right:10px;">หน้าที่</li>
-	<li class="currentpage">1</li><li ><a href=''>2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li><a href="">6</a></li>
-	<li><a href="">7</a></li> . . . <li ><a href="">19</a></li>
-	<li><a href="">20</a></li><li ><a href="">21</a></li>
-	</ul>
-</div>
-
-<table class="tblist">
-<tr>
-  <th align="left">ลำดับ</th>
-  <th align="left">เลือก</th>
-  <th align="left">ชื่อกฎหมาย</th>
-  <th align="left">สถานะ</th>
-  </tr>
-<tr>
-  <td>1</td>
-  <td><input type="radio" name="radio4" id="selthis" value="radio4" /></td>
-  <td>พระราชบัญญัติการรับเด็กเป็นบุตรบุญธรรม (ฉบับที่ 2) พ.ศ. 2533
-    <div class="dvDetail" style="border-top:1px dotted #999;">
-    <span class="form-inline">
-    <select name="" class="form-control" style="width:160px; margin-top:10px;">
-      <option>-- เกี่ยวข้องโดย --</option>
-      <option>ยกเลิก</option>
-      <option>แก้ไข</option>
-      <option>เพิ่มเติม</option>
-      <option>แก้ไข / เพิ่มเติม</option>
-      </select>
-      
-      <input type="file" name="fileField2" id="fileField2"  class="form-control" style="width:300px; margin-top:10px;"/></span>
-      <textarea rows="3" class="form-control " style="width:500px; margin-top:10px;" placeholder="รายละเอียด"></textarea></div>
-  </td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr class="odd">
-  <td>2</td>
-  <td><input type="radio" name="radio4" id="radio5" value="radio4" /></td>
-  <td>พระราชบัญญัติการรับเด็กเป็นบุตรบุญธรรม (ฉบับที่ 2) พ.ศ. 2533</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr>
-  <td>3</td>
-  <td class="odd"><input type="radio" name="radio4" id="radio6" value="radio4" /></td>
-  <td class="odd">พระราชบัญญัติคุ้มครองเด็ก พ.ศ. 2546</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr class="odd">
-  <td>4</td>
-  <td align="left"><input type="radio" name="radio4" id="radio7" value="radio4" /></td>
-  <td align="left">พระราชบัญญัติส่งเสริมการพัฒนาเด็กและเยาวชนแห่งชาติ พ.ศ. 2550</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-<tr>
-  <td>5</td>
-  <td align="left" class="odd"><input type="radio" name="radio4" id="radio8" value="radio4" /></td>
-  <td align="left" class="odd">พระราชบัญญัติหอพัก พ.ศ. 2507</td>
-  <td>ประกาศใช้งาน</td>
-  </tr>
-</table>
-<div id="btnBoxAdd">
-  <input name="input" type="button" title="บันทึกเพิ่มรายการ" value="บันทึกเพิ่มรายการ" class="btn btn-primary" />
-</div>
-            
-			</div>
+<div style='display:none'>
+	<div id='inline_related_th' style='padding:10px; background:#fff;'>
+	
+    <h3>กฎหมายที่เกี่ยวข้อง</h3>
+		<div id="search">
+		<div id="searchBox">
+		<form class="form-inline">
+		  <div class="col-xs-4">
+		    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อกฎหมาย" name="search">
+		  </div>
+		  <button id="searchRelatedLawBtn" type="button" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
+		</form>
 		</div>
+		</div>
+		
+		<div id="relatedlawData"></div>
+		
+	</div>
+</div>
         
         
 
@@ -499,84 +426,104 @@
 
 <script type="text/javascript">
 $(function() {
-	$("[rel=en]").hide();
-	
-	$(".lang a").click(function(){
-		$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
-		$(this).closest('li').addClass('active').siblings().removeClass('active');
-		return false;
-	});
-	
-	$('table').on('change', "select[name='law_group_id']", function() {
-		$('.loading').show();
-		$.get('ajax/get_select_lawtype',{
-			'law_group_id' : $(this).val()
-		},function(data){
-			$('.loading').hide();
-			$("#lawtype").html(data);
-		});
-	});
-	
-	$('table').on('change', "select[name='law_maintype_id']", function() {
-		$('.loading').show();
-		$.get('ajax/get_select_submaintype',{
-			'law_maintype_id' : $(this).val()
-		},function(data){
-			$('.loading').hide();
-			$("#lawsubmaintype").html(data);
-		});
-	});
-	
-	$('#cross_law_form').on('change', "select[name='law_group_id']", function() {
-		$('.loading').show();
-		$.get('ajax/get_select_lawtype',{
-			'law_group_id' : $(this).val()
-		},function(data){
-			$('.loading').hide();
-			$("#cross_lawtype").html(data);
-		});
-	});
-	
-	$('#cross_law_form').on('change', "select[name='law_maintype_id']", function() {
-		$('.loading').show();
-		$.get('ajax/get_select_submaintype',{
-			'law_maintype_id' : $(this).val()
-		},function(data){
-			$('.loading').hide();
-			$("#cross_lawsubmaintype").html(data);
-		});
-	});
-	
-	$("#searchCrossLawBtn").click(function(){
-		$.get('ajax/get_cross_law_data',{
-			'search' : $(this).closest("form").find('input[name=search]').val(),
-			'law_group_id' : $(this).closest("form").find('select[name=law_group_id]').val(),
-			'law_type_id' : $(this).closest("form").find('select[name=law_type_id]').val(),
-			'law_maintype_id' : $(this).closest("form").find('select[name=law_maintype_id]').val(),
-			'law_submaintype_id' : $(this).closest("form").find('select[name=law_submaintype_id]').val()
-		},function(data){
-			$("#crosslawData").html(data);
-		});
-	});
-	
-	<?php if(@$rs->id != ""):?>
-		$.get('ajax/get_select_lawtype',{
-			'law_group_id' : $('select[name=law_group_id]').val(),
-			'law_type_id' : <?=$rs->law_type_id?>
-		},function(data){
-			$('.loading').hide();
-			$("#lawtype").html(data);
+	//----------------------- ฟอร์มหลัก -----------------------------------
+		// เปลี่ยนภาษา
+		$("[rel=en]").hide();
+		
+		$(".lang a").click(function(){
+			$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+			$(this).closest('li').addClass('active').siblings().removeClass('active');
+			return false;
 		});
 		
-		$.get('ajax/get_select_submaintype',{
-			'law_maintype_id' : $('select[name=law_maintype_id]').val(),
-			'law_submaintype_id' : <?=$rs->law_submaintype_id?>
-		},function(data){
-			$('.loading').hide();
-			$("#lawsubmaintype").html(data);
+		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
+		$('table').on('change', "select[name='law_group_id']", function() {
+			$('.loading').show();
+			$.get('ajax/get_select_lawtype',{
+				'law_group_id' : $(this).val()
+			},function(data){
+				$('.loading').hide();
+				$("#lawtype").html(data);
+			});
 		});
-	<?php endif;?>
+		
+		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
+		$('table').on('change', "select[name='law_maintype_id']", function() {
+			$('.loading').show();
+			$.get('ajax/get_select_submaintype',{
+				'law_maintype_id' : $(this).val()
+			},function(data){
+				$('.loading').hide();
+				$("#lawsubmaintype").html(data);
+			});
+		});
+		
+		<?php if(@$rs->id != ""):?>
+			$.get('ajax/get_select_lawtype',{
+				'law_group_id' : $('select[name=law_group_id]').val(),
+				'law_type_id' : <?=$rs->law_type_id?>
+			},function(data){
+				$('.loading').hide();
+				$("#lawtype").html(data);
+			});
+			
+			$.get('ajax/get_select_submaintype',{
+				'law_maintype_id' : $('select[name=law_maintype_id]').val(),
+				'law_submaintype_id' : <?=$rs->law_submaintype_id?>
+			},function(data){
+				$('.loading').hide();
+				$("#lawsubmaintype").html(data);
+			});
+		<?php endif;?>
 	
+	//----------------------- ผูกกฎหมาย (คาบ/ข้าม) -----------------------------------
+		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
+		$('#cross_law_form').on('change', "select[name='law_group_id']", function() {
+			$('.loading').show();
+			$.get('ajax/get_select_lawtype',{
+				'law_group_id' : $(this).val()
+			},function(data){
+				$('.loading').hide();
+				$("#cross_lawtype").html(data);
+			});
+		});
+		
+		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
+		$('#cross_law_form').on('change', "select[name='law_maintype_id']", function() {
+			$('.loading').show();
+			$.get('ajax/get_select_submaintype',{
+				'law_maintype_id' : $(this).val()
+			},function(data){
+				$('.loading').hide();
+				$("#cross_lawsubmaintype").html(data);
+			});
+		});
+		
+		// ปุ่มค้นหา
+		$("#searchCrossLawBtn").click(function(){
+			$.get('ajax/get_cross_law_data',{
+				'search' : $(this).closest("form").find('input[name=search]').val(),
+				'law_group_id' : $(this).closest("form").find('select[name=law_group_id]').val(),
+				'law_type_id' : $(this).closest("form").find('select[name=law_type_id]').val(),
+				'law_maintype_id' : $(this).closest("form").find('select[name=law_maintype_id]').val(),
+				'law_submaintype_id' : $(this).closest("form").find('select[name=law_submaintype_id]').val()
+			},function(data){
+				$("#crosslawData").html(data);
+			});
+		});
+	
+	//----------------------- กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม) -----------------------------------
+		// ปุ่มค้นหา 
+		$("#searchRelatedLawBtn").click(function(){
+			$.get('ajax/get_related_law_data',{
+				'search' : $(this).closest("form").find('input[name=search]').val()
+			},function(data){
+				$("#relatedlawData").html(data);
+			});
+		});
+	
+	
+	// ปุ่มลบกฏหมาย  ผูกกฎหมาย (คาบ/ข้าม), กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
 	$('table').on('click', '.delLawBtn', function() {
 		$(this).closest('tr').fadeOut(300, function(){ 
 			$(this).remove(); 
@@ -585,6 +532,7 @@ $(function() {
 	});
 });
 
+// นับจำนวนใส่ตัวเลขหน้าแถว
 function autoCountTableRow(){
 	// add Table Class Name "autocount"
 	$('.autocount tr td:first-child').each(function(i){
