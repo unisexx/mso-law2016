@@ -40,13 +40,13 @@
         </tr>
         <tr>
           <th>วันที่ แต่งตั้ง<span class="Txt_red_12"> *</span></th>
-          <td>
-		  	<span class="form-inline">
+		<td>
+	      	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="committee_dateappoint" value="<?=$rs->committee_dateappoint?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" name="committee_dateappoint" data-date-language="th-th" value="<?=DB2Date($rs->committee_dateappoint)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
-		</td>
+		 </td>
         </tr>
         <tr>
           <th>ชื่อ-สกุล<span class="Txt_red_12">*</span></th>

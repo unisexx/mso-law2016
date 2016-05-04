@@ -35,6 +35,7 @@ class Law_privileges extends Admin_Controller {
 	function save($id=false){
 		if($_POST){
 			$_POST['pri_name'] = lang_encode($_POST['pri_name']);
+			$_POST['pri_date'] = Date2DB($_POST['pri_date']);
 			
 			$rs = new Law_privilege($id);
 			

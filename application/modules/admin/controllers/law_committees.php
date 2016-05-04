@@ -30,6 +30,7 @@ class Law_committees extends Admin_Controller {
 			$_POST['committee_name'] = lang_encode($_POST['committee_name']);
 			$_POST['committee_position'] = lang_encode($_POST['committee_position']);
 			$_POST['committee_history'] = lang_encode($_POST['committee_history']);
+			$_POST['committee_dateappoint'] = Date2DB($_POST['committee_dateappoint']);
 			
 			$rs = new Law_committee($id);
 			

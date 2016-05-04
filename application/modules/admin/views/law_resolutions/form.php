@@ -42,12 +42,12 @@
         <tr>
           <th>วันที่ ครม. มีมติ<span class="Txt_red_12"> *</span></th>
           <td>
-          	<span class="form-inline">
+	      	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="resolution_dateappoint" value="<?=$rs->resolution_dateappoint?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" name="resolution_dateappoint" data-date-language="th-th" value="<?=DB2Date($rs->resolution_dateappoint)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
-          </td>
+		 </td>
         </tr>
         <tr>
           <th>ไฟล์แนบเอกสาร</th>

@@ -23,6 +23,7 @@ class Law_resolutions extends Admin_Controller {
 	function save($id=false){
 		if($_POST){
 			$_POST['resolution_name'] = lang_encode($_POST['resolution_name']);
+			$_POST['resolution_dateappoint'] = Date2DB($_POST['resolution_dateappoint']);
 			
 			$rs = new Law_resolution($id);
 			

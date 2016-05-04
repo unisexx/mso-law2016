@@ -35,7 +35,7 @@
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
 	  <td><?=$row->committee_year?></td>
 	  <td><?=$row->law_committee_type->name?></td>
-	  <td><?=$row->committee_dateappoint?></td>
+	  <td><?=mysql_to_th($row->committee_dateappoint)?></td>
 	  <td><?=lang_decode($row->committee_name)?></td>
 	  <td><a href="admin/law_committees/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_committees/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>

@@ -20,13 +20,13 @@
         </tr>
         <tr>
           <th>วันที่นำเข้า<span class="Txt_red_12"> *</span></th>
-          <td>
-		  	<span class="form-inline">
+		<td>
+	      	<span class="form-inline">
 		    <div class="input-group date">
-			  <input type="text" class="form-control" name="pri_date" value="<?=$rs->pri_date?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			  <input type="text" class="form-control datepickerTH" name="pri_date" data-date-language="th-th" value="<?=DB2Date($rs->pri_date)?>"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		    </span>
-		</td>
+		 </td>
         </tr>
         <tr>
           <th>ไฟล์แนบเอกสาร</th>
