@@ -128,7 +128,7 @@
           <td><div id="btnBox" style="margin-bottom:10px;">
             <a class='inline' href="#inline_related_th"><input type="button" value="เพิ่มกฎหมายที่เกี่ยวข้อง" title="เพิ่มกฎหมายที่เกี่ยวข้อง" class="btn btn-warning vtip" /></a>
           </div>
-            <table class="tbSublist">
+            <table class="tbSublist tbRelatedSublist autocount">
               <tr>
                 <th style="width:10%">#</th>
               <th style="width:60%">ชื่อกฎหมาย</th>

@@ -8,7 +8,7 @@
 	<?foreach($rs as $key=>$row):?>
 	<tr class="<?=alternator('','odd');?>">
 	  <td><?=$key+1?></td>
-	  <td><input class="radio" type="checkbox" name="radio4" id="selthis" value="radio4" /></td>
+	  <td><input class="radio" type="checkbox" name="radio4" id="selthis" value="radio4" data-row-id="<?=$row->id?>" data-row-name="<?=str_replace("|"," ",$row->name_th)?>" /></td>
 	  <td width="60%"><?=str_replace("|"," ",$row->name_th)?>
 	    <div class="dvDetail" style="border-top:1px dotted #999;">
 	    <span class="form-inline">
@@ -54,7 +54,7 @@ $(document).ready(function(){
 			var lawName = $(this).attr('data-row-name');
 			var lawType = $(this).attr('data-row-type');
 			var lawDetail = $(this).closest('tr').find('textarea').val();
-			$('.tbCrossSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawType+'</td><td><input type="hidden" name="ov_sk_law[]" value="'+lawId+'"><input type="hidden" name="ov_sk_type[]" value="'+lawType+'"><input type="hidden" name="ov_sk_description[]" value="'+lawDetail+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+			$('.tbRelatedSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawType+'</td><td><input type="hidden" name="ov_sk_law[]" value="'+lawId+'"><input type="hidden" name="ov_sk_type[]" value="'+lawType+'"><input type="hidden" name="ov_sk_description[]" value="'+lawDetail+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
 		});
 		
 		// เคลียร์ฟอร์มค้นหา
