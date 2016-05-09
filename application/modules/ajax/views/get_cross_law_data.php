@@ -59,7 +59,7 @@
 			$("#crosslawData").html("");
 			
 			// คำนวนใส่ตัวเลขแถว
-			autoCountTableRow();
+			autoCountTableRow('tbCrossSublist');
 			
 			// var lawId = $(this).attr('data-row-id');
 			// var lawName = $(this).attr('data-row-name');

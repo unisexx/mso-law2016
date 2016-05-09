@@ -12,7 +12,7 @@
 	  <td width="60%"><?=str_replace("|"," ",$row->name_th)?>
 	    <div class="dvDetail" style="border-top:1px dotted #999;">
 	    <span class="form-inline">
-	    <select name="" class="form-control" style="width:160px; margin-top:10px;">
+	    <select name="relatedType" class="form-control" style="width:160px; margin-top:10px;">
 	      <option>-- เกี่ยวข้องโดย --</option>
 	      <option value="1">ยกเลิก</option>
 	      <option value="2">แก้ไข</option>
@@ -52,16 +52,17 @@ $(document).ready(function(){
 		$('.relatedLawTable input[type=checkbox]:checked').each(function() {
 			var lawId = $(this).attr('data-row-id');
 			var lawName = $(this).attr('data-row-name');
-			var lawType = $(this).attr('data-row-type');
+			var lawrelatedTypeTxt = $(this).closest('tr').find('select[name=relatedType] option:selected').text();
+			var lawrelatedTypeValue = $(this).closest('tr').find('select[name=relatedType] option:selected').val();
 			var lawDetail = $(this).closest('tr').find('textarea').val();
-			$('.tbRelatedSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawType+'</td><td><input type="hidden" name="ov_sk_law[]" value="'+lawId+'"><input type="hidden" name="ov_sk_type[]" value="'+lawType+'"><input type="hidden" name="ov_sk_description[]" value="'+lawDetail+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+			$('.tbRelatedSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawrelatedTypeTxt+'</td><td><input type="hidden" name="law_id_select[]" value="'+lawId+'"><input type="hidden" name="version_type[]" value="'+lawrelatedTypeValue+'"><input type="hidden" name="version_txt[]" value="'+lawDetail+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
 		});
 		
 		// เคลียร์ฟอร์มค้นหา
 		$("#relatedlawData").html("");
 		
 		// คำนวนใส่ตัวเลขแถว
-		autoCountTableRow();
+		autoCountTableRow('tbRelatedSublist');
 		
 	});
 });

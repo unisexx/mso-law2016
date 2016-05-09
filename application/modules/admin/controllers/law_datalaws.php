@@ -21,10 +21,18 @@ class Law_datalaws extends Admin_Controller {
 	function form($id=false){
 		$data['rs'] = new Law_datalaw($id);
 		
-		// ผูกกฎหมาย (คาบ/ข้าม)
 		if($id!=""){
+			// ผูกกฎหมาย (คาบ/ข้าม)
 			$data['law_overlaps'] = new Law_overlap_or_skip();
 			$data['law_overlaps']->where('law_datalaw_id = '.$id)->get();
+			
+			// กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
+			$data['law_versions'] = new Law_version();
+			$data['law_versions']->where('law_datalaw_id = '.$id)->get();
+			
+			// Option
+			$data['law_options'] = new Law_optioninlaw();
+			$data['law_options']->where('law_datalaw_id = '.$id)->get();
 		}
 		
 		$this->template->build('law_datalaws/form',$data);
@@ -62,14 +70,31 @@ class Law_datalaws extends Admin_Controller {
 			
 			// ผูกกฎหมาย (คาบ/ข้าม)
 			if(@$_POST['ov_sk_law']){
-				// ลบข้อมูลเก่า
-				@$this->db->where('law_datalaw_id', $law_datalaw_id)->delete('law_overlap_or_skips');
+				// ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
+				$ov_id_array = implode(", ", $_POST['ov_id']);
+				@$this->db->where('law_datalaw_id = '.$law_datalaw_id.' and id not in ( '.$ov_id_array.')')->delete('law_overlap_or_skips');
 
 				foreach($_POST['ov_sk_law'] as $key=>$value){
-					$law = new Law_overlap_or_skip();
+					$law = new Law_overlap_or_skip($_POST['ov_id'][$key]);
 					$law->ov_sk_law = $value;
 					$law->ov_sk_type = $_POST['ov_sk_type'][$key];
 					$law->ov_sk_description = $_POST['ov_sk_description'][$key];
+					$law->law_datalaw_id = $law_datalaw_id;
+					$law->save();
+				}
+			}
+
+			// กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
+			if(@$_POST['law_id_select']){
+				// ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
+				$version_id_array = implode(", ", $_POST['version_id']);
+				@$this->db->where('law_datalaw_id = '.$law_datalaw_id.' and id not in ( '.$version_id_array.')')->delete('law_versions');
+
+				foreach($_POST['law_id_select'] as $key=>$value){
+					$law = new Law_version($_POST['version_id'][$key]);
+					$law->law_id_select = $value;
+					$law->version_type = $_POST['version_type'][$key];
+					$law->version_txt = $_POST['version_txt'][$key];
 					$law->law_datalaw_id = $law_datalaw_id;
 					$law->save();
 				}
@@ -78,7 +103,8 @@ class Law_datalaws extends Admin_Controller {
 			
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
-		redirect('admin/law_datalaws');
+		redirect($_SERVER['HTTP_REFERER']);
+		// redirect('admin/law_datalaws');
 	}
 
 	function delete($id){

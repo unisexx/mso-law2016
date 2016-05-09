@@ -74,7 +74,7 @@
           <div id="btnBox" style="margin-bottom:10px;">
           <a class='inline' href="#inline_bind_th"><input type="button" value="เพิ่มการผูกกฎหมาย" title="เพิ่มการผูกกฎหมาย" class="btn btn-warning vtip" /></a>
         </div>
-          <table class="tbSublist tbCrossSublist autocount">
+          <table class="tbSublist tbCrossSublist">
             <tr>
               <th style="width:10%">#</th>
               <th style="width:60%">ชื่อกฎหมาย</th>
@@ -88,6 +88,7 @@
 		    	<td><?=get_law_name($row->ov_sk_law)?></td>
 		    	<td><?=$row->ov_sk_type?></td>
 		    	<td>
+		    		<input type="hidden" name="ov_id[]" value="<?=$row->id?>">
 		    		<input type="hidden" name="ov_sk_law[]" value="<?=$row->ov_sk_law?>">
 		    		<input type="hidden" name="ov_sk_type[]" value="<?=$row->ov_sk_type?>">
 		    		<input type="hidden" name="ov_sk_description[]" value="<?=$row->ov_sk_description?>">
@@ -95,32 +96,6 @@
 		    </tr>
 		    <?endforeach;?>
 		    <?endif;?>
-            <!-- <?
-				$sql = "select * from law_overlap_or_skip where code='$rs->oos_code' ";
-				$law_overlap_or_skip = $this->db->query($sql)->result();
-			?>
-			<?if($law_overlap_or_skip):?>
-			<?foreach($law_overlap_or_skip as $key=>$row_cross):?>
-				<?
-					$sql = "select * from law_datalaws where id='$row_cross->ov_sk_law'";
-					$datalaw = $this->db->query($sql)->row();
-				?>
-				<tr>
-		              <td><?=$key+1?></td>
-		              <td><?=str_replace("|"," ",$datalaw->name_th)?></td>
-		              <td>
-		              		<?
-								if($datalaw->law_group_id == 1 && $datalaw->law_type_id == 1 && $datalaw->law_maintype_id == 1 &&  $datalaw->law_submaintype_id == 1){ 
-									echo "คาบ"; 
-								}else{ 
-									echo "ข้าม";
-								}
-							?>
-		              </td>
-		              <td><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-	            </tr>
-            <?endforeach;?>
-			<?endif;?> -->
           </table></td>
         </tr>
         <tr>
@@ -128,31 +103,29 @@
           <td><div id="btnBox" style="margin-bottom:10px;">
             <a class='inline' href="#inline_related_th"><input type="button" value="เพิ่มกฎหมายที่เกี่ยวข้อง" title="เพิ่มกฎหมายที่เกี่ยวข้อง" class="btn btn-warning vtip" /></a>
           </div>
-            <table class="tbSublist tbRelatedSublist autocount">
+            <table class="tbSublist tbRelatedSublist">
               <tr>
                 <th style="width:10%">#</th>
               <th style="width:60%">ชื่อกฎหมาย</th>
               <th style="width:20%">รูปแบบ</th>
               <th style="width:10%">ลบ</th>
               </tr>
-              <?
-					$sql = "select * from law_version where code='$rs->version_code' ";
-					$law_versions = $this->db->query($sql)->result();
-				?>
-				<?if($law_versions):?>
-						<?foreach($law_versions as $key=>$row_version):?>
-							<?
-								$sql = "select * from law_datalaws where id='$row_version->law_id_select'";
-								$datalaw = $this->db->query($sql)->row();
-							?>
-							<tr>
-				                <td><?=$key+1?></td>
-				                <td><?=str_replace("|"," ",$datalaw->name_th)?></td>
-				                <td>แก้ไข</td>
-				                <td><img src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-				              </tr>
-						<?endforeach;?>
-				<?endif;?>
+                <?if(isset($law_versions)):?>
+			    <?foreach($law_versions as $key=>$row):?>
+			    <tr>
+			    	<td><?=$key+1?></td>
+			    	<td><?=get_law_name($row->law_id_select)?></td>
+			    	<td><?=get_law_version_versiontype_status($row->version_type)?></td>
+			    	<td>
+			    		<input type="hidden" name="version_id[]" value="<?=$row->id?>">
+			    		<input type="hidden" name="law_id_select[]" value="<?=$row->law_id_select?>">
+			    		<input type="hidden" name="version_type[]" value="<?=$row->version_type?>">
+			    		<input type="hidden" name="version_txt[]" value="<?=$row->version_txt?>">
+			    		<img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/>
+			    	</td>
+			    </tr>
+			    <?endforeach;?>
+			    <?endif;?>
             </table></td>
         </tr>
         <tr>
@@ -208,7 +181,7 @@
           <div id="btnBox" style="margin-bottom:10px;">
             <a class="inline" href="#inline_option_th"><input type="button" value="เพิ่ม Option กฎหมาย" title="เพิ่ม Option กฎหมาย" class="btn btn-warning vtip" /></a>
           </div>
-            <table class="tbSublist">
+            <table class="tbSublist tbOptionSublist">
               <tr>
                 <th style="width:10%">#</th>
                 <th style="width:25%">ชนิด Option</th>
@@ -217,14 +190,24 @@
                 <th style="width:10%">ปี</th>
                 <th style="width:10%">ลบ</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>เอกสารนำเสนอกฎหมาย (Presentation)</td>
-                <td>กฎหมาย abc</td>
-                <td>ศาลเด็ก</td>
-                <td>2525</td>
-                <td><img src="themes/admin/images/remove.png"  width="32" height="32" class="vtip" title="ลบรายการนี้"  /></td>
-              </tr>
+              <?if(isset($law_options)):?>
+			    <?foreach($law_options as $key=>$row):?>
+			    <tr>
+			    	<td><?=$key+1?></td>
+			    	<td><?=$row->law_option->typeName?></td>
+			    	<td><?=$row->option_name?></td>
+			    	<td><?=$row->option_source?></td>
+			    	<td><?=$row->option_year?></td>
+			    	<td>
+			    		<input type="hidden" name="version_id[]" value="<?=$row->id?>">
+			    		<input type="hidden" name="law_id_select[]" value="<?=$row->law_id_select?>">
+			    		<input type="hidden" name="version_type[]" value="<?=$row->version_type?>">
+			    		<input type="hidden" name="version_txt[]" value="<?=$row->version_txt?>">
+			    		<img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/>
+			    	</td>
+			    </tr>
+			    <?endforeach;?>
+			    <?endif;?>
             </table>
           
             </td>
@@ -362,50 +345,40 @@
 
 
 
-
+<!-- Option -->
 <!-- This contains the hidden content for inline calls -->
-		<div style='display:none'>
-			<div id='inline_option_th' style='padding:10px; background:#fff;'>
-			
-            <h3>Option กฎหมาย</h3>
-<table class="tbadd">
-<tr>
-  <th>ชนิดของ Option<span class="Txt_red_12"> *</span></th>
-  <td><select name="select2" class="form-control" style="width:auto;">
-    <option>-- กรุณาเลือกชนิดของ Option --</option>
-    <option>คำอธิบายกฎหมาย (Explanatory Notes)/สรุปสาระสำคัญ</option>
-    <option>เอกสารนำเสนอกฎหมาย (Presentation)</option>
-    <option>คำพิพากษาที่เกี่ยวข้อง</option>
-    <option>คำวินิจฉัยของคณะกรรมการกฤษฎีกา</option>
-    <option>บทความทางวิชาการ/ฐานข้อมูลประวัติกฎหมาย</option>
-    <option>บทความทางกฎหมาย</option>
-  </select></td>
-</tr>
-<tr>
-  <th>ชื่อ<span class="Txt_red_12"> *</span></th>
-  <td><input type="text" class="form-control" id="exampleInputName6" style="width:300px;" /></td>
-</tr>
-<tr>
-  <th>แหล่งที่มา</th>
-  <td><input type="text" class="form-control" id="exampleInputName8" style="width:500px;" /></td>
-</tr>
-<tr>
-  <th>ปี พ.ศ.</th>
-  <td><input type="text" class="form-control" id="exampleInputName2" style="width:100px;" /></td>
-</tr>
-<tr>
-  <th>ไฟล์แนบ <img src="themes/admin/images/add.png" width="16" height="16" /></th>
-  <td><span class="form-inline"><input type="text" class="form-control" id="exampleInputName8" style="width:400px;" placeholder="ชื่อไฟล์แนบ" /> <input type="file" name="fileField3" id="fileField3" class="form-control" style="width:400px;" /></span></td>
-</tr>
-</table>
-<div id="btnBoxAdd">
-  <input name="input" type="button" title="บันทึก" value="บันทึก" class="btn btn-primary" style="width:100px;"/>
+<div style='display:none'>
+	<div id='inline_option_th' style='padding:10px; background:#fff;'>
+    <h3>Option กฎหมาย</h3>
+	<table class="tbadd">
+	<tr>
+	  <th>ชนิดของ Option<span class="Txt_red_12"> *</span></th>
+	  <td>
+		  <?=form_dropdown('law_option_id',get_option('id','typeName','law_options order by id asc'),'','id="law_option_id" class="form-control" style="width:auto;"','-- กรุณาเลือกชนิดของ Option --');?>
+	</td>
+	</tr>
+	<tr>
+	  <th>ชื่อ<span class="Txt_red_12"> *</span></th>
+	  <td><input type="text" class="form-control" id="option_name" style="width:300px;" /></td>
+	</tr>
+	<tr>
+	  <th>แหล่งที่มา</th>
+	  <td><input type="text" class="form-control" id="option_source" style="width:500px;" /></td>
+	</tr>
+	<tr>
+	  <th>ปี พ.ศ.</th>
+	  <td><input type="text" class="form-control" id="option_year" style="width:100px;" /></td>
+	</tr>
+	<tr>
+	  <th>ไฟล์แนบ <img src="themes/admin/images/add.png" width="16" height="16" /></th>
+	  <td><span class="form-inline"><input type="text" class="form-control" id="exampleInputName8" style="width:400px;" placeholder="ชื่อไฟล์แนบ" /> <input type="file" name="fileField3" id="fileField3" class="form-control" style="width:400px;" /></span></td>
+	</tr>
+	</table>
+	<div id="btnBoxAdd">
+	  <input name="input" type="button" title="บันทึก" value="บันทึก" class="btn btn-primary submitOptionLaw" style="width:100px;"/>
+	</div>
+  </div>
 </div>
-
-
-            
-		  </div>
-		</div>
 		
 
 
@@ -521,21 +494,33 @@ $(function() {
 				$("#relatedlawData").html(data);
 			});
 		});
+		
+	//----------------------- Option -----------------------------------
+		// ดึงข้อมูลที่เลือกลงฟอร์มหลัก
+		$('.submitOptionLaw').click(function(){
+			var lawOptionIDValue = $(this).closest('#inline_option_th').find('#law_option_id option:selected').val();
+			var lawOptionIDTxt = $(this).closest('#inline_option_th').find('#law_option_id option:selected').text();
+			var optionName = $(this).closest('#inline_option_th').find('#option_name').val();
+			var optionSource = $(this).closest('#inline_option_th').find('#option_source').val();
+			var optionYear = $(this).closest('#inline_option_th').find('#option_year').val();
+			$('.tbOptionSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawrelatedTypeTxt+'</td><td><input type="hidden" name="law_id_select[]" value="'+lawId+'"><input type="hidden" name="version_type[]" value="'+lawrelatedTypeValue+'"><input type="hidden" name="version_txt[]" value="'+lawDetail+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+		});
 	
 	
 	// ปุ่มลบกฏหมาย  ผูกกฎหมาย (คาบ/ข้าม), กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
 	$('table').on('click', '.delLawBtn', function() {
 		$(this).closest('tr').fadeOut(300, function(){ 
 			$(this).remove(); 
-			autoCountTableRow();
+			autoCountTableRow('tbCrossSublist');
+			autoCountTableRow('tbRelatedSublist');
 		});
 	});
 });
 
 // นับจำนวนใส่ตัวเลขหน้าแถว
-function autoCountTableRow(){
+function autoCountTableRow(tbClassName){
 	// add Table Class Name "autocount"
-	$('.autocount tr td:first-child').each(function(i){
+	$('.'+tbClassName+' tr td:first-child').each(function(i){
 		// $(this).before('<td>'+(i+1)+'</td>');
 		$(this).html('');
 		$(this).append((i+1));

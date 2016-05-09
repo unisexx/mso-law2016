@@ -200,7 +200,7 @@ if(!function_exists('get_datalaw_status'))
 
 if(!function_exists('get_law_version_versiontype_status'))
 {
-	function get_law_version_version_type_status($id){
+	function get_law_version_versiontype_status($id){
     $status = array("1"=>"ยกเลิก","2"=>"แก้ไข","3"=>"เพิ่มเติม","4"=>"แก้ไข / เพิ่มเติม");   
     return $status[$id];
 	}
