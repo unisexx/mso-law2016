@@ -99,6 +99,23 @@ class Law_datalaws extends Admin_Controller {
 					$law->save();
 				}
 			}
+
+			// Option
+			if(@$_POST['law_option_id']){
+				// // ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
+				// $option_id_array = implode(", ", $_POST['version_id']);
+				// @$this->db->where('law_datalaw_id = '.$law_datalaw_id.' and id not in ( '.$version_id_array.')')->delete('law_versions');
+
+				foreach($_POST['law_option_id'] as $key=>$value){
+					$law = new Law_optioninlaw($_POST['optioninlaw_id'][$key]);
+					$law->law_option_id = $value;
+					$law->option_name = $_POST['option_name'][$key];
+					$law->option_source = $_POST['option_source'][$key];
+					$law->option_year = $_POST['option_year'][$key];
+					$law->law_datalaw_id = $law_datalaw_id;
+					$law->save();
+				}
+			}
 			
 			
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');

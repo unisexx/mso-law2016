@@ -199,10 +199,11 @@
 			    	<td><?=$row->option_source?></td>
 			    	<td><?=$row->option_year?></td>
 			    	<td>
-			    		<input type="hidden" name="version_id[]" value="<?=$row->id?>">
-			    		<input type="hidden" name="law_id_select[]" value="<?=$row->law_id_select?>">
-			    		<input type="hidden" name="version_type[]" value="<?=$row->version_type?>">
-			    		<input type="hidden" name="version_txt[]" value="<?=$row->version_txt?>">
+			    		<input type="hidden" name="optioninlaw_id[]" value="<?=$row->id?>">
+			    		<input type="hidden" name="law_option_id[]" value="<?=$row->law_option_id?>">
+			    		<input type="hidden" name="option_name[]" value="<?=$row->option_name?>">
+			    		<input type="hidden" name="option_source[]" value="<?=$row->option_source?>">
+			    		<input type="hidden" name="option_year[]" value="<?=$row->option_year?>">
 			    		<img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/>
 			    	</td>
 			    </tr>
@@ -498,21 +499,31 @@ $(function() {
 	//----------------------- Option -----------------------------------
 		// ดึงข้อมูลที่เลือกลงฟอร์มหลัก
 		$('.submitOptionLaw').click(function(){
+			// ปิด colorbox
+			$.colorbox.close();
+			
 			var lawOptionIDValue = $(this).closest('#inline_option_th').find('#law_option_id option:selected').val();
 			var lawOptionIDTxt = $(this).closest('#inline_option_th').find('#law_option_id option:selected').text();
 			var optionName = $(this).closest('#inline_option_th').find('#option_name').val();
 			var optionSource = $(this).closest('#inline_option_th').find('#option_source').val();
 			var optionYear = $(this).closest('#inline_option_th').find('#option_year').val();
-			$('.tbOptionSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawrelatedTypeTxt+'</td><td><input type="hidden" name="law_id_select[]" value="'+lawId+'"><input type="hidden" name="version_type[]" value="'+lawrelatedTypeValue+'"><input type="hidden" name="version_txt[]" value="'+lawDetail+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+			$('.tbOptionSublist tr:last').after('<tr><td></td><td>'+lawOptionIDTxt+'</td><td>'+optionName+'</td><td>'+optionSource+'</td><td>'+optionYear+'</td><td><input type="hidden" name="law_option_id[]" value="'+lawOptionIDValue+'"><input type="hidden" name="option_name[]" value="'+optionName+'"><input type="hidden" name="option_source[]" value="'+optionSource+'"><input type="hidden" name="option_year[]" value="'+optionYear+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+			
+			// เคลียร์ค่า input ของฟอร์มใน colorbox
+			$(this).closest('#inline_option_th').find("input[type=text], textarea").val("");
+			
+			// คำนวนใส่ตัวเลขแถว
+			autoCountTableRow('tbOptionSublist');
 		});
 	
 	
-	// ปุ่มลบกฏหมาย  ผูกกฎหมาย (คาบ/ข้าม), กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
+	// ปุ่มลบกฏหมาย  ผูกกฎหมาย (คาบ/ข้าม), กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม), option กฏหมาย
 	$('table').on('click', '.delLawBtn', function() {
 		$(this).closest('tr').fadeOut(300, function(){ 
 			$(this).remove(); 
 			autoCountTableRow('tbCrossSublist');
 			autoCountTableRow('tbRelatedSublist');
+			autoCountTableRow('tbOptionSublist');
 		});
 	});
 });
