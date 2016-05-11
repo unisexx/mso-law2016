@@ -54,6 +54,22 @@ class Law extends Public_Controller {
 	
 	function view($id){
 		$data['rs'] = new Law_datalaw($id);
+		
+		// ผูกกฎหมาย (คาบ/ข้าม)
+		$data['law_overlaps'] = new Law_overlap_or_skip();
+		$data['law_overlaps']->where('law_datalaw_id = '.$id)->get();
+			
+		// กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
+		$data['law_versions'] = new Law_version();
+		$data['law_versions']->where('law_datalaw_id = '.$id)->get();
+		
+		// law option
+		$data['law_options'] = new Law_option();
+		$data['law_options']->order_by('id asc')->get();
+		
+		$data['law_optioninlaws'] = new Law_optioninlaw();
+		$data['law_optioninlaws']->where('law_datalaw_id = '.$id)->order_by('id asc')->get();
+			
 		$this->template->build('view',$data);
 	}
 	

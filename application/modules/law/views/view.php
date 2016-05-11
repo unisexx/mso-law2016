@@ -83,89 +83,50 @@
 		<tr>
 			<th>แก้ไขเพิ่มเติม</th>
 			<td>
-					<?
-						$sql = "select * from law_version where code='$rs->version_code' ";
-						$law_versions = $this->db->query($sql)->result();
-					?>
-					<?if($law_versions):?>
-						<?foreach($law_versions as $row):?>
-							<?
-								$sql = "select * from law_datalaws where id='$row->law_id_select'";
-								$datalaw = $this->db->query($sql)->row();
-							?>
-							<?if($datalaw):?>
-								<div><a href="law/view/<?=$datalaw->id?>" target="_blank"><?=str_replace("|"," ",$datalaw->name_th)?></a> <span class="pull-right"><?=get_law_version_version_type_status($row->version_type)?></span></div>
-							<?endif;?>
-						<?endforeach;?>
-					<?else:?>
-						-
-					<?endif;?>
+					<?if(isset($law_versions)):?>
+				    <?foreach($law_versions as $key=>$row):?>
+				    	<div><a href="law/view/<?=$row->law_id_select?>" target="_blank"><?=get_law_name($row->law_id_select)?></a> <span class="pull-right"><?=get_law_version_versiontype_status($row->version_type)?></span></div>
+				    <?endforeach;?>
+				    <?endif;?>
 			</td>
 		</tr>
 		<tr>
 			<th>คาบ/ข้าม</th>
 			<td>
-				<?
-					$sql = "select * from law_overlap_or_skip where code='$rs->oos_code' ";
-					$law_overlap_or_skip = $this->db->query($sql)->result();
-				?>
-				<?if($law_overlap_or_skip):?>
-					<?foreach($law_overlap_or_skip as $row):?>
-						<?
-							$sql = "select * from law_datalaws where id='$row->ov_sk_law'";
-							$datalaw = $this->db->query($sql)->row();
-						?>
-						<?if($datalaw):?>
-							<div><a href="law/view/<?=$datalaw->id?>" target="_blank"><?=str_replace("|"," ",$datalaw->name_th)?></a> <span class="pull-right"><?=$row->ov_sk_type?></span></div>
-						<?endif;?>
-					<?endforeach;?>
-				<?else:?>
-					-
-				<?endif;?>
+				<?if(isset($law_overlaps)):?>
+			    <?foreach($law_overlaps as $key=>$row):?>
+			    	<div><a href="law/view/<?=$row->ov_sk_law?>" target="_blank"><?=@get_law_name($row->ov_sk_law)?></a> <span class="pull-right"><?=$row->ov_sk_type?></span></div>
+			    <?endforeach;?>
+			    <?endif;?>
 			</td>
 		</tr>
 		<tr>
 			<th>Version</th>
 			<td>
-				<?
-					$sql = "select * from law_version where law_id_select='$rs->id' ";
-					$law_version = $this->db->query($sql)->row();
-				?>
-				<?if($law_version):?>
-					<?
-						$sql = "select * from law_datalaws where id='$law_version->law_id_select'";
-						$datalaw = $this->db->query($sql)->row();
-					?>
-					<div><a href="upload/law/<?=@$law_version->version_filename?>">Version ปัจจุบัน</a></div>
-					<div><a href="upload/law/<?=@$law_version->version_fileold?>">Version เก่า</a></div>
-				<?else:?>
-					-
-				<?endif;?>
+					<?if(isset($law_versions)):?>
+				    <?foreach($law_versions as $key=>$row):?>
+				    	<div><a href="upload/law/<?=@$row->version_filename?>">Version ปัจจุบัน</a></div>
+						<div><a href="upload/law/<?=@$row->version_fileold?>">Version เก่า</a></div>
+				    <?endforeach;?>
+				    <?endif;?>
 			</td>
 		</tr>
-		<?
-			$sql = "select * from law_options";
-			$law_options = $this->db->query($sql)->result();
-		?>
 		<?foreach($law_options as $law_option):?>
-			<tr>
-				<th><?=$law_option->typeName?></th>
-				<td>
-					<?
-						$sql = "SELECT law_optioninlaw.option_name,law_optionfile.op_filename,law_optionfile.op_text 
-		       FROM law_optioninlaw Inner Join law_optionfile ON law_optioninlaw.option_code = law_optionfile.option_code 
-		       AND law_optioninlaw.code = law_optionfile.op_code WHERE law_optioninlaw.option_type_id = '$law_option->id' AND law_optioninlaw.code =  '$rs->option_code'";
-			   			$optionfiles = $this->db->query($sql)->result();
-					?>
-					<?if($optionfiles):?>
-						<?foreach($optionfiles as $optionfile):?>
-							<div><i class="fa fa-download"></i> <a href="upload/optionfile/<?=$optionfile->op_filename?>"><?=$optionfile->option_name?></a></div>
-						<?endforeach;?>
-					<?else:?>
-						-
+		<tr>
+			<th><?=$law_option->typeName?></th>
+			<td>
+				<?foreach($law_optioninlaws as $row):?>
+					<?if($row->law_option_id == $law_option->id):?>
+						<div>
+							<div><?=$row->option_name?></div>
+							<?foreach($row->law_optionfile->get() as $optionfile):?>
+								<a href="<?=$optionfile->op_filename?>" style="margin-left:15px;"><i class="fa fa-download"></i> <?=$optionfile->op_text?></a>
+							<?endforeach;?>
+						</div><br>
 					<?endif;?>
-				</td>
-			</tr>
+				<?endforeach;?>
+			</td>
+		</tr>
 		<?endforeach;?>
 	</table>
 </div>
