@@ -69,11 +69,12 @@ class Law_datalaws extends Admin_Controller {
 			}
 			
 			// ผูกกฎหมาย (คาบ/ข้าม)
-			@$_POST['ov_id'][] = 999999999;
 			if(@$_POST['ov_id']){
 				// ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
 				$ov_id_array = implode(", ", $_POST['ov_id']);
 				@$this->db->where('law_datalaw_id = '.$law_datalaw_id.' and id not in ( '.$ov_id_array.')')->delete('law_overlap_or_skips');
+			}else{
+				@$this->db->where('law_datalaw_id = '.$law_datalaw_id)->delete('law_overlap_or_skips');
 			}
 			if(@$_POST['ov_sk_law']){
 				foreach($_POST['ov_sk_law'] as $key=>$value){
@@ -87,11 +88,12 @@ class Law_datalaws extends Admin_Controller {
 			}
 
 			// กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
-			@$_POST['version_id'][] = 999999999;
 			if(@$_POST['version_id']){
 				// ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
 				$version_id_array = implode(", ", $_POST['version_id']);
 				@$this->db->where('law_datalaw_id = '.$law_datalaw_id.' and id not in ( '.$version_id_array.')')->delete('law_versions');
+			}else{
+				@$this->db->where('law_datalaw_id = '.$law_datalaw_id)->delete('law_versions');
 			}
 			if(@$_POST['law_id_select']){
 				foreach($_POST['law_id_select'] as $key=>$value){
@@ -106,12 +108,21 @@ class Law_datalaws extends Admin_Controller {
 			}
 
 			// Option
-			@$_POST['optioninlaw_id'][] = 999999999;
 			if(@$_POST['optioninlaw_id']){
 				// ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
 				$option_id_array = implode(", ", $_POST['optioninlaw_id']);
 				@$this->db->where('law_datalaw_id = '.$law_datalaw_id.' and id not in ( '.$option_id_array.')')->delete('law_optioninlaws');
+				@$this->db->where('law_optioninlaw_id in ( '.$option_id_array.')')->delete('law_optionfiles');
+			}else{
+				// ลบทั้งหมด (law_optioninlaw และ law_optionfile)
+				$o = new Law_optioninlaw();
+				$optioninlaws = $o->where('law_datalaw_id', $law_datalaw_id)->get();
+				foreach($optioninlaws as $optioninlaw){
+					$optioninlaw->law_optionfile->delete_all();
+				}
+				@$this->db->where('law_datalaw_id = '.$law_datalaw_id)->delete('law_optioninlaws');
 			}
+			
 			if(@$_POST['law_option_id']){
 				foreach($_POST['law_option_id'] as $key=>$value){
 					$law = new Law_optioninlaw($_POST['optioninlaw_id'][$key]);
@@ -122,8 +133,26 @@ class Law_datalaws extends Admin_Controller {
 					$law->law_datalaw_id = $law_datalaw_id;
 					$law->save();
 					
+					// หา max id ของ law_optioninlaw
+					if(@$_POST['optioninlaw_id'][$key]){
+						$law_optioninlaw_id = $_POST['optioninlaw_id'][$key];
+					}else{
+						$row = $this->db->query('SELECT MAX(id) AS maxid FROM law_optioninlaws')->row();
+						if ($row) {
+						    $law_optioninlaw_id = $row->maxid; 
+						}
+					}
+			
 					// multiupload optionfile
-					
+					if(@$_POST['op_filename_'.$key] != ""){
+						foreach($_POST['op_filename_'.$key] as $key2=>$item){
+							$op = new Law_optionfile();
+							$op->op_filename = $item;
+							$op->op_text = $_POST['op_text_'.$key][$key2];
+							$op->law_optioninlaw_id = $law_optioninlaw_id;
+							$op->save();
+						}
+					}
 				}
 			}
 			

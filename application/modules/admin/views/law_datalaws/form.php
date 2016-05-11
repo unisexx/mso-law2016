@@ -552,7 +552,7 @@ $(function() {
 			   $(this).find('input[name="op_filename[]"]').attr('name', 'op_filename_'+index+'[]');
 			});
 			
-	        event.preventDefault();
+	        // event.preventDefault();
 	    });
 	
 	//--------------------------------------------------------------------------
