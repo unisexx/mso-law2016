@@ -121,6 +121,7 @@
 			    		<input type="hidden" name="law_id_select[]" value="<?=$row->law_id_select?>">
 			    		<input type="hidden" name="version_type[]" value="<?=$row->version_type?>">
 			    		<input type="hidden" name="version_txt[]" value="<?=$row->version_txt?>">
+			    		<input type="hidden" name="version_filename[]" value="<?=$row->version_filename?>">
 			    		<img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/>
 			    	</td>
 			    </tr>
@@ -192,7 +193,7 @@
               </tr>
               <?if(isset($law_options)):?>
 			    <?foreach($law_options as $key=>$row):?>
-			    <tr>
+			    <tr class="optionRow">
 			    	<td><?=$key+1?></td>
 			    	<td><?=$row->law_option->typeName?></td>
 			    	<td><?=$row->option_name?></td>
@@ -348,6 +349,9 @@
 
 <!-- Option -->
 <!-- This contains the hidden content for inline calls -->
+<style>
+	.fileUploadBlk{margin-bottom:10px;}
+</style>
 <div style='display:none'>
 	<div id='inline_option_th' style='padding:10px; background:#fff;'>
     <h3>Option กฎหมาย</h3>
@@ -371,8 +375,18 @@
 	  <td><input type="text" class="form-control" id="option_year" style="width:100px;" /></td>
 	</tr>
 	<tr>
-	  <th>ไฟล์แนบ <img src="themes/admin/images/add.png" width="16" height="16" /></th>
-	  <td><span class="form-inline"><input type="text" class="form-control" id="exampleInputName8" style="width:400px;" placeholder="ชื่อไฟล์แนบ" /> <input type="file" name="fileField3" id="fileField3" class="form-control" style="width:400px;" /></span></td>
+	  <th style="vertical-align: top;">ไฟล์แนบ <img class="addFileUpload" src="themes/admin/images/add.png" width="16" height="16" style="cursor: pointer;" /></th>
+	  <td>
+	  	<span class="multifile">
+		  	<div class="form-inline fileUploadBlk">
+		  		<input type="text" class="form-control" style="width:400px;" placeholder="ชื่อไฟล์แนบ" name="op_text[]" /> 
+		  		<div class="input-group">
+				  <input class="form-control" type="text" name="op_filename[]" value=""/>
+				  <span class="input-group-addon" id="basic-addon2" onclick="browser($(this).prev(),'files')" style="cursor: pointer;">เลือกไฟล์</span>
+				</div>
+		  	</div>
+		  </span>
+	  </td>
 	</tr>
 	</table>
 	<div id="btnBoxAdd">
@@ -397,7 +411,9 @@
 
 
 
-
+<!-- Load TinyMCE -->
+<script type="text/javascript" src="media/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="media/tiny_mce/config.js"></script>
 <script type="text/javascript">
 $(function() {
 	//----------------------- ฟอร์มหลัก -----------------------------------
@@ -497,6 +513,11 @@ $(function() {
 		});
 		
 	//----------------------- Option -----------------------------------
+		// Add file upload
+		$('.addFileUpload').click(function(){
+			$('.fileUploadBlk:last').after('<div class="form-inline fileUploadBlk"><input type="text" class="form-control"  style="width:400px;" placeholder="ชื่อไฟล์แนบ" name="op_text[]" /> <div class="input-group"><input class="form-control" type="text" name="op_filename[]" value=""/><span class="input-group-addon"  onclick="browser($(this).prev(),\'files\')" style="cursor: pointer;">เลือกไฟล์</span></div></div>');
+		});
+		
 		// ดึงข้อมูลที่เลือกลงฟอร์มหลัก
 		$('.submitOptionLaw').click(function(){
 			// ปิด colorbox
@@ -507,7 +528,15 @@ $(function() {
 			var optionName = $(this).closest('#inline_option_th').find('#option_name').val();
 			var optionSource = $(this).closest('#inline_option_th').find('#option_source').val();
 			var optionYear = $(this).closest('#inline_option_th').find('#option_year').val();
-			$('.tbOptionSublist tr:last').after('<tr><td></td><td>'+lawOptionIDTxt+'</td><td>'+optionName+'</td><td>'+optionSource+'</td><td>'+optionYear+'</td><td><input type="hidden" name="law_option_id[]" value="'+lawOptionIDValue+'"><input type="hidden" name="option_name[]" value="'+optionName+'"><input type="hidden" name="option_source[]" value="'+optionSource+'"><input type="hidden" name="option_year[]" value="'+optionYear+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+			// วนลูปหา fileupload
+			var multiUpload = [];
+			$(".fileUploadBlk").each(function() {
+			   var op_text = $(this).find('input[name="op_text[]"]').val();
+			   var op_filename = $(this).find('input[name="op_filename[]"]').val();
+			   multiUpload.push('<input type="hidden" name="op_text[]" value="'+op_text+'"><input type="hidden" name="op_filename[]" value="'+op_filename+'">');
+			});
+			
+			$('.tbOptionSublist tr:last').after('<tr class="optionRow"><td></td><td>'+lawOptionIDTxt+'</td><td>'+optionName+'</td><td>'+optionSource+'</td><td>'+optionYear+'</td><td><input type="hidden" name="law_option_id[]" value="'+lawOptionIDValue+'"><input type="hidden" name="option_name[]" value="'+optionName+'"><input type="hidden" name="option_source[]" value="'+optionSource+'"><input type="hidden" name="option_year[]" value="'+optionYear+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/>'+multiUpload.join('')+'</td></tr>');
 			
 			// เคลียร์ค่า input ของฟอร์มใน colorbox
 			$(this).closest('#inline_option_th').find("input[type=text], textarea").val("");
@@ -515,8 +544,18 @@ $(function() {
 			// คำนวนใส่ตัวเลขแถว
 			autoCountTableRow('tbOptionSublist');
 		});
+		
+		// ใส่ index ที่ชื่อไฟล์ multiupload ใหม้ให้ง่ายต่อการ insert ข้อมูล
+		$('form').submit(function(event){
+			$(".optionRow").each(function(index) {
+			   $(this).find('input[name="op_text[]"]').attr('name', 'op_text_'+index+'[]');
+			   $(this).find('input[name="op_filename[]"]').attr('name', 'op_filename_'+index+'[]');
+			});
+			
+	        event.preventDefault();
+	    });
 	
-	
+	//--------------------------------------------------------------------------
 	// ปุ่มลบกฏหมาย  ผูกกฎหมาย (คาบ/ข้าม), กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม), option กฏหมาย
 	$('table').on('click', '.delLawBtn', function() {
 		$(this).closest('tr').fadeOut(300, function(){ 
@@ -526,6 +565,7 @@ $(function() {
 			autoCountTableRow('tbOptionSublist');
 		});
 	});
+	
 });
 
 // นับจำนวนใส่ตัวเลขหน้าแถว
