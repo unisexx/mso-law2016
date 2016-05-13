@@ -27,12 +27,20 @@ class Law_resolutions extends Admin_Controller {
 			
 			$rs = new Law_resolution($id);
 			
-			if($_FILES['resolution_file']['name'])
+			if($_FILES['resolution_file_th']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_resolutions','resolution_file');
+					$rs->delete_file($rs->id,'uploads/law_resolutions','resolution_file_th');
 				}
-				$_POST['resolution_file'] = $rs->upload($_FILES['resolution_file'],'uploads/law_resolutions/');
+				$_POST['resolution_file_th'] = $rs->upload($_FILES['resolution_file_th'],'uploads/law_resolutions/');
+			}
+			
+			if($_FILES['resolution_file_en']['name'])
+			{
+				if($rs->id){
+					$rs->delete_file($rs->id,'uploads/law_resolutions','resolution_file_en');
+				}
+				$_POST['resolution_file_en'] = $rs->upload($_FILES['resolution_file_en'],'uploads/law_resolutions/');
 			}
 			
 			$rs->from_array($_POST);

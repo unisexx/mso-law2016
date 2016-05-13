@@ -87,19 +87,19 @@
         <tr>
           <th>ไฟล์แนบเอกสาร  (ไทย)</th>
           <td>
-          	<?if($rs->committee_picfile != ""):?>
-          		<a href="uploads/law_committees/<?=$rs->committee_picfile?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->committee_picfile?></a>
+          	<?if($rs->committee_picfile_th != ""):?>
+          		<a href="uploads/law_committees/<?=$rs->committee_picfile_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->committee_picfile_th?></a>
           	<?endif;?>
-          	<input type="file" name="committee_picfile" class="form-control" id="fileField" />
+          	<input type="file" name="committee_picfile_th" class="form-control" id="fileField" />
           </td>
         </tr>
         <tr>
           <th>ไฟล์แนบเอกสาร  (อังกฤษ)</th>
           <td>
-          	<?if($rs->committee_picfile != ""):?>
-          		<a href="uploads/law_committees/<?=$rs->committee_picfile?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->committee_picfile?></a>
+          	<?if($rs->committee_picfile_en != ""):?>
+          		<a href="uploads/law_committees/<?=$rs->committee_picfile_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->committee_picfile_en?></a>
           	<?endif;?>
-          	<input type="file" name="committee_picfile" class="form-control" id="fileField" />
+          	<input type="file" name="committee_picfile_en" class="form-control" id="fileField" />
           </td>
         </tr>
         </table>  

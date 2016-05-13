@@ -39,12 +39,20 @@ class Law_privileges extends Admin_Controller {
 			
 			$rs = new Law_privilege($id);
 			
-			if($_FILES['pri_file']['name'])
+			if($_FILES['pri_file_th']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_privileges','pri_file');
+					$rs->delete_file($rs->id,'uploads/law_privileges','pri_file_th');
 				}
-				$_POST['pri_file'] = $rs->upload($_FILES['pri_file'],'uploads/law_privileges/');
+				$_POST['pri_file_th'] = $rs->upload($_FILES['pri_file_th'],'uploads/law_privileges/');
+			}
+			
+			if($_FILES['pri_file_en']['name'])
+			{
+				if($rs->id){
+					$rs->delete_file($rs->id,'uploads/law_privileges','pri_file_en');
+				}
+				$_POST['pri_file_en'] = $rs->upload($_FILES['pri_file_en'],'uploads/law_privileges/');
 			}
 			
 			$rs->from_array($_POST);

@@ -2,19 +2,24 @@
 
 <form method="post" enctype="multipart/form-data" action="admin/law_privileges/save/<?=$rs->id?>">
 <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
+  <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
     <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
-  </ul>
+  </ul> -->
   
 <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="thai">
         <table class="tbadd">
         <tr>
-          <th>ชื่อเอกสาร</th>
+          <th>ชื่อเอกสาร (ไทย)</th>
           <td>
             <input rel="th" type="text" class="form-control" name="pri_name[th]" value="<?=lang_decode($rs->pri_name,'th')?>" style="width:800px;" />
+            </td>
+        </tr>
+        <tr>
+          <th>ชื่อเอกสาร (อังกฤษ)</th>
+          <td>
             <input rel="en" type="text" class="form-control" name="pri_name[en]" value="<?=lang_decode($rs->pri_name,'en')?>"  style="width:800px;" />
             </td>
         </tr>
@@ -29,12 +34,21 @@
 		 </td>
         </tr>
         <tr>
-          <th>ไฟล์แนบเอกสาร</th>
+          <th>ไฟล์แนบเอกสาร (ไทย)</th>
           <td>
-          	<?if($rs->pri_file != ""):?>
-          		<a href="uploads/law_privileges/<?=$rs->pri_file?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file?></a>
+          	<?if($rs->pri_file_th != ""):?>
+          		<a href="uploads/law_privileges/<?=$rs->pri_file_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file_th?></a>
           	<?endif;?>
-          	<input type="file" name="pri_file" class="form-control" id="fileField" />
+          	<input type="file" name="pri_file_th" class="form-control" id="fileField" />
+          </td>
+        </tr>
+        <tr>
+          <th>ไฟล์แนบเอกสาร (อังกฤษ)</th>
+          <td>
+          	<?if($rs->pri_file_en != ""):?>
+          		<a href="uploads/law_privileges/<?=$rs->pri_file_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file_en?></a>
+          	<?endif;?>
+          	<input type="file" name="pri_file_en" class="form-control" id="fileField" />
           </td>
         </tr>
         <tr>
@@ -105,13 +119,13 @@
 
 <script type="text/javascript">
 $(function() {
-	$("[rel=en]").hide();
-	
-	$(".lang a").click(function(){
-		$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
-		$(this).closest('li').addClass('active').siblings().removeClass('active');
-		return false;
-	})
+	// $("[rel=en]").hide();
+// 	
+	// $(".lang a").click(function(){
+		// $("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+		// $(this).closest('li').addClass('active').siblings().removeClass('active');
+		// return false;
+	// })
 	
 	$("#searchLawBtn").click(function(){
 		$.get('ajax/get_law_data',{

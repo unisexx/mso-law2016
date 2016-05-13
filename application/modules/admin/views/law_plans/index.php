@@ -31,9 +31,8 @@
 	  <td><?=lang_decode($row->plan_name)?></td>
 	  <td><?=$row->plan_year?></td>
 	  <td>
-	  	<?if($row->plan_file):?>
-	  	<a href="uploads/law_plans/<?=$row->plan_file?>" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
-	  	<?endif;?>
+	  	<?if($row->plan_file_th):?><a href="uploads/law_plans/<?=$row->plan_file_th?>" target="_blank"><?=file_icon($row->plan_file_th)?></a><?endif;?>
+	  	<?if($row->plan_file_en):?> | <a href="uploads/law_plans/<?=$row->plan_file_en?>" target="_blank"><?=file_icon($row->plan_file_en)?></a><?endif;?>
 	  </td>
 	  <td><a href="admin/law_plans/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_plans/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>

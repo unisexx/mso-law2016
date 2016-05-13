@@ -28,12 +28,20 @@ class Law_plans extends Admin_Controller {
 			
 			$rs = new Law_plan($id);
 			
-			if($_FILES['plan_file']['name'])
+			if($_FILES['plan_file_th']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_plans','plan_file');
+					$rs->delete_file($rs->id,'uploads/law_plans','plan_file_th');
 				}
-				$_POST['plan_file'] = $rs->upload($_FILES['plan_file'],'uploads/law_plans/');
+				$_POST['plan_file_th'] = $rs->upload($_FILES['plan_file_th'],'uploads/law_plans/');
+			}
+			
+			if($_FILES['plan_file_en']['name'])
+			{
+				if($rs->id){
+					$rs->delete_file($rs->id,'uploads/law_plans','plan_file_en');
+				}
+				$_POST['plan_file_en'] = $rs->upload($_FILES['plan_file_en'],'uploads/law_plans/');
 			}
 			
 			$rs->from_array($_POST);

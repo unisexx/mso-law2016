@@ -2,10 +2,10 @@
 
 <form method="post" enctype="multipart/form-data" action="admin/law_resolutions/save/<?=$rs->id?>">
 <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
+  <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
     <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
-  </ul>
+  </ul> -->
 
 
 
@@ -33,9 +33,14 @@
           <td><input type="text" class="form-control" id="exampleInputName" style="width:100px;" name="resolution_no"  value="<?=$rs->resolution_no?>" /></td>
         </tr>
         <tr>
-          <th>ชื่อเรื่อง <span class="Txt_red_12">*</span></th>
+          <th>ชื่อเรื่อง (ไทย) <span class="Txt_red_12">*</span></th>
           <td>
             <input rel="th" type="text" class="form-control" name="resolution_name[th]" value="<?=lang_decode($rs->resolution_name,'th')?>" style="width:800px;" />
+            </td>
+        </tr>
+        <tr>
+          <th>ชื่อเรื่อง (อังกฤษ) <span class="Txt_red_12">*</span></th>
+          <td>
             <input rel="en" type="text" class="form-control" name="resolution_name[en]" value="<?=lang_decode($rs->resolution_name,'en')?>"  style="width:800px;" />
             </td>
         </tr>
@@ -50,12 +55,21 @@
 		 </td>
         </tr>
         <tr>
-          <th>ไฟล์แนบเอกสาร</th>
+          <th>ไฟล์แนบเอกสาร (ไทย)</th>
           <td>
-          	<?if($rs->resolution_file != ""):?>
-          		<a href="uploads/law_resolutions/<?=$rs->resolution_file?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file?></a>
+          	<?if($rs->resolution_file_th != ""):?>
+          		<a href="uploads/law_resolutions/<?=$rs->resolution_file_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file_th?></a>
           	<?endif;?>
-          	<input type="file" name="resolution_file" class="form-control" id="fileField" />
+          	<input type="file" name="resolution_file_th" class="form-control" id="fileField" />
+          </td>
+        </tr>
+        <tr>
+          <th>ไฟล์แนบเอกสาร (อังกฤษ)</th>
+          <td>
+          	<?if($rs->resolution_file_en != ""):?>
+          		<a href="uploads/law_resolutions/<?=$rs->resolution_file_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file_en?></a>
+          	<?endif;?>
+          	<input type="file" name="resolution_file_en" class="form-control" id="fileField" />
           </td>
         </tr>
         </table>
@@ -78,12 +92,12 @@
 
 <script type="text/javascript">
 $(function() {
-	$("[rel=en]").hide();
-	
-	$(".lang a").click(function(){
-		$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
-		$(this).closest('li').addClass('active').siblings().removeClass('active');
-		return false;
-	})
+	// $("[rel=en]").hide();
+// 	
+	// $(".lang a").click(function(){
+		// $("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+		// $(this).closest('li').addClass('active').siblings().removeClass('active');
+		// return false;
+	// })
 });
 </script>
