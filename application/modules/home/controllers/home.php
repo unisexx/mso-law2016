@@ -34,6 +34,22 @@ class Home extends Public_Controller {
 		$this->load->view('inc_lawtype',$data);
 	}
 	
+	function inc_poll(){
+		$sql = "SELECT
+					score,
+					count(score) AS total,
+					FORMAT(count(score) / t.cnt * 100,2) AS `percentage`
+				FROM
+					law_polls
+				CROSS
+				  JOIN (SELECT COUNT(score) AS cnt FROM law_polls) t
+				GROUP BY
+					score
+				ORDER BY score DESC";
+		$data['rs'] = $this->db->query($sql)->result();
+		$this->load->view('inc_poll',$data);
+	}
+	
 	function inc_group_list(){
 		 // function นี้เหมือนก้อบมาจาก law/group_list
 		$data['laws'] = new Law_datalaw();

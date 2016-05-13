@@ -2,10 +2,10 @@
 
 <form method="post" enctype="multipart/form-data" action="admin/law_committees/save/<?=$rs->id?>">
 <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
+  <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
     <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
-  </ul>
+  </ul> -->
 
 <!-- Tab panes -->
   <div class="tab-content">
@@ -49,28 +49,52 @@
 		 </td>
         </tr>
         <tr>
-          <th>ชื่อ-สกุล<span class="Txt_red_12">*</span></th>
+          <th>ชื่อ-สกุล (ไทย)<span class="Txt_red_12">*</span></th>
           <td>
             <input rel="th" type="text" class="form-control" name="committee_name[th]" value="<?=lang_decode($rs->committee_name,'th')?>" style="width:400px;" />
+            </td>
+        </tr>
+        <tr>
+          <th>ชื่อ-สกุล (อังกฤษ)<span class="Txt_red_12">*</span></th>
+          <td>
             <input rel="en" type="text" class="form-control" name="committee_name[en]" value="<?=lang_decode($rs->committee_name,'en')?>"  style="width:400px;" />
             </td>
         </tr>
         <tr>
-          <th>ตำแหน่ง<span class="Txt_red_12"> *</span></th>
+          <th>ตำแหน่ง  (ไทย)<span class="Txt_red_12"> *</span></th>
           <td>
           	<input rel="th" type="text" class="form-control" name="committee_position[th]" value="<?=lang_decode($rs->committee_position,'th')?>" style="width:600px;" />
+          	</td>
+        </tr>
+        <tr>
+          <th>ตำแหน่ง (อังกฤษ)<span class="Txt_red_12"> *</span></th>
+          <td>
             <input rel="en" type="text" class="form-control" name="committee_position[en]" value="<?=lang_decode($rs->committee_position,'en')?>"  style="width:600px;" />
           	</td>
         </tr>
         <tr>
-          <th>ประวัติ</th>
+          <th>ประวัติ (ไทย)</th>
           <td>
           	<textarea rel="th"  rows="7" class="form-control" style="width:600px;" name="committee_history[th]"><?=lang_decode($rs->committee_history,'th')?></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>ประวัติ (อังกฤษ)</th>
+          <td>
           	<textarea rel="en"  rows="7" class="form-control" style="width:600px;" name="committee_history[en]"><?=lang_decode($rs->committee_history,'en')?></textarea>
           </td>
         </tr>
         <tr>
-          <th>ไฟล์แนบเอกสาร</th>
+          <th>ไฟล์แนบเอกสาร  (ไทย)</th>
+          <td>
+          	<?if($rs->committee_picfile != ""):?>
+          		<a href="uploads/law_committees/<?=$rs->committee_picfile?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->committee_picfile?></a>
+          	<?endif;?>
+          	<input type="file" name="committee_picfile" class="form-control" id="fileField" />
+          </td>
+        </tr>
+        <tr>
+          <th>ไฟล์แนบเอกสาร  (อังกฤษ)</th>
           <td>
           	<?if($rs->committee_picfile != ""):?>
           		<a href="uploads/law_committees/<?=$rs->committee_picfile?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->committee_picfile?></a>
@@ -97,12 +121,12 @@
 
 <script type="text/javascript">
 $(function() {
-	$("[rel=en]").hide();
-	
-	$(".lang a").click(function(){
-		$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
-		$(this).closest('li').addClass('active').siblings().removeClass('active');
-		return false;
-	})
+	// $("[rel=en]").hide();
+// 	
+	// $(".lang a").click(function(){
+		// $("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+		// $(this).closest('li').addClass('active').siblings().removeClass('active');
+		// return false;
+	// })
 });
 </script>

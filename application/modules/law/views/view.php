@@ -65,20 +65,20 @@
 			<td>
 				<div>เล่มที่ : <?=$rs->gazette_numerative?></div>
 				<div><?if($rs->gazette_section == 1){echo"ตอน";}elseif($rs->gazette_section == 2){echo"ตอนที่";}?> : <?=$rs->gazette_data?></div>
-				<div>วันที่ประกาศ : <?=$rs->gazete_notice_date?></div>
+				<div>วันที่ประกาศ : <?=mysql_to_th($rs->gazete_notice_date)?></div>
 			</td>
 		</tr>
 		<tr>
 			<th>วันที่ประกาศใช้</th>
-			<td><?=$rs->notic_date?></td>
+			<td><?=mysql_to_th($rs->notic_date)?></td>
 		</tr>
 		<tr>
 			<th>วันที่นำเข้า</th>
-			<td><?=$rs->import_date?></td>
+			<td><?=mysql_to_th($rs->import_date)?></td>
 		</tr>
 		<tr>
 			<th>วันที่บังคับใช้</th>
-			<td><?=$rs->use_date?></td>
+			<td><?=mysql_to_th($rs->use_date)?></td>
 		</tr>
 		<tr>
 			<th>แก้ไขเพิ่มเติม</th>

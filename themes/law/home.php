@@ -61,8 +61,11 @@
             <span class="title-filter">ค้นหากฎหมาย</span>
           </label>
           <br>
-          <input type="text" class="input-filter" placeholder="">
-          <button type="button" class="btn-filter">Search</button>
+		  <form method="get" action="law_search" >
+	          <input type="text" id="searchtext" name="searchtext" class="input-filter" placeholder="กรอกคำค้นหา" required autofocus>
+	          <input type="hidden" name="tools" value="b" class="input-filter" placeholder="">
+	          <button type="submit" class="btn-filter">Search</button>
+		  </form>
           <div class="key-filter">
             <img src="themes/law/images/icon-triangle.png" width="13" height="15">
             <a href="#">คำค้นหายอดนิยม</a>
@@ -96,47 +99,8 @@
             <img src="themes/law/images/icon-docs.png" width="140" height="116" class="pic-doc">
           </div>
         </div>
-        <div class="poll">
-          <img src="themes/law/images/icon-questionMark.png" width="16" height="16">&nbsp;
-          <strong>คุณคิดว่าเนื้อหาของระบบฐานข้อมูลกฎหมายเป็นอย่างไรบ้าง</strong>
-          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb-poll">
-            <tbody>
-              <tr>
-                <td class="td-poll">ดีมาก</td>
-                <td>
-                  <div class="percent">
-                    <div style="margin-left:-6px; padding-left:35px; width:80%;background-color:#e9e7e7;">80%</div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="td-poll">ดี</td>
-                <td>
-                  <div class="percent">
-                    <div style="margin-left:-6px; padding-left:35px; width: 30%;background-color:#e9e7e7;">30%</div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="td-poll">พอใช้</td>
-                <td>
-                  <div class="percent">
-                    <div style="margin-left:-6px; padding-left:35px; width:75%;background-color:#e9e7e7;">75%</div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="td-poll">ควรปรับปรุง</td>
-                <td>
-                  <div class="percent">
-                    <div style="margin-left:-6px; padding-left:35px; width:60%;background-color:#e9e7e7;">60%</div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="#" class="pollAll">ทำแบบสอบถาม</a>
-        </div>
+        
+        <?php echo modules::run('home/inc_poll'); ?>
         <div class="clearfix">&nbsp;</div>
         <!-----------------------------------End poll------------------------------------------------------------------------------------------------->
       </div>

@@ -72,6 +72,31 @@ class Law extends Public_Controller {
 			
 		$this->template->build('view',$data);
 	}
+
+	function download_by_name($law_id){
+    //force-download();
+        if($_GET['filename']!=''){
+        $filename = @$_GET['filename'];
+        $path = "uploads/lawfile/".$filename;
+        $this->load->helper('download');
+        $this->load->helper('file');
+        $media->file = 'http://law.m-society.go.th/law2016/'.$path;
+        $user_type = $this->session->userdata('id') != '' ? 2 : 1;
+        $this->db->query("INSERT INTO law_download (filename,time_download,user_download)values('".$filename."','".date("Y-m-d H:i:s")."',".$user_type.")");
+
+        if(!get_mime_by_extension($media->file))
+        {
+            redirect($media->file);
+        }
+        else
+        {
+            $data = file_get_contents(urldecode($media->file));
+            $name = basename(urldecode($media->file));
+            force_download($name, $data);
+        }
+
+      }
+      }
 	
 }
 ?>

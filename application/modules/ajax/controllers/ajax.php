@@ -67,5 +67,13 @@ Class Ajax extends Public_Controller
 			$this->load->view('get_related_law_data',$data);
 		}
 	}
+
+	function vote(){
+		if($_GET){
+			$rs = new Law_poll();
+			$rs->from_array($_GET);
+			$rs->save();
+		}
+	}
 }
 ?>
