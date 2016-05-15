@@ -819,7 +819,7 @@ class Sendmail {
 /**
 * @method Upload
 */
-class Upload {
+class fUpload {
     var $max_file_size;
     var $max_image_width;
     var $_files;
@@ -828,7 +828,7 @@ class Upload {
     var $get_filename;
     var $get_typename;
     var $EncodeFile;
-    function Upload()
+    function fUpload()
     {
         $this->max_file_size = 9000*9000;//1 MB
         $this->max_image_width = 1024; //pixels

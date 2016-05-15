@@ -44,10 +44,34 @@ class Law_datalaws extends Admin_Controller {
 			
 			if($_FILES['filename_th']['name'])
 			{
+				$target_dir = 'uploads/lawfile';
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_datalaws','filename_th');
+					$rs->delete_file($rs->id,'uploads/lawfile','filename_th');
 				}
-				$_POST['filename_th'] = $rs->upload($_FILES['filename_th'],'uploads/law_datalaws/');
+				$_POST['filename_th'] = $rs->upload($_FILES['filename_th'],'uploads/lawfile/');
+				$_POST['ref_code'] = date('YmdHis');
+				$FilePointer=fopen($target_dir.'/'.$_POST['filename_th'], "r"); 
+			    $EncodeFile=fread($FilePointer, filesize ($target_dir.'/'.$_POST['filename_th'])); 
+				//var_dump($EncodeFile);
+			    fclose($FilePointer); 
+	  		    $EncodeFile=chunk_split(base64_encode($EncodeFile));
+
+				$dataSerach = array(
+                            "id"=>"",
+                            "sourceCode"=>$_POST['ref_code'],
+                            "displayTime"=>"",
+                            "storyTime"=>"",
+                            "headLine"=>$_POST['name_th'],
+                            "description"=>"",
+                            "story"=>$_POST['law_group_id'],
+                            "category"=>$_POST['law_type_id'],
+                            "disclaimer"=>"",
+                );   
+
+				include 'include/class.serach.php';
+				$cSerach = new serach();
+				//var_dump(checkFileType($_POST['filename_th']));
+				$_POST['doc_id1'] = $cSerach->addSerach($_POST['filename_th'],$dataSerach,'',checkFileType($_POST['filename_th']),1);
 			}
 			
 			$_POST['gazete_notice_date'] = Date2DB($_POST['gazete_notice_date']);
@@ -159,7 +183,7 @@ class Law_datalaws extends Admin_Controller {
 			
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
-		redirect($_SERVER['HTTP_REFERER']);
+		//redirect($_SERVER['HTTP_REFERER']);
 		// redirect('admin/law_datalaws');
 	}
 

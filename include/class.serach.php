@@ -50,8 +50,8 @@ class serach {
     $this->m_resultfieldparameter = 'ID SourceCode Headline Highlight Story Reference AttachText';
     $this->m_searchtime=1;
 
-    $this->setPath("upload/lawfile/");
     include 'class.db.php';
+    $this->setPath("uploads/lawfile/");
     $this->db = new db_w();
     }
 
@@ -545,20 +545,19 @@ class serach {
         //create documentproperty
         //$parameter["ID"]
         //if($data[id]) $this->parameter["ID"] = $data[id];
-        if($data[sourceCode]) $this->parameter["SourceCode"] = $data[sourceCode];
-        if($data[displayTime]) $this->parameter["DisplayTime"] =  $data[displayTime];
-        if($data[storyTime]) $this->parameter["StoryTime"] =  $data[storyTime];
-        if($data[headLine]) $this->parameter["Headline"] =  $data[headLine];
-        if($data[description]) $this->parameter["Description"] =  $data[description];
-        if($data[story]) $this->parameter["Story"] =  $data[story];
-        if($data[category]) $this->parameter["Categories"] =  $data[category];
+        if($data['sourceCode']) $this->parameter["SourceCode"] = $data['sourceCode'];
+        if($data['displayTime']) $this->parameter["DisplayTime"] =  $data['displayTime'];
+        if($data['storyTime']) $this->parameter["StoryTime"] =  $data['storyTime'];
+        if($data['headLine']) $this->parameter["Headline"] =  $data['headLine'];
+        if($data['description']) $this->parameter["Description"] =  $data['description'];
+        if($data['story']) $this->parameter["Story"] =  $data['story'];
+        if($data['category']) $this->parameter["Categories"] =  $data['category'];
         $this->parameter["Languages"] = 'Thai';
-        if($data[disclaimer]) $this->parameter["Disclaimer"] =  $data[disclaimer];
+        if($data['disclaimer']) $this->parameter["Disclaimer"] =  $data['disclaimer'];
         //if() $this->parameter["Reference"] = '';
         //add attachment
-        $strfile = file_get_contents($filefullname,FILE_BINARY);
+        $strfile = file_get_contents($filefullname,'FILE_BINARY');
         $strbase64 = base64_encode($strfile);
-
         $this->parameter["Attachs"]["AttachmentProperty"]["AttachData"] = $strbase64;
         $this->parameter["Attachs"]["AttachmentProperty"]["AttachType"] = $attachType;
         $this->parameter["Attachs"]["AttachmentProperty"]["AttachFilename"] = $filename;
@@ -568,11 +567,12 @@ class serach {
         //create package parameter
         $this->params[]= array(
                          "PermissionKey"=>$this->m_license,
+                         "Key"=>'B97157B11B39E8A4B235CA57D30D613E',
                          "Document"=>$this->parameter
                          );
 
-        $this->method_name='doAdd';
-        $this->result_name='doAddResult';
+        $this->method_name='doEdit';
+        $this->result_name='doEditResult';
 
         if($this->showVar){
             echo "<pre>";
@@ -759,16 +759,19 @@ class serach {
            $this->db->execute($sqlDel);
 
            foreach ($this->result[$this->result_name]['Documents']['DocumentProperty'] as $value) {
-               $headline = str_replace("\\","",$value['Headline']);
-               is_array($value['Attachs']) ? $file = $value['Attachs']['AttachmentProperty']['AttachText'] : $file = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";                                    $sqlInsert = "insert into ".TEMP_LAW." (session_id, time, ip, keyword, id, sourcecode,headline,file) ";
-               $sqlInsert .= " value ('$sess', '$time', '$ipp', '$keyword', '$value[ID]', '$value[SourceCode]','$headline','$file')";
+               //var_dump($value);
+               $headline = @str_replace("\\","",@$value['Headline']);
+               @is_array($value['Attachs']) ? $file = @$value['Attachs']['AttachmentProperty']['AttachText'] : $file = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";
+               $sqlInsert = "insert into ".TEMP_LAW." (session_id, time, ip, keyword, id, sourcecode,headline,file) ";
+               $sqlInsert .= " value ('".$sess."', '".$time."', '".$ipp."', '".$keyword."', '".@$value['ID']."', '".@$value['SourceCode']."','".$headline."','".$file."')";
                $this->db->execute($sqlInsert);
            }
              //  echo "<script type=\"text/JavaScript\"> alert('$countSearch delete ตัวเดิม insert ตัวใหม่ !!'); </script>";
         }else{
             foreach ($this->result[$this->result_name]['Documents']['DocumentProperty'] as $value) {
                $headline = str_replace("\\","",$value['Headline']);
-               is_array($value['Attachs']) ? $file = $value['Attachs']['AttachmentProperty']['AttachText'] : $file = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";                                    $sqlInsert = "insert into ".TEMP_LAW." (session_id, time, ip, keyword, id, sourcecode,headline,file) ";
+               is_array($value['Attachs']) ? $file = $value['Attachs']['AttachmentProperty']['AttachText'] : $file = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";
+               $sqlInsert = "insert into ".TEMP_LAW." (session_id, time, ip, keyword, id, sourcecode,headline,file) ";
                $sqlInsert .= " value ('$sess', '$time', '$ipp', '$keyword', '$value[ID]', '$value[SourceCode]','$headline','$file')";
                $this->db->execute($sqlInsert);
             }
@@ -805,11 +808,11 @@ class serach {
                 //$sqlSerach = "select t.* ,l.law_group_id,l.type_id ,l.type_id is null type_null ,l.law_group_id is null group_null ";
                 //$sqlSerach .="from ".TEMP_LAW." t left outer join  ".LAW_DATALAW." l on t.sourcecode=l.ref_code where t.session_id = '$sess' and t.ip = '$ipp' ";
                 $sqlSerach = "select t.* ,l.law_group_id,l.law_maintype_id , l.law_submaintype_id,(l.law_maintype_id = 0 ) as type_null,l.import_code  ";
-                $sqlSerach .="from ".TEMP_LAW." t ,".LAW_DATALAW." l  where t.session_id = '$sess' and t.ip = '$ipp' and t.sourcecode=l.ref_code and l.status<>'2'";
+                $sqlSerach .="from ".TEMP_LAW." t ,".LAW_DATALAW." l  where t.session_id = '$sess' and t.ip = '$ipp' and trim(t.sourcecode)=l.ref_code and l.status<>'2'";
                 if($serachtext != "null" && $serachtext != "")$sqlSerach .= " and t.keyword = '$serachtext'";
                 //$sqlSerach .= " order by group_null,type_null ,l.law_group_id,l.type_id asc ";
                 $sqlSerach .= " order by type_null, l.import_code, l.law_group_id, l.law_maintype_id, length(l.law_submaintype_id) ,l.law_submaintype_id,t.headline asc ";
-                //echo "$sqlSerach";
+                //echo $sqlSerach;
 
                 $result = $this->db->execute($sqlSerach,1);
                 $countWord = $this->db->quick_num($sqlSerach);
