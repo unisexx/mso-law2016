@@ -34,7 +34,13 @@
       <tr>
         <th class="col-sm-9">ชื่อกฎหมาย</th>
         <th class="col-sm-2 text-center">สถานะ</th>
-        <th class="col-sm-1 text-center">ดาวน์โหลด</th>
+        <th class="col-sm-1 text-center" colspan="2">ดาวน์โหลด</th>
+      </tr>
+      <tr>
+      	<th></th>
+      	<th></th>
+      	<th class="text-center">th</th>
+      	<th class="text-center">eng</th>
       </tr>
     </thead>
     <tbody>
@@ -42,9 +48,16 @@
     	<tr>
     		<td><a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a></td>
     		<td class="text-center"><?=get_datalaw_status($row->status)?></td>
-    		<td class="text-center">
-    			<a href="<?=$row->filename_th?>"><?=file_icon($row->filename_th)?></a>
-    		</td>
+    		<td valign="top" width="48" class="text-center">
+          	<?if($row->filename_th != ""):?>
+            <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>"><?=file_icon($row->filename_th)?></a>
+            <?endif;?>
+            </td>
+            <td valign="top" width="48" class="text-center">
+			<?if($row->filename_eng != ""):?>
+			<a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_eng?>"><?=file_icon($row->filename_eng)?></a>
+            <?endif;?>
+            </td>
     	</tr>
     	<?endforeach;?>
     </tbody>

@@ -42,7 +42,7 @@
   <?foreach($rs as $key=>$row):?>
   <tr class="<?=alternator('','odd');?>">
 	  <td><?=($key+1)+$rs->paged->current_row?></td>
-	  <td><?=$row->notic_date?></td>
+	  <td><?=mysql_to_th($row->notic_date)?></td>
 	  <td><?=str_replace("|"," ",$row->name_th)?></td>
 	  <td><?=get_law_group_text($row->id)?></td>
 	  <!-- <td>-</td> -->

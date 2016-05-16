@@ -610,6 +610,7 @@ class serach {
       * @author T.Pairin
       * @date   2009-10-28
       */
+      /*
     function editSerach($filename, $data, $encode='', $attachType, $returnRef=''){
         $this->setInject();
         $filefullname=$this->path.$filename;
@@ -659,6 +660,70 @@ class serach {
         //echo "<BR>";
         //return key(documentid) that inject
         echo "Return RefID : ".$this->result[$this->result_name]['Key'];
+        //if ($this->result[$this->result_name]['ErrorCode'] != "") return "Return Code : ".$this->result[$this->result_name]['ErrorCode'];
+        if ($returnRef) return $this->result[$this->result_name]['Key'];
+        if($this->web_service->getError()){
+            echo "<b><font color=\"red\">Error</font></b> -> ". $this->web_service->getError();
+        }
+    }*/
+
+    function editSerach($filename, $data, $encode='', $attachType, $returnRef=''){
+      $this->setInject();
+      $filefullname=$this->path.$filename;
+      //create documentproperty
+      //$parameter["ID"]
+      if($data['id']) $this->parameter["ID"] = $data['id'];
+      if($data['sourceCode']) $this->parameter["SourceCode"] = $data['sourceCode'];
+      if($data['displayTime']) $this->parameter["DisplayTime"] =  $data['displayTime'];
+      if($data['storyTime']) $this->parameter["StoryTime"] =  $data['storyTime'];
+      if($data['headLine']) $this->parameter["Headline"] =  $data['headLine'];
+      if($data['description']) $this->parameter["Description"] =  $data['description'];
+      if($data['story']) $this->parameter["Story"] =  $data['story'];
+      if($data['category']) $this->parameter["Categories"] =  $data['category'];
+      $this->parameter["Languages"] = 'Thai';
+      if($data['disclaimer']) $this->parameter["Disclaimer"] =  $data['disclaimer'];
+      //if() $this->parameter["Reference"] = '';
+      //add attachment
+      $strfile = file_get_contents($filefullname,'FILE_BINARY');
+      $strbase64 = base64_encode($strfile);
+      $this->parameter["Attachs"]["AttachmentProperty"]["AttachData"] = $strbase64;
+      $this->parameter["Attachs"]["AttachmentProperty"]["AttachType"] = $attachType;
+      $this->parameter["Attachs"]["AttachmentProperty"]["AttachFilename"] = $filename;
+      $this->parameter["Attachs"]["AttachmentProperty"]["IsAttachConvert"] = 'True';
+      $this->parameter["Attachs"]["AttachmentProperty"]["AttachReference"] = $filefullname;
+
+      //create package parameter
+      $this->params[]= array(
+                       "PermissionKey"=>$this->m_license,
+                       "Key"=>$this->parameter["ID"],
+                       "Document"=>$this->parameter
+                       );
+
+      $this->method_name='doEdit';
+      $this->result_name='doEditResult';
+
+      if($this->showVar){
+          echo "<pre>";
+          print_r($this->params);
+          echo "</pre>";
+      }
+
+        $this->method_name='doEdit';
+        $this->result_name='doEditResult';
+
+        if($this->showVar){
+            echo "<pre>";
+            print_r($this->params);
+            echo "</pre>";
+        }
+
+        //do inject data to webservice
+        $this->result=$this->web_service->call($this->method_name,$this->params);
+        //receive result from injectservice
+        //echo "Return Code : ".$this->result[$this->result_name]['ErrorCode'];
+        //echo "<BR>";
+        //return key(documentid) that inject
+        //echo "Return RefID : ".$this->result[$this->result_name]['Key'];
         //if ($this->result[$this->result_name]['ErrorCode'] != "") return "Return Code : ".$this->result[$this->result_name]['ErrorCode'];
         if ($returnRef) return $this->result[$this->result_name]['Key'];
         if($this->web_service->getError()){
@@ -893,11 +958,11 @@ class serach {
                                </tr>
                                <tr>
                                  <td valign="top">วันที่ประกาศใช้</td>
-                                 <td valign="top">'.$valueData['notic_date'].'</td>
+                                 <td valign="top">'.mysql_to_th($valueData['notic_date']).'</td>
                                </tr>
                                <tr>
                                  <td valign="top">วันที่บังคับใช้</td>
-                                 <td valign="top">'.$txtUse.'</td>
+                                 <td valign="top">'.mysql_to_th($txtUse).'</td>
                                </tr>
                                <tr>
                                  <td valign="top">เนื้อหาไฟล์กฎหมาย	ปัจจุบัน</td>

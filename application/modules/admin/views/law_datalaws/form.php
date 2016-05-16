@@ -6,8 +6,8 @@
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
     <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
   </ul>
-  
-  
+
+
 <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="thai">
@@ -16,7 +16,7 @@
           <th>กลุ่มกฎหมาย &gt; หมวดกฎหมาย<span class="Txt_red_12"> *</span></th>
           <td><span class="form-inline">
             <?=form_dropdown('law_group_id',get_option('id','name','law_groups order by id asc'),@$rs->law_group_id,'class="form-control" style="width:auto;"','-- เลือกกลุ่มกฎหมาย --');?>
-            &gt; 
+            &gt;
             <span id="lawtype">
             	<select name="select3" class="form-control" style="width:auto;" readonly>
 	              <option selected="selected">-- เลือกหมวดกฎหมาย --</option>
@@ -28,7 +28,7 @@
           <th>ประเภทกฎหมาย &gt; ประเภทย่อยกฎหมาย <span class="Txt_red_12"> *</span></th>
           <td><span class="form-inline">
           <?=form_dropdown('law_maintype_id',get_option('id','typeName','law_maintypes order by typeName asc'),@$rs->law_maintype_id,'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมาย --');?>
-            &gt; 
+            &gt;
             <span id="lawsubmaintype">
 	            <select name="select5" class="form-control" style="width:auto;" readonly>
 	              <option>-- เลือกประเภทย่อยกฎหมาย --</option>
@@ -47,7 +47,7 @@
           <td>
           	<span class="form-inline"><input type="text" class="form-control" id="exampleInputName7" style="width:100px; margin-right:30px;" name="gazette_numerative" value="<?=$rs->gazette_numerative?>" />
             <input name="gazette_section" value="1" type="radio" <?=$rs->gazette_section==1?"checked":"";?> /> ตอน  
-        	<input name="gazette_section" value="2" type="radio" <?=$rs->gazette_section==2?"checked":"";?>/> ตอนที่ 
+        	<input name="gazette_section" value="2" type="radio" <?=$rs->gazette_section==2?"checked":"";?>/> ตอนที่
             <input type="text" class="form-control" id="exampleInputName3" style="width:200px;" name="gazette_data" value="<?=$rs->gazette_data?>" /></span></td>
         </tr>
         <tr>
@@ -162,8 +162,8 @@
         <tr>
           <th>สถานะการใช้</th>
           <td>
-          	<span><input type="radio" name="status" id="radio" value="1" <?=$rs->status == 1?"checked":"";?> />บังคับใช้ </span> 
-          	<span><input type="radio" name="status" id="radio2" value="3" <?=$rs->status == 3?"checked":"";?> />อยู่ระหว่างพิจารณา</span> 
+          	<span><input type="radio" name="status" id="radio" value="1" <?=$rs->status == 1?"checked":"";?> />บังคับใช้ </span>
+          	<span><input type="radio" name="status" id="radio2" value="3" <?=$rs->status == 3?"checked":"";?> />อยู่ระหว่างพิจารณา</span>
           	<span><input type="radio" name="status" id="radio3" value="2" <?=$rs->status == 2?"checked":"";?> />ยกเลิก</span>
           </td>
         </tr>
@@ -171,9 +171,10 @@
           <th>แนบเอกสารกฎหมาย</th>
           <td>
           	<?if($rs->filename_th != ""):?>
-          		<a href="uploads/law_datalaws/<?=$rs->filename_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_th?></a>
+          		<a href="uploads/lawfile/<?=$rs->filename_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_th?></a>
           	<?endif;?>
           	<input type="file" name="filename_th" class="form-control" id="fileField" />
+            <input type="hidden" name="doc_id1" value="<?php echo @$rs->doc_id1;?>">
           </td>
         </tr>
         <tr>
@@ -211,12 +212,12 @@
 			    <?endforeach;?>
 			    <?endif;?>
             </table>
-          
+
             </td>
         </tr>
         </table>
     </div>
-    
+
 </div>
 
 
@@ -273,39 +274,39 @@
 		</form>
 		</div>
 		</div>
-		
+
 		<div id="crosslawData"></div>
 
 	</div>
 </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม) -->
 <!-- This contains the hidden content for inline calls -->
 <div style='display:none'>
 	<div id='inline_related_th' style='padding:10px; background:#fff;'>
-	
+
     <h3>กฎหมายที่เกี่ยวข้อง</h3>
 		<div id="search">
 		<div id="searchBox">
@@ -317,13 +318,13 @@
 		</form>
 		</div>
 		</div>
-		
+
 		<div id="relatedlawData"></div>
-		
+
 	</div>
 </div>
-        
-        
+
+
 
 
 
@@ -379,7 +380,7 @@
 	  <td>
 	  	<span class="multifile">
 		  	<div class="form-inline fileUploadBlk">
-		  		<input type="text" class="form-control" style="width:400px;" placeholder="ชื่อไฟล์แนบ" name="op_text[]" /> 
+		  		<input type="text" class="form-control" style="width:400px;" placeholder="ชื่อไฟล์แนบ" name="op_text[]" />
 		  		<div class="input-group">
 				  <input class="form-control" type="text" name="op_filename[]" value=""/>
 				  <span class="input-group-addon" id="basic-addon2" onclick="browser($(this).prev(),'files')" style="cursor: pointer;">เลือกไฟล์</span>
@@ -394,7 +395,7 @@
 	</div>
   </div>
 </div>
-		
+
 
 
 
@@ -419,13 +420,13 @@ $(function() {
 	//----------------------- ฟอร์มหลัก -----------------------------------
 		// เปลี่ยนภาษา
 		$("[rel=en]").hide();
-		
+
 		$(".lang a").click(function(){
 			$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
 			$(this).closest('li').addClass('active').siblings().removeClass('active');
 			return false;
 		});
-		
+
 		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
 		$('table').on('change', "select[name='law_group_id']", function() {
 			$('.loading').show();
@@ -436,7 +437,7 @@ $(function() {
 				$("#lawtype").html(data);
 			});
 		});
-		
+
 		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
 		$('table').on('change', "select[name='law_maintype_id']", function() {
 			$('.loading').show();
@@ -447,7 +448,7 @@ $(function() {
 				$("#lawsubmaintype").html(data);
 			});
 		});
-		
+
 		<?php if(@$rs->id != ""):?>
 			$.get('ajax/get_select_lawtype',{
 				'law_group_id' : $('select[name=law_group_id]').val(),
@@ -456,7 +457,7 @@ $(function() {
 				$('.loading').hide();
 				$("#lawtype").html(data);
 			});
-			
+
 			$.get('ajax/get_select_submaintype',{
 				'law_maintype_id' : $('select[name=law_maintype_id]').val(),
 				'law_submaintype_id' : <?=$rs->law_submaintype_id?>
@@ -465,7 +466,7 @@ $(function() {
 				$("#lawsubmaintype").html(data);
 			});
 		<?php endif;?>
-	
+
 	//----------------------- ผูกกฎหมาย (คาบ/ข้าม) -----------------------------------
 		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
 		$('#cross_law_form').on('change', "select[name='law_group_id']", function() {
@@ -477,7 +478,7 @@ $(function() {
 				$("#cross_lawtype").html(data);
 			});
 		});
-		
+
 		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
 		$('#cross_law_form').on('change', "select[name='law_maintype_id']", function() {
 			$('.loading').show();
@@ -488,7 +489,7 @@ $(function() {
 				$("#cross_lawsubmaintype").html(data);
 			});
 		});
-		
+
 		// ปุ่มค้นหา
 		$("#searchCrossLawBtn").click(function(){
 			$.get('ajax/get_cross_law_data',{
@@ -501,9 +502,9 @@ $(function() {
 				$("#crosslawData").html(data);
 			});
 		});
-	
+
 	//----------------------- กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม) -----------------------------------
-		// ปุ่มค้นหา 
+		// ปุ่มค้นหา
 		$("#searchRelatedLawBtn").click(function(){
 			$.get('ajax/get_related_law_data',{
 				'search' : $(this).closest("form").find('input[name=search]').val()
@@ -511,18 +512,18 @@ $(function() {
 				$("#relatedlawData").html(data);
 			});
 		});
-		
+
 	//----------------------- Option -----------------------------------
 		// Add file upload
 		$('.addFileUpload').click(function(){
 			$('.fileUploadBlk:last').after('<div class="form-inline fileUploadBlk"><input type="text" class="form-control"  style="width:400px;" placeholder="ชื่อไฟล์แนบ" name="op_text[]" /> <div class="input-group"><input class="form-control" type="text" name="op_filename[]" value=""/><span class="input-group-addon"  onclick="browser($(this).prev(),\'files\')" style="cursor: pointer;">เลือกไฟล์</span></div></div>');
 		});
-		
+
 		// ดึงข้อมูลที่เลือกลงฟอร์มหลัก
 		$('.submitOptionLaw').click(function(){
 			// ปิด colorbox
 			$.colorbox.close();
-			
+
 			var lawOptionIDValue = $(this).closest('#inline_option_th').find('#law_option_id option:selected').val();
 			var lawOptionIDTxt = $(this).closest('#inline_option_th').find('#law_option_id option:selected').text();
 			var optionName = $(this).closest('#inline_option_th').find('#option_name').val();
@@ -535,37 +536,37 @@ $(function() {
 			   var op_filename = $(this).find('input[name="op_filename[]"]').val();
 			   multiUpload.push('<input type="hidden" name="op_text[]" value="'+op_text+'"><input type="hidden" name="op_filename[]" value="'+op_filename+'">');
 			});
-			
+
 			$('.tbOptionSublist tr:last').after('<tr class="optionRow"><td></td><td>'+lawOptionIDTxt+'</td><td>'+optionName+'</td><td>'+optionSource+'</td><td>'+optionYear+'</td><td><input type="hidden" name="law_option_id[]" value="'+lawOptionIDValue+'"><input type="hidden" name="option_name[]" value="'+optionName+'"><input type="hidden" name="option_source[]" value="'+optionSource+'"><input type="hidden" name="option_year[]" value="'+optionYear+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/>'+multiUpload.join('')+'</td></tr>');
-			
+
 			// เคลียร์ค่า input ของฟอร์มใน colorbox
 			$(this).closest('#inline_option_th').find("input[type=text], textarea").val("");
-			
+
 			// คำนวนใส่ตัวเลขแถว
 			autoCountTableRow('tbOptionSublist');
 		});
-		
+
 		// ใส่ index ที่ชื่อไฟล์ multiupload ใหม้ให้ง่ายต่อการ insert ข้อมูล
 		$('form').submit(function(event){
 			$(".optionRow").each(function(index) {
 			   $(this).find('input[name="op_text[]"]').attr('name', 'op_text_'+index+'[]');
 			   $(this).find('input[name="op_filename[]"]').attr('name', 'op_filename_'+index+'[]');
 			});
-			
+
 	        // event.preventDefault();
 	    });
-	
+
 	//--------------------------------------------------------------------------
 	// ปุ่มลบกฏหมาย  ผูกกฎหมาย (คาบ/ข้าม), กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม), option กฏหมาย
 	$('table').on('click', '.delLawBtn', function() {
-		$(this).closest('tr').fadeOut(300, function(){ 
-			$(this).remove(); 
+		$(this).closest('tr').fadeOut(300, function(){
+			$(this).remove();
 			autoCountTableRow('tbCrossSublist');
 			autoCountTableRow('tbRelatedSublist');
 			autoCountTableRow('tbOptionSublist');
 		});
 	});
-	
+
 });
 
 // นับจำนวนใส่ตัวเลขหน้าแถว

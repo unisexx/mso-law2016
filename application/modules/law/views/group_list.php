@@ -70,12 +70,12 @@
                   <td class="td-line"><a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a></td>
                   <td valign="top" width="48" class="td-line text-center">
                   	<?if($row->filename_th != ""):?>
-                    <a href="<?=$row->filename_th?>"><?=file_icon($row->filename_th)?></a>
+                    <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>"><?=file_icon($row->filename_th)?></a>
                     <?endif;?>
                     </td>
                     <td valign="top" width="48" class="td-line text-center">
 					<?if($row->filename_eng != ""):?>
-					<a href="<?=$row->filename_eng?>"><?=file_icon($row->filename_eng)?></a>
+					<a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_eng?>"><?=file_icon($row->filename_eng)?></a>
                     <?endif;?>
                     </td>
                 </tr>
@@ -97,12 +97,12 @@
                   <td valign="top" class="td-line"><a href="law/view/<?=$sublaw->id?>" target="_blank"><?=str_replace("|"," ",$sublaw->name_th)?></a></td>
                   <td valign="top" width="45" class="td-line text-center">
                     <?if($sublaw->filename_th != ""):?>
-                    <a href="<?=$sublaw->filename_th?>"><?=file_icon($sublaw->filename_th)?></a>
+                    <a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_th?>"><?=file_icon($sublaw->filename_th)?></a>
                     <?endif;?>
                   </td>
                   <td valign="top" width="45" class="td-line text-center">
                     <?if($sublaw->filename_eng != ""):?>
-					<a href="<?=$sublaw->filename_eng?>"><?=file_icon($sublaw->filename_eng)?></a>
+					<a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_eng?>"><?=file_icon($sublaw->filename_eng)?></a>
                     <?endif;?>
                   </td>
                 </tr>

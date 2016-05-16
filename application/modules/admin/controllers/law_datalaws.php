@@ -20,28 +20,28 @@ class Law_datalaws extends Admin_Controller {
 
 	function form($id=false){
 		$data['rs'] = new Law_datalaw($id);
-		
+
 		if($id!=""){
 			// ผูกกฎหมาย (คาบ/ข้าม)
 			$data['law_overlaps'] = new Law_overlap_or_skip();
 			$data['law_overlaps']->where('law_datalaw_id = '.$id)->get();
-			
+
 			// กฎหมายที่เกี่ยวข้อง (ยกเลิก/แก้ไข/เพิ่มเติม)
 			$data['law_versions'] = new Law_version();
 			$data['law_versions']->where('law_datalaw_id = '.$id)->get();
-			
+
 			// Option
 			$data['law_options'] = new Law_optioninlaw();
 			$data['law_options']->where('law_datalaw_id = '.$id)->get();
 		}
-		
+
 		$this->template->build('law_datalaws/form',$data);
 	}
 
 	function save($id=false){
 		if($_POST){
 			$rs = new Law_datalaw($id);
-			
+
 			if($_FILES['filename_th']['name'])
 			{
 				$target_dir = 'uploads/lawfile';
@@ -50,14 +50,14 @@ class Law_datalaws extends Admin_Controller {
 				}
 				$_POST['filename_th'] = $rs->upload($_FILES['filename_th'],'uploads/lawfile/');
 				$_POST['ref_code'] = date('YmdHis');
-				$FilePointer=fopen($target_dir.'/'.$_POST['filename_th'], "r"); 
-			    $EncodeFile=fread($FilePointer, filesize ($target_dir.'/'.$_POST['filename_th'])); 
+				$FilePointer=fopen($target_dir.'/'.$_POST['filename_th'], "r");
+			    $EncodeFile=fread($FilePointer, filesize ($target_dir.'/'.$_POST['filename_th']));
 				//var_dump($EncodeFile);
-			    fclose($FilePointer); 
-	  		    $EncodeFile=chunk_split(base64_encode($EncodeFile));
+			  fclose($FilePointer);
+	  		$EncodeFile=chunk_split(base64_encode($EncodeFile));
 
 				$dataSerach = array(
-                            "id"=>"",
+                            "id"=>@$_POST['doc_id1'],
                             "sourceCode"=>$_POST['ref_code'],
                             "displayTime"=>"",
                             "storyTime"=>"",
@@ -66,32 +66,36 @@ class Law_datalaws extends Admin_Controller {
                             "story"=>$_POST['law_group_id'],
                             "category"=>$_POST['law_type_id'],
                             "disclaimer"=>"",
-                );   
+                );
 
 				include 'include/class.serach.php';
 				$cSerach = new serach();
 				//var_dump(checkFileType($_POST['filename_th']));
-				$_POST['doc_id1'] = $cSerach->addSerach($_POST['filename_th'],$dataSerach,'',checkFileType($_POST['filename_th']),1);
+				if($id>0){
+					$_POST['doc_id1'] = $cSerach->editSerach($_POST['filename_th'],$dataSerach,'',checkFileType($_POST['filename_th']),1);
+				}else{
+					$_POST['doc_id1'] = $cSerach->addSerach($_POST['filename_th'],$dataSerach,'',checkFileType($_POST['filename_th']),1);
+				}
 			}
-			
+
 			$_POST['gazete_notice_date'] = Date2DB($_POST['gazete_notice_date']);
 			$_POST['notic_date'] = Date2DB($_POST['notic_date']);
 			$_POST['import_date'] = Date2DB($_POST['import_date']);
 			$_POST['use_date'] = Date2DB($_POST['use_date']);
-			
+
 			$rs->from_array($_POST);
 			$rs->save();
-			
+
 			// หา max id
 			if(@$id){
 				$law_datalaw_id = $id;
 			}else{
 				$row = $this->db->query('SELECT MAX(id) AS maxid FROM law_datalaws')->row();
 				if ($row) {
-				    $law_datalaw_id = $row->maxid; 
+				    $law_datalaw_id = $row->maxid;
 				}
 			}
-			
+
 			// ผูกกฎหมาย (คาบ/ข้าม)
 			if(@$_POST['ov_id']){
 				// ลบข้อมูลเก่า หากมีการลบข้อมูลที่บันทึกไว้ก่อนหน้านั้น
@@ -146,7 +150,7 @@ class Law_datalaws extends Admin_Controller {
 				}
 				@$this->db->where('law_datalaw_id = '.$law_datalaw_id)->delete('law_optioninlaws');
 			}
-			
+
 			if(@$_POST['law_option_id']){
 				foreach($_POST['law_option_id'] as $key=>$value){
 					$law = new Law_optioninlaw($_POST['optioninlaw_id'][$key]);
@@ -156,17 +160,17 @@ class Law_datalaws extends Admin_Controller {
 					$law->option_year = $_POST['option_year'][$key];
 					$law->law_datalaw_id = $law_datalaw_id;
 					$law->save();
-					
+
 					// หา max id ของ law_optioninlaw
 					if(@$_POST['optioninlaw_id'][$key]){
 						$law_optioninlaw_id = $_POST['optioninlaw_id'][$key];
 					}else{
 						$row = $this->db->query('SELECT MAX(id) AS maxid FROM law_optioninlaws')->row();
 						if ($row) {
-						    $law_optioninlaw_id = $row->maxid; 
+						    $law_optioninlaw_id = $row->maxid;
 						}
 					}
-			
+
 					// multiupload optionfile
 					if(@$_POST['op_filename_'.$key] != ""){
 						foreach($_POST['op_filename_'.$key] as $key2=>$item){
@@ -179,11 +183,11 @@ class Law_datalaws extends Admin_Controller {
 					}
 				}
 			}
-			
-			
+
+
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
-		//redirect($_SERVER['HTTP_REFERER']);
+		redirect($_SERVER['HTTP_REFERER']);
 		// redirect('admin/law_datalaws');
 	}
 
