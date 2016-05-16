@@ -242,10 +242,14 @@ if(!function_exists('get_law_group_text'))
 
 if(!function_exists('get_law_name'))
 {
-	function get_law_name($id){
+	function get_law_name($id,$link=false){
 		$CI =& get_instance();
 		$law_datalaw = $CI->db->query("select name_th from law_datalaws where id = ".$id)->row();
-		return str_replace("|"," ",$law_datalaw->name_th);
+		if($link){
+			return '<a href="law/view/'.$id.'" target="_blank">'.str_replace("|"," ",$law_datalaw->name_th).'</a>';	
+		}else{
+			return str_replace("|"," ",$law_datalaw->name_th);	
+		}
 	}
 }
 

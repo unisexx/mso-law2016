@@ -30,15 +30,11 @@
 			<td>
 				<div>ประเภทกฎหมายย่อยอาศัยอำนาจ  :  <?=$rs->apply_power_group != ""? get_law_submaintype_name($rs->apply_power_group) : '-' ;?></div>
 				<div>อาศัยอำนาจกฎหมาย  : 
-					<?
-						$sql = "select * from law_datalaws where id='$rs->apply_power_id'";
-						$datalaw = $this->db->query($sql)->row();
-						if(@$datalaw->id != ""){
-							echo"<a href='law/view/".$datalaw->id."' target='_blank'>".str_replace("|"," ",$rs->name_th)."</a>";
-						}else{
-							echo"-";
-						}
-					?>
+					<?if(@$rs->apply_power_id != ""):?>
+						<?=get_law_name($rs->apply_power_id,'link');?>
+					<?else:?>
+						-
+					<?endif;?>
 				</div>
 			</td>
 		</tr>

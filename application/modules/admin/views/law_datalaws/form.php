@@ -487,7 +487,7 @@ $(function() {
 			
 			$.get('ajax/get_select_apply_power_id',{
 				'apply_power_group' : <?=$rs->apply_power_group?>,
-				'law_group_id' : <?=$rs->law_group_id?>,
+				'apply_power_id' : <?=$rs->apply_power_id?>,
 				'law_submaintype_id' : <?=$rs->law_type_id?>
 			},function(data){
 				$('.loading').hide();

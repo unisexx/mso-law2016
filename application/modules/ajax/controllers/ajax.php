@@ -78,7 +78,19 @@ Class Ajax extends Public_Controller
 	
 	function get_select_apply_power_id(){
 		if($_GET){
-			echo form_dropdown('law_type_id', get_option('id','name_th','law_datalaws where law_submaintype_id = '.$_GET['apply_power_group'].' order by id asc'), @$_GET['apply_power_id'],'class="form-control" style="width:500px;"','--- กรุณาเลือกกฎหมายที่อาศัยอำนาจ ---');
+			$sql = "select id, name_th from law_datalaws where law_submaintype_id = ".$_GET['apply_power_group']." order by id asc";
+			$rs = $this->db->query($sql)->result();
+			// echo $sql;
+			
+			echo "<select name='apply_power_id' class='form-control' style='width:500px;'>";
+			echo "<option>--- กรุณาเลือกกฎหมายที่อาศัยอำนาจ ---</option>";
+			foreach($rs as $row):
+				if($row->id == $_GET['apply_power_id']){ $select = "selected"; }else{ $select = ""; }
+				echo "<option value='".$row->id."' ".$select.">".str_replace("|"," ",$row->name_th)."</option>";
+			endforeach;
+			echo "</select>";
+			
+			// echo form_dropdown('law_type_id', get_option('id','name_th','law_datalaws where law_submaintype_id = '.$_GET['apply_power_group'].' order by id asc'), @$_GET['apply_power_id'],'class="form-control" style="width:500px;"','--- กรุณาเลือกกฎหมายที่อาศัยอำนาจ ---');
 		}
 	}
 }
