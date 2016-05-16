@@ -248,4 +248,32 @@ if(!function_exists('get_law_name'))
 		return str_replace("|"," ",$law_datalaw->name_th);
 	}
 }
+
+// import code
+if(!function_exists('getIMType'))
+{
+    function getIMType($type,$id1,$id2,$id3=''){               
+        //echo "$type | $id1 | $id2 | $id3 ";
+        $name1 = $this->covertID2Name(LAW_MAINTYPE,$id1);
+        $name2 = $this->covertID2Name(LAW_SUBMAINTYPE,$id2);    
+        $lawName1 = $name1[typeName];
+        $lawName2 = $name2[typeName];                 
+        if($type == 1){                    
+            if(($id1 == 1 || $id1 == 2) && $id2 ){
+                return "im1";
+            }  
+            if($id1 == 3 && $id2){
+                return "im2";
+            }
+        }                                                                           
+        if($type == 2){  
+             if(($id3 == 7 || $id3 == 8 || $id3 == 9  || $id3 == 11 ) && $id2 ){
+                return "im3";
+             }         
+             if(($id2 >= 20) && $id3){
+                return "im4";
+             }      
+        }   
+    }
+}
 ?>

@@ -63,9 +63,15 @@
         <tr>
           <th>อาศัยอำนาจกฎหมาย</th>
           <td>
-            <select name="select2" class="form-control" style="width:auto;">
-              <option>-- เลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --</option>
-            </select>
+            <span class="form-inline">
+            	<?=form_dropdown('apply_power_group',get_option('id','typeName','law_submaintypes where id < '.$rs->law_submaintype_id.' order by id asc'),@$rs->apply_power_group,'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --');?> 
+            	&gt;
+            	<span id="applypowerid">
+	            	<select name="select3" class="form-control" style="width:auto;" readonly>
+		              <option selected="selected">-- กรุณาเลือกกฎหมายที่อาศัยอำนาจ --</option>
+		            </select>
+	            </span>
+            </span>
         </td>
         </tr>
         <tr>
@@ -448,6 +454,19 @@ $(function() {
 				$("#lawsubmaintype").html(data);
 			});
 		});
+		
+		// select อาศัยอำนาจกฏหมาย เลือกกฏหมายที่ต้องการอาศัยอำนาจ
+		$('table').on('change', "select[name='apply_power_group']", function() {
+			$('.loading').show();
+			$.get('ajax/get_select_apply_power_id',{
+				'apply_power_group' : $(this).val(),
+				'apply_power_id' : <?=$rs->apply_power_id?>,
+				'law_submaintype_id' : <?=$rs->law_type_id?>
+			},function(data){
+				$('.loading').hide();
+				$("#applypowerid").html(data);
+			});
+		});
 
 		<?php if(@$rs->id != ""):?>
 			$.get('ajax/get_select_lawtype',{
@@ -464,6 +483,15 @@ $(function() {
 			},function(data){
 				$('.loading').hide();
 				$("#lawsubmaintype").html(data);
+			});
+			
+			$.get('ajax/get_select_apply_power_id',{
+				'apply_power_group' : <?=$rs->apply_power_group?>,
+				'law_group_id' : <?=$rs->law_group_id?>,
+				'law_submaintype_id' : <?=$rs->law_type_id?>
+			},function(data){
+				$('.loading').hide();
+				$("#applypowerid").html(data);
 			});
 		<?php endif;?>
 

@@ -75,5 +75,11 @@ Class Ajax extends Public_Controller
 			$rs->save();
 		}
 	}
+	
+	function get_select_apply_power_id(){
+		if($_GET){
+			echo form_dropdown('law_type_id', get_option('id','name_th','law_datalaws where law_submaintype_id = '.$_GET['apply_power_group'].' order by id asc'), @$_GET['apply_power_id'],'class="form-control" style="width:500px;"','--- กรุณาเลือกกฎหมายที่อาศัยอำนาจ ---');
+		}
+	}
 }
 ?>
