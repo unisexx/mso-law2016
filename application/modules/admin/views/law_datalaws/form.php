@@ -2,10 +2,10 @@
 
 <form method="post" enctype="multipart/form-data" action="admin/law_datalaws/save/<?=$rs->id?>">
 <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
+  <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
     <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
-  </ul>
+  </ul> -->
 
 
 <!-- Tab panes -->
@@ -37,9 +37,15 @@
             </span></td>
         </tr>
         <tr>
-          <th>ชื่อกฎหมาย<span class="Txt_red_12"> *</span></th>
+          <th>ชื่อกฎหมาย (ไทย)<span class="Txt_red_12"> *</span></th>
           <td>
           	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" name="name_th" value="<?=str_replace("|"," ",$rs->name_th)?>" />
+            </td>
+        </tr>
+        <tr>
+          <th>ชื่อกฎหมาย (อังกฤษ)<span class="Txt_red_12"> *</span></th>
+          <td>
+          	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" name="name_eng" value="<?=str_replace("|"," ",$rs->name_eng)?>" />
             </td>
         </tr>
         <tr>
@@ -174,13 +180,23 @@
           </td>
         </tr>
         <tr>
-          <th>แนบเอกสารกฎหมาย</th>
+          <th>แนบเอกสารกฎหมาย (ไทย)</th>
           <td>
           	<?if($rs->filename_th != ""):?>
           		<a href="uploads/lawfile/<?=$rs->filename_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_th?></a>
           	<?endif;?>
           	<input type="file" name="filename_th" class="form-control" id="fileField" />
             <input type="hidden" name="doc_id1" value="<?php echo @$rs->doc_id1;?>">
+          </td>
+        </tr>
+        <tr>
+          <th>แนบเอกสารกฎหมาย (อังกฤษ)</th>
+          <td>
+          	<?if($rs->filename_eng != ""):?>
+          		<a href="uploads/lawfile/<?=$rs->filename_eng?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->filename_eng?></a>
+          	<?endif;?>
+          	<input type="file" name="filename_eng" class="form-control" id="fileField" />
+            <input type="hidden" name="doc_id2" value="<?php echo @$rs->doc_id2;?>">
           </td>
         </tr>
         <tr>
@@ -425,13 +441,13 @@
 $(function() {
 	//----------------------- ฟอร์มหลัก -----------------------------------
 		// เปลี่ยนภาษา
-		$("[rel=en]").hide();
-
-		$(".lang a").click(function(){
-			$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
-			$(this).closest('li').addClass('active').siblings().removeClass('active');
-			return false;
-		});
+		// $("[rel=en]").hide();
+// 
+		// $(".lang a").click(function(){
+			// $("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+			// $(this).closest('li').addClass('active').siblings().removeClass('active');
+			// return false;
+		// });
 
 		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
 		$('table').on('change', "select[name='law_group_id']", function() {
@@ -460,7 +476,6 @@ $(function() {
 			$('.loading').show();
 			$.get('ajax/get_select_apply_power_id',{
 				'apply_power_group' : $(this).val(),
-				'apply_power_id' : <?=$rs->apply_power_id?>,
 				'law_submaintype_id' : <?=$rs->law_type_id?>
 			},function(data){
 				$('.loading').hide();
@@ -485,14 +500,14 @@ $(function() {
 				$("#lawsubmaintype").html(data);
 			});
 			
-			$.get('ajax/get_select_apply_power_id',{
-				'apply_power_group' : <?=$rs->apply_power_group?>,
-				'apply_power_id' : <?=$rs->apply_power_id?>,
-				'law_submaintype_id' : <?=$rs->law_type_id?>
-			},function(data){
-				$('.loading').hide();
-				$("#applypowerid").html(data);
-			});
+			// $.get('ajax/get_select_apply_power_id',{
+				// 'apply_power_group' : <?=$rs->apply_power_group?>,
+				// 'apply_power_id' : <?=$rs->apply_power_id?>,
+				// 'law_submaintype_id' : <?=$rs->law_type_id?>
+			// },function(data){
+				// $('.loading').hide();
+				// $("#applypowerid").html(data);
+			// });
 		<?php endif;?>
 
 	//----------------------- ผูกกฎหมาย (คาบ/ข้าม) -----------------------------------

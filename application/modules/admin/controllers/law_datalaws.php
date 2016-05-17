@@ -42,6 +42,7 @@ class Law_datalaws extends Admin_Controller {
 		if($_POST){
 			$rs = new Law_datalaw($id);
 
+			// แนบไฟล์เอกสาร ภาษาไทย
 			if($_FILES['filename_th']['name'])
 			{
 				$target_dir = 'uploads/lawfile';
@@ -75,6 +76,43 @@ class Law_datalaws extends Admin_Controller {
 					$_POST['doc_id1'] = $cSerach->editSerach($_POST['filename_th'],$dataSerach,'',checkFileType($_POST['filename_th']),1);
 				}else{
 					$_POST['doc_id1'] = $cSerach->addSerach($_POST['filename_th'],$dataSerach,'',checkFileType($_POST['filename_th']),1);
+				}
+			}
+
+			// แนบไฟล์เอกสาร ภาษาอังกฤษ
+			if($_FILES['filename_eng']['name'])
+			{
+				$target_dir = 'uploads/lawfile';
+				if($rs->id){
+					$rs->delete_file($rs->id,'uploads/lawfile','filename_eng');
+				}
+				$_POST['filename_eng'] = $rs->upload($_FILES['filename_eng'],'uploads/lawfile/');
+				$_POST['ref_code'] = date('YmdHis');
+				$FilePointer=fopen($target_dir.'/'.$_POST['filename_eng'], "r");
+			    $EncodeFile=fread($FilePointer, filesize ($target_dir.'/'.$_POST['filename_eng']));
+				//var_dump($EncodeFile);
+			  fclose($FilePointer);
+	  		$EncodeFile=chunk_split(base64_encode($EncodeFile));
+
+				$dataSerach = array(
+                            "id"=>@$_POST['doc_id2'],
+                            "sourceCode"=>$_POST['ref_code'],
+                            "displayTime"=>"",
+                            "storyTime"=>"",
+                            "headLine"=>$_POST['name_eng'],
+                            "description"=>"",
+                            "story"=>$_POST['law_group_id'],
+                            "category"=>$_POST['law_type_id'],
+                            "disclaimer"=>"",
+                );
+
+				include 'include/class.serach.php';
+				$cSerach = new serach();
+				//var_dump(checkFileType($_POST['filename_th']));
+				if($id>0){
+					$_POST['doc_id2'] = $cSerach->editSerach($_POST['filename_eng'],$dataSerach,'',checkFileType($_POST['filename_eng']),1);
+				}else{
+					$_POST['doc_id2'] = $cSerach->addSerach($_POST['filename_eng'],$dataSerach,'',checkFileType($_POST['filename_eng']),1);
 				}
 			}
 
