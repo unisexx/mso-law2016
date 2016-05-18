@@ -3,7 +3,7 @@
 <div id="searchBox">
 <form class="form-inline">
   <div class="col-xs-4">
-    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อสิทธิประโยชน์">
+    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อสิทธิประโยชน์" name="search" value="<?=@$_GET['search']?>">
     </div>
   <button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
 </form>
@@ -37,8 +37,8 @@
 	  	</ul>
 	  </td>
 	  <td>
-	  	<?if($row->pri_file_th):?><a href="uploads/law_privileges/<?=$row->pri_file_th?>" target="_blank"><?=file_icon($row->pri_file_th)?></a><?endif;?>
-	  	<?if($row->pri_file_en):?> | <a href="uploads/law_privileges/<?=$row->pri_file_en?>" target="_blank"><?=file_icon($row->pri_file_en)?></a><?endif;?>
+	  	<?if($row->pri_file_th):?><a href="uploads/privilegefile/<?=$row->pri_file_th?>" target="_blank"><?=file_icon($row->pri_file_th)?></a><?endif;?>
+	  	<?if($row->pri_file_en):?> | <a href="uploads/privilegefile/<?=$row->pri_file_en?>" target="_blank"><?=file_icon($row->pri_file_en)?></a><?endif;?>
 	  	</td>
 	  <td><a href="admin/law_privileges/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_privileges/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>

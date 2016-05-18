@@ -21,8 +21,8 @@
       <tr>
         <td><?=$row->plan_year?></td>
         <td><?=lang_decode($row->plan_name)?></td>
-        <td><?if($row->plan_file_th):?><a href="uploads/planfile/<?=$row->plan_file_th?>" target="_blank"><?=file_icon($row->plan_file_th)?></a><?endif;?></td>
-        <td><?if($row->plan_file_en):?><a href="uploads/planfile/<?=$row->plan_file_en?>" target="_blank"><?=file_icon($row->plan_file_en)?></a><?endif;?></td>
+        <td class="text-center"><?if($row->plan_file_th):?><a href="uploads/planfile/<?=$row->plan_file_th?>" target="_blank"><?=file_icon($row->plan_file_th)?></a><?endif;?></td>
+        <td class="text-center"><?if($row->plan_file_en):?><a href="uploads/planfile/<?=$row->plan_file_en?>" target="_blank"><?=file_icon($row->plan_file_en)?></a><?endif;?></td>
       </tr>
       <?endforeach;?>
     </tbody>

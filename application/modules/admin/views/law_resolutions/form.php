@@ -1,6 +1,6 @@
 <h3>มติ ครม. (เพิ่ม / แก้ไข)</h3>
 
-<form method="post" enctype="multipart/form-data" action="admin/law_resolutions/save/<?=$rs->id?>">
+<form id="law_resolutions_frm" method="post" enctype="multipart/form-data" action="admin/law_resolutions/save/<?=$rs->id?>">
 <!-- Nav tabs -->
   <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
@@ -99,5 +99,24 @@ $(function() {
 		// $(this).closest('li').addClass('active').siblings().removeClass('active');
 		// return false;
 	// })
+	
+	$("#law_resolutions_frm").validate({
+	    rules:
+	    {
+	    	resolution_year:{required: true},
+        	resolution_no:{required: true},
+	    	'resolution_name[th]':{required: true},
+        	'resolution_name[en]':{required: true},
+        	resolution_dateappoint:{required: true}
+	    },
+	    messages:
+	    {
+	    	resolution_year:{required: "กรุณาเลือกปี"},
+        	resolution_no:{required: "กรุณากรอกฉบับที่"},
+	    	'resolution_name[th]':{required: "กรุณากรอกชื่อเรื่อง (ไทย)"},
+        	'resolution_name[en]':{required: "กรุณากรอกชื่อเรื่อง (อังกฤษ)"},
+        	resolution_dateappoint:{required: "กรุณาเลือกวันที่ ครม. มีมติ"}
+	    }
+    });
 });
 </script>

@@ -1,6 +1,6 @@
 <h3>มติ ครม. (เพิ่ม / แก้ไข)</h3>
 
-<form method="post" enctype="multipart/form-data" action="admin/law_committees/save/<?=$rs->id?>">
+<form id="law_committees_frm" method="post" enctype="multipart/form-data" action="admin/law_committees/save/<?=$rs->id?>">
 <!-- Nav tabs -->
   <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
@@ -128,5 +128,28 @@ $(function() {
 		// $(this).closest('li').addClass('active').siblings().removeClass('active');
 		// return false;
 	// })
+	
+	$("#law_committees_frm").validate({
+	    rules:
+	    {
+	    	committee_year:{required: true},
+	    	committee_set:{required:true},
+	    	committee_dateappoint:{required:true},
+	    	'committee_name[th]':{required: true},
+	    	'committee_name[en]':{required: true},
+	    	'committee_position[th]':{required: true},
+	    	'committee_position[en]':{required: true}
+	    },
+	    messages:
+	    {
+	    	committee_year:{required: "กรุณาเลือกปี"},
+	    	committee_set:{required: "กรุณากรอกชุดที่แต่งตั้ง"},
+	    	committee_dateappoint:{required: "กรุณากรอกวันที่แต่งตั้ง"},
+	    	'committee_name[th]':{required: "ชื่อ-สกุล (ไทย)"},
+	    	'committee_name[en]':{required: "ชื่อ-สกุล (อังกฤษ)"},
+	    	'committee_position[th]':{required: "ตำแหน่ง (ไทย)"},
+	    	'committee_position[en]':{required: "ตำแหน่ง (อังกฤษ)"}
+	    }
+    });
 });
 </script>

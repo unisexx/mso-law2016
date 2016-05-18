@@ -10,10 +10,7 @@ class Law_privileges extends Admin_Controller {
 	{
 		$data['rs'] = new Law_privilege();
 		if(@$_GET['search']){
-			$data['rs']->where('committee_name LIKE "%'.$_GET['search'].'%"');
-		}
-		if(@$_GET['Law_privilege_type_id']){
-			$data['rs']->where('Law_privilege_type_id = '.$_GET['Law_privilege_type_id']);
+			$data['rs']->where('pri_name LIKE "%'.$_GET['search'].'%"');
 		}
 
 		$data['rs']->order_by('id','desc')->get_page();
@@ -42,17 +39,17 @@ class Law_privileges extends Admin_Controller {
 			if($_FILES['pri_file_th']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_privileges','pri_file_th');
+					$rs->delete_file($rs->id,'uploads/privilegefile','pri_file_th');
 				}
-				$_POST['pri_file_th'] = $rs->upload($_FILES['pri_file_th'],'uploads/law_privileges/');
+				$_POST['pri_file_th'] = $rs->upload($_FILES['pri_file_th'],'uploads/privilegefile/');
 			}
 			
 			if($_FILES['pri_file_en']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_privileges','pri_file_en');
+					$rs->delete_file($rs->id,'uploads/privilegefile','pri_file_en');
 				}
-				$_POST['pri_file_en'] = $rs->upload($_FILES['pri_file_en'],'uploads/law_privileges/');
+				$_POST['pri_file_en'] = $rs->upload($_FILES['pri_file_en'],'uploads/privilegefile/');
 			}
 			
 			$rs->from_array($_POST);

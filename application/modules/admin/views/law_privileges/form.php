@@ -1,6 +1,6 @@
 <h3>สิทธิประโยชน์ (เพิ่ม / แก้ไข)</h3>
 
-<form method="post" enctype="multipart/form-data" action="admin/law_privileges/save/<?=$rs->id?>">
+<form id="law_privileges_frm" method="post" enctype="multipart/form-data" action="admin/law_privileges/save/<?=$rs->id?>">
 <!-- Nav tabs -->
   <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
@@ -12,13 +12,13 @@
     <div role="tabpanel" class="tab-pane active" id="thai">
         <table class="tbadd">
         <tr>
-          <th>ชื่อเอกสาร (ไทย)</th>
+          <th>ชื่อเอกสาร (ไทย)<span class="Txt_red_12"> *</span></th>
           <td>
             <input rel="th" type="text" class="form-control" name="pri_name[th]" value="<?=lang_decode($rs->pri_name,'th')?>" style="width:800px;" />
             </td>
         </tr>
         <tr>
-          <th>ชื่อเอกสาร (อังกฤษ)</th>
+          <th>ชื่อเอกสาร (อังกฤษ)<span class="Txt_red_12"> *</span></th>
           <td>
             <input rel="en" type="text" class="form-control" name="pri_name[en]" value="<?=lang_decode($rs->pri_name,'en')?>"  style="width:800px;" />
             </td>
@@ -37,7 +37,7 @@
           <th>ไฟล์แนบเอกสาร (ไทย)</th>
           <td>
           	<?if($rs->pri_file_th != ""):?>
-          		<a href="uploads/law_privileges/<?=$rs->pri_file_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file_th?></a>
+          		<a href="uploads/privilegefile/<?=$rs->pri_file_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file_th?></a>
           	<?endif;?>
           	<input type="file" name="pri_file_th" class="form-control" id="fileField" />
           </td>
@@ -46,7 +46,7 @@
           <th>ไฟล์แนบเอกสาร (อังกฤษ)</th>
           <td>
           	<?if($rs->pri_file_en != ""):?>
-          		<a href="uploads/law_privileges/<?=$rs->pri_file_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file_en?></a>
+          		<a href="uploads/privilegefile/<?=$rs->pri_file_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->pri_file_en?></a>
           	<?endif;?>
           	<input type="file" name="pri_file_en" class="form-control" id="fileField" />
           </td>
@@ -138,5 +138,20 @@ $(function() {
 	$('table').on('click', '.delLawBtn', function() {
 		$(this).closest('tr').fadeOut(300, function(){ $(this).remove(); });
 	});
+	
+	$("#law_privileges_frm").validate({
+	    rules:
+	    {
+	    	'pri_name[th]':{required: true},
+        	'pri_name[en]':{required: true},
+	    	pri_date:{required: true}
+	    },
+	    messages:
+	    {
+	    	'pri_name[th]':{required: "กรุณากรอกชื่อเอกสาร (ไทย)"},
+        	'pri_name[en]':{required: "กรุณากรอกชื่อเอกสาร (อังกฤษ)"},
+	    	pri_date:{required: "กรุณากรอกวันที่นำเข้า"}
+	    }
+    });
 });
 </script>

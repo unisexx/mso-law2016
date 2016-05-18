@@ -1,6 +1,6 @@
 <h3>แผนพัฒนากฎหมาย (เพิ่ม / แก้ไข)</h3>
 
-<form method="post" enctype="multipart/form-data" action="admin/law_plans/save/<?=$rs->id?>">
+<form id="law_plans_frm" method="post" enctype="multipart/form-data" action="admin/law_plans/save/<?=$rs->id?>">
 <!-- Nav tabs -->
   <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
@@ -28,13 +28,13 @@
           </td>
         </tr>
         <tr>
-          <th>ชื่อแผนพัฒนากฎหมาย (ไทย)</th>
+          <th>ชื่อแผนพัฒนากฎหมาย (ไทย)<span class="Txt_red_12"> *</span></th>
           <td>
           	<input rel="th" type="text" class="form-control" name="plan_name[th]" value="<?=lang_decode($rs->plan_name,'th')?>" style="width:800px;" />
 		  </td>
         </tr>
         <tr>
-          <th>ชื่อแผนพัฒนากฎหมาย (อังกฤษ)</th>
+          <th>ชื่อแผนพัฒนากฎหมาย (อังกฤษ)<span class="Txt_red_12"> *</span></th>
           <td>
             <input rel="en" type="text" class="form-control" name="plan_name[en]" value="<?=lang_decode($rs->plan_name,'en')?>"  style="width:800px;" />
 		  </td>
@@ -78,5 +78,19 @@ $(function() {
 		// $(this).closest('li').addClass('active').siblings().removeClass('active');
 		// return false;
 	// })
+	
+	
+	$("#law_plans_frm").validate({
+	    rules:
+	    {
+	    	'plan_name[th]':{required: true},
+        	'plan_name[en]':{required: true}
+	    },
+	    messages:
+	    {
+	    	'plan_name[th]':{required: "ชื่อแผนพัฒนากฎหมาย (ไทย)"},
+        	'plan_name[en]':{required: "ชื่อแผนพัฒนากฎหมาย (อังกฤษ)"}
+	    }
+    });
 });
 </script>

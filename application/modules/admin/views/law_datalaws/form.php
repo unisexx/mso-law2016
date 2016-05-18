@@ -1,6 +1,6 @@
 <h3>ข้อมูลกฎหมาย (เพิ่ม / แก้ไข)</h3>
 
-<form method="post" enctype="multipart/form-data" action="admin/law_datalaws/save/<?=$rs->id?>">
+<form id="law_datalaw_frm" method="post" enctype="multipart/form-data" action="admin/law_datalaws/save/<?=$rs->id?>">
 <!-- Nav tabs -->
   <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
@@ -71,16 +71,16 @@
           <td>
             <span class="form-inline">
             	<span id="applypowergroup">
-	            	<select name="select5" class="form-control" style="width:auto;" readonly>
+	            	<select name="select5" class="form-control" style="width:auto;" disabled="disabled">
 		              <option>-- กรุณาเลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --</option>
 		            </select>
             	</span>
-            	<!-- &gt;
+            	&gt;
             	<span id="applypowerid">
-	            	<select name="select3" class="form-control" style="width:auto;" readonly>
+	            	<select name="select3" class="form-control" style="width:auto;" disabled="disabled">
 		              <option selected="selected">-- กรุณาเลือกกฎหมายที่อาศัยอำนาจ --</option>
 		            </select>
-	            </span> -->
+	            </span>
             </span>
         </td>
         </tr>
@@ -452,6 +452,23 @@ $(function() {
 			// $(this).closest('li').addClass('active').siblings().removeClass('active');
 			// return false;
 		// });
+		
+		$("#law_datalaw_frm").validate({
+		    rules:
+		    {
+		    	name_th:{required: true},
+	        	name_eng:{required: true},
+		    	gazette_numerative:{required: true},
+		    	gazete_notice_date:{required: true}
+		    },
+		    messages:
+		    {
+		    	name_th:{required: "กรุณากรอกชื่อกฎหมาย (ไทย)"},
+	        	name_eng:{required: "ชื่อกฎหมาย (อังกฤษ)"},
+		    	gazette_numerative:{required: "กรุณากรอกเล่มที่"},
+		    	gazete_notice_date:{required: "กรุณากรอกวันที่ประกาศในราชกิจจานุเบกษา"}
+		    }
+	    });
 
 		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
 		$('table').on('change', "select[name='law_group_id']", function() {
@@ -475,10 +492,7 @@ $(function() {
 				$("#lawsubmaintype").html(data);
 			});
 			
-			// alert(law_maintype_id);
-			if(law_maintype_id >=2){
-				$("select[name=apply_power_group]").val('').attr("disabled", true);
-			}
+			$("select[name=apply_power_group],select[name=apply_power_id]").val('').attr("disabled", true);
 		});
 		
 		// select ประเภทกฎหมายย่อยที่อาศัยอำนาจ
@@ -493,19 +507,20 @@ $(function() {
 					$("#applypowergroup").html(data);
 				});
 			}
+			
+			$("select[name=apply_power_id]").val('').attr("disabled", true);
 		});
 		
-		// select อาศัยอำนาจกฏหมาย เลือกกฏหมายที่ต้องการอาศัยอำนาจ
-		// $('table').on('change', "select[name='apply_power_group']", function() {
-			// $('.loading').show();
-			// $.get('ajax/get_select_apply_power_id',{
-				// 'apply_power_group' : $(this).val(),
-				// 'law_submaintype_id' : <?=$rs->law_type_id?>
-			// },function(data){
-				// $('.loading').hide();
-				// $("#applypowerid").html(data);
-			// });
-		// });
+		// select กฏหมายที่ต้องการอาศัยอำนาจ
+		$('table').on('change', "select[name='apply_power_group']", function() {
+			$('.loading').show();
+			$.get('ajax/get_select_apply_power_id',{
+				'apply_power_group' : $(this).val()
+			},function(data){
+				$('.loading').hide();
+				$("#applypowerid").html(data);
+			});
+		});
 
 		//ถ้าเป็นฟอร์มแก้ไขให้ select หมวดกฏหมาย, ประเภทย่อยกฏหมาย, ประเภทกฎหมายย่อยที่อาศัยอำนาจ แบบ auto
 		<?php if(@$rs->id != ""):?>
@@ -538,16 +553,13 @@ $(function() {
 				});
 			}
 			
-			
-			
-			// $.get('ajax/get_select_apply_power_id',{
-				// 'apply_power_group' : <?=$rs->apply_power_group?>,
-				// 'apply_power_id' : <?=$rs->apply_power_id?>,
-				// 'law_submaintype_id' : <?=$rs->law_type_id?>
-			// },function(data){
-				// $('.loading').hide();
-				// $("#applypowerid").html(data);
-			// });
+			$.get('ajax/get_select_apply_power_id',{
+				'apply_power_group' : <?=$rs->apply_power_group?>,
+				'apply_power_id' : <?=$rs->apply_power_id?>
+			},function(data){
+				$('.loading').hide();
+				$("#applypowerid").html(data);
+			});
 		<?php endif;?>
 
 	//----------------------- ผูกกฎหมาย (คาบ/ข้าม) -----------------------------------
