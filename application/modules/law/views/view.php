@@ -21,7 +21,7 @@
 					th : <a href="law/download_by_name/<?=$rs->id?>?filename=<?=$rs->filename_th?>"><?=file_icon($rs->filename_th)?></a> &nbsp;&nbsp;
 				<?endif;?>
 				<?if($rs->filename_eng != ""):?>
-					eng : <a href="<?=$rs->filename_eng?>"><?=file_icon($rs->filename_eng)?></a>
+					eng : <a href="law/download_by_name/<?=$rs->id?>?filename=<?=$rs->filename_eng?>"><?=file_icon($rs->filename_eng)?></a>
 				<?endif;?>
 			</td>
 		</tr>

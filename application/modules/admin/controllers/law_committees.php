@@ -37,17 +37,17 @@ class Law_committees extends Admin_Controller {
 			if($_FILES['committee_picfile_th']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_committees','committee_picfile_th');
+					$rs->delete_file($rs->id,'uploads/committeefile','committee_picfile_th');
 				}
-				$_POST['committee_picfile_th'] = $rs->upload($_FILES['committee_picfile_th'],'uploads/law_committees/');
+				$_POST['committee_picfile_th'] = $rs->upload($_FILES['committee_picfile_th'],'uploads/committeefile/');
 			}
 			
 			if($_FILES['committee_picfile_en']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_committees','committee_picfile_en');
+					$rs->delete_file($rs->id,'uploads/committeefile','committee_picfile_en');
 				}
-				$_POST['committee_picfile_en'] = $rs->upload($_FILES['committee_picfile_en'],'uploads/law_committees/');
+				$_POST['committee_picfile_en'] = $rs->upload($_FILES['committee_picfile_en'],'uploads/committeefile/');
 			}
 			
 			$rs->from_array($_POST);

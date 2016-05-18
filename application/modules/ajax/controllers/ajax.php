@@ -76,6 +76,12 @@ Class Ajax extends Public_Controller
 		}
 	}
 	
+	function get_select_power_group(){
+		if($_GET){
+			echo form_dropdown('apply_power_group',get_option('id','typeName','law_submaintypes where id < '.$_GET['law_submaintype_id'].' order by id asc'),@$_GET['apply_power_group'],'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --');
+		}
+	}
+	
 	function get_select_apply_power_id(){
 		if($_GET){
 			$sql = "select id, name_th from law_datalaws where law_submaintype_id = ".$_GET['apply_power_group']." order by id asc";

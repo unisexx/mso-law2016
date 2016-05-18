@@ -35,8 +35,8 @@
 	  <td><?=mysql_to_th($row->resolution_dateappoint)?></td>
 	  <td><?=lang_decode($row->resolution_name)?></td>
 	  <td>
-	  	<?if($row->resolution_file_th):?><a href="uploads/law_resolutions/<?=$row->resolution_file_th?>"><?=file_icon($row->resolution_file_th)?></a><?endif;?>
-	  	<?if($row->resolution_file_en):?> | <a href="uploads/law_resolutions/<?=$row->resolution_file_en?>"><?=file_icon($row->resolution_file_en)?></a><?endif;?>
+	  	<?if($row->resolution_file_th):?><a href="uploads/resolutionfile/<?=$row->resolution_file_th?>"><?=file_icon($row->resolution_file_th)?></a><?endif;?>
+	  	<?if($row->resolution_file_en):?> | <a href="uploads/resolutionfile/<?=$row->resolution_file_en?>"><?=file_icon($row->resolution_file_en)?></a><?endif;?>
 	  </td>
 	  <td><a href="admin/law_resolutions/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_resolutions/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>

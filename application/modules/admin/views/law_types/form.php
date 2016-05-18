@@ -4,10 +4,10 @@
 
 
 <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
+  <!-- <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="lang active"><a href="th" aria-controls="thai" role="tab" data-toggle="tab"><img src="themes/admin/images/thai_flag.png" width="32" height="32" /></a></li>
     <li role="presentation" class="lang"><a href="en" aria-controls="english" role="tab" data-toggle="tab"><img src="themes/admin/images/eng_flag.png" width="32" height="32" /></a></li>
-  </ul>
+  </ul> -->
 
 <!-- Tab panes -->
   <div class="tab-content">
@@ -20,9 +20,14 @@
           </td>
         </tr>
         <tr>
-          <th>ชื่อหมวดกฎหมาย<span class="Txt_red_12"> *</span></th>
+          <th>ชื่อหมวดกฎหมาย (ไทย)<span class="Txt_red_12"> *</span></th>
           <td>
             <input rel="th" type="text" class="form-control" name="name[th]" style="width:500px;" value="<?=lang_decode($rs->name,'th')?>" />
+          </td>
+        </tr>
+        <tr>
+          <th>ชื่อหมวดกฎหมาย (อังกฤษ)<span class="Txt_red_12"> *</span></th>
+          <td>
             <input rel="en" type="text" class="form-control" name="name[en]" style="width:500px;" value="<?=lang_decode($rs->name,'en')?>" />
           </td>
         </tr>
@@ -35,10 +40,10 @@
         <tr>
           <th>รูปภาพ</th>
           <td>
-            <span class="form-inline">
-              <input class="form-control" type="text" name="pic" value="<?php echo $rs->pic?>" style="width:300px;"/>
-              <input class="btn btn-success" type="button" name="browse" value="คลิกเพื่อเลือกรูป" onclick="browser($(this).prev(),'image')" />
-            </span>
+            <div class="input-group" style="width:500px;">
+			  <input class="form-control" type="text" name="pic" value="<?php echo $rs->pic?>"/>
+			  <span class="input-group-addon" id="basic-addon2" onclick="browser($(this).prev(),'image')" style="cursor: pointer;">เลือกไฟล์</span>
+			</div>
           </td>
         </tr>
         <tr>
@@ -76,25 +81,27 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
-	$("[rel=en]").hide();
-	
-	$(".lang a").click(function(){
-		$("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
-		$(this).closest('li').addClass('active').siblings().removeClass('active');
-		return false;
-	})
+	// $("[rel=en]").hide();
+// 	
+	// $(".lang a").click(function(){
+		// $("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
+		// $(this).closest('li').addClass('active').siblings().removeClass('active');
+		// return false;
+	// })
 	
 	$("#law_types_frm").validate({
 	    rules:
 	    {
-	    	lawg_id:{required: true},
-	        name:{required: true},
+	    	'name[th]':{required: true},
+        	'name[en]':{required: true},
+	    	law_group_id:{required: true},
 	        'unit_import[]':{required: true}
 	    },
 	    messages:
 	    {
-	    	lawg_id:{required: "กรุณาเลือกกลุ่มกฎหมาย"},
-	        name:{required: "กรุณากรอกชื่อหมวดกฎหมาย"},
+	    	'name[th]':{required: "กรุณากรอกชื่อหมวดกฎหมายไทย"},
+        	'name[en]':{required: "กรุณากรอกชื่อหมวดกฎหมายอังกฤษ"},
+	    	law_group_id:{required: "กรุณาเลือกกลุ่มกฎหมาย"},
 	        'unit_import[]':{required: "กรุณาเลือกอย่างน้อย 1 รายการ"}
 	    }
     });

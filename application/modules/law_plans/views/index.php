@@ -7,15 +7,22 @@
       <tr>
         <th>ปี</th>
         <th>เอกสาร</th>
-        <th>ไฟล์</th>
+        <th colspan="2" class="col-sm-1 text-center">ไฟล์</th>
+      </tr>
+      <tr>
+      	<th></th>
+      	<th></th>
+      	<th class="text-center">th</th>
+      	<th class="text-center">eng</th>
       </tr>
     </thead>
     <tbody>
       <?foreach($rs as $row):?>
       <tr>
         <td><?=$row->plan_year?></td>
-        <td><?=$row->plan_name?></td>
-        <td><a href="<?=$row->plan_file?>" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+        <td><?=lang_decode($row->plan_name)?></td>
+        <td><?if($row->plan_file_th):?><a href="uploads/planfile/<?=$row->plan_file_th?>" target="_blank"><?=file_icon($row->plan_file_th)?></a><?endif;?></td>
+        <td><?if($row->plan_file_en):?><a href="uploads/planfile/<?=$row->plan_file_en?>" target="_blank"><?=file_icon($row->plan_file_en)?></a><?endif;?></td>
       </tr>
       <?endforeach;?>
     </tbody>

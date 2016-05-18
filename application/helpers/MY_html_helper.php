@@ -211,9 +211,9 @@ if(!function_exists('file_icon'))
 	function file_icon($file){
 	    $ext = pathinfo($file, PATHINFO_EXTENSION);
 		if($ext == 'doc'){
-			return '<img src="themes/law/images/icon-word.png" width="16" height="16" class="icon-hover">';
+			return '<i class="fa fa-file-word-o" aria-hidden="true"></i>';
 		}else{
-			return '<img src="themes/law/images/icon-pdf.png" width="16" height="16" class="icon-hover">';
+			return '<i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>';
 		}
 	}
 }

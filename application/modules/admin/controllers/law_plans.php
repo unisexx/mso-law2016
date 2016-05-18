@@ -31,17 +31,17 @@ class Law_plans extends Admin_Controller {
 			if($_FILES['plan_file_th']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_plans','plan_file_th');
+					$rs->delete_file($rs->id,'uploads/planfile','plan_file_th');
 				}
-				$_POST['plan_file_th'] = $rs->upload($_FILES['plan_file_th'],'uploads/law_plans/');
+				$_POST['plan_file_th'] = $rs->upload($_FILES['plan_file_th'],'uploads/planfile/');
 			}
 			
 			if($_FILES['plan_file_en']['name'])
 			{
 				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/law_plans','plan_file_en');
+					$rs->delete_file($rs->id,'uploads/planfile','plan_file_en');
 				}
-				$_POST['plan_file_en'] = $rs->upload($_FILES['plan_file_en'],'uploads/law_plans/');
+				$_POST['plan_file_en'] = $rs->upload($_FILES['plan_file_en'],'uploads/planfile/');
 			}
 			
 			$rs->from_array($_POST);

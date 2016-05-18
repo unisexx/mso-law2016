@@ -18,7 +18,7 @@
             <?=form_dropdown('law_group_id',get_option('id','name','law_groups order by id asc'),@$rs->law_group_id,'class="form-control" style="width:auto;"','-- เลือกกลุ่มกฎหมาย --');?>
             &gt;
             <span id="lawtype">
-            	<select name="select3" class="form-control" style="width:auto;" readonly>
+            	<select name="select3" class="form-control" style="width:auto;" disabled="disabled">
 	              <option selected="selected">-- เลือกหมวดกฎหมาย --</option>
 	            </select>
             </span>
@@ -27,10 +27,10 @@
         <tr>
           <th>ประเภทกฎหมาย &gt; ประเภทย่อยกฎหมาย <span class="Txt_red_12"> *</span></th>
           <td><span class="form-inline">
-          <?=form_dropdown('law_maintype_id',get_option('id','typeName','law_maintypes order by typeName asc'),@$rs->law_maintype_id,'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมาย --');?>
+          <?=form_dropdown('law_maintype_id',get_option('id','typeName','law_maintypes order by id asc'),@$rs->law_maintype_id,'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมาย --');?>
             &gt;
             <span id="lawsubmaintype">
-	            <select name="select5" class="form-control" style="width:auto;" readonly>
+	            <select name="select5" class="form-control" style="width:auto;" disabled="disabled">
 	              <option>-- เลือกประเภทย่อยกฎหมาย --</option>
 	            </select>
             </span>
@@ -70,13 +70,17 @@
           <th>อาศัยอำนาจกฎหมาย</th>
           <td>
             <span class="form-inline">
-            	<?=form_dropdown('apply_power_group',get_option('id','typeName','law_submaintypes where id < '.$rs->law_submaintype_id.' order by id asc'),@$rs->apply_power_group,'class="form-control" style="width:auto;"','-- เลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --');?> 
-            	&gt;
+            	<span id="applypowergroup">
+	            	<select name="select5" class="form-control" style="width:auto;" readonly>
+		              <option>-- กรุณาเลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --</option>
+		            </select>
+            	</span>
+            	<!-- &gt;
             	<span id="applypowerid">
 	            	<select name="select3" class="form-control" style="width:auto;" readonly>
 		              <option selected="selected">-- กรุณาเลือกกฎหมายที่อาศัยอำนาจ --</option>
 		            </select>
-	            </span>
+	            </span> -->
             </span>
         </td>
         </tr>
@@ -462,6 +466,7 @@ $(function() {
 
 		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
 		$('table').on('change', "select[name='law_maintype_id']", function() {
+			var law_maintype_id = $(this).val();
 			$('.loading').show();
 			$.get('ajax/get_select_submaintype',{
 				'law_maintype_id' : $(this).val()
@@ -469,20 +474,40 @@ $(function() {
 				$('.loading').hide();
 				$("#lawsubmaintype").html(data);
 			});
+			
+			// alert(law_maintype_id);
+			if(law_maintype_id >=2){
+				$("select[name=apply_power_group]").val('').attr("disabled", true);
+			}
+		});
+		
+		// select ประเภทกฎหมายย่อยที่อาศัยอำนาจ
+		$('table').on('change', "select[name='law_submaintype_id']",function(){
+			var law_maintype_id = $("select[name=law_maintype_id]").val();
+			if($(this).val() > 1 && law_maintype_id <= 2){
+				$('.loading').show();
+				$.get('ajax/get_select_power_group',{
+					'law_submaintype_id' : $(this).val()
+				},function(data){
+					$('.loading').hide();
+					$("#applypowergroup").html(data);
+				});
+			}
 		});
 		
 		// select อาศัยอำนาจกฏหมาย เลือกกฏหมายที่ต้องการอาศัยอำนาจ
-		$('table').on('change', "select[name='apply_power_group']", function() {
-			$('.loading').show();
-			$.get('ajax/get_select_apply_power_id',{
-				'apply_power_group' : $(this).val(),
-				'law_submaintype_id' : <?=$rs->law_type_id?>
-			},function(data){
-				$('.loading').hide();
-				$("#applypowerid").html(data);
-			});
-		});
+		// $('table').on('change', "select[name='apply_power_group']", function() {
+			// $('.loading').show();
+			// $.get('ajax/get_select_apply_power_id',{
+				// 'apply_power_group' : $(this).val(),
+				// 'law_submaintype_id' : <?=$rs->law_type_id?>
+			// },function(data){
+				// $('.loading').hide();
+				// $("#applypowerid").html(data);
+			// });
+		// });
 
+		//ถ้าเป็นฟอร์มแก้ไขให้ select หมวดกฏหมาย, ประเภทย่อยกฏหมาย, ประเภทกฎหมายย่อยที่อาศัยอำนาจ แบบ auto
 		<?php if(@$rs->id != ""):?>
 			$.get('ajax/get_select_lawtype',{
 				'law_group_id' : $('select[name=law_group_id]').val(),
@@ -499,6 +524,21 @@ $(function() {
 				$('.loading').hide();
 				$("#lawsubmaintype").html(data);
 			});
+			
+			var law_maintype_id = $("select[name=law_maintype_id]").val();
+			var law_submaintype_id = <?=$rs->law_submaintype_id?>;
+			if(law_maintype_id <= 2 && law_submaintype_id > 1 ){
+				$('.loading').show();
+				$.get('ajax/get_select_power_group',{
+					'law_submaintype_id' : law_submaintype_id,
+					'apply_power_group' : <?=$rs->apply_power_group?>
+				},function(data){
+					$('.loading').hide();
+					$("#applypowergroup").html(data);
+				});
+			}
+			
+			
 			
 			// $.get('ajax/get_select_apply_power_id',{
 				// 'apply_power_group' : <?=$rs->apply_power_group?>,

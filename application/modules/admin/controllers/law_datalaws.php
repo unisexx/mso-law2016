@@ -225,8 +225,8 @@ class Law_datalaws extends Admin_Controller {
 
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
 		}
-		redirect($_SERVER['HTTP_REFERER']);
-		// redirect('admin/law_datalaws');
+		// redirect($_SERVER['HTTP_REFERER']);
+		redirect('admin/law_datalaws');
 	}
 
 	function delete($id){

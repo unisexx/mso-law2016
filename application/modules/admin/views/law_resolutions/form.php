@@ -58,7 +58,7 @@
           <th>ไฟล์แนบเอกสาร (ไทย)</th>
           <td>
           	<?if($rs->resolution_file_th != ""):?>
-          		<a href="uploads/law_resolutions/<?=$rs->resolution_file_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file_th?></a>
+          		<a href="uploads/resolutionfile/<?=$rs->resolution_file_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file_th?></a>
           	<?endif;?>
           	<input type="file" name="resolution_file_th" class="form-control" id="fileField" />
           </td>
@@ -67,7 +67,7 @@
           <th>ไฟล์แนบเอกสาร (อังกฤษ)</th>
           <td>
           	<?if($rs->resolution_file_en != ""):?>
-          		<a href="uploads/law_resolutions/<?=$rs->resolution_file_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file_en?></a>
+          		<a href="uploads/resolutionfile/<?=$rs->resolution_file_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->resolution_file_en?></a>
           	<?endif;?>
           	<input type="file" name="resolution_file_en" class="form-control" id="fileField" />
           </td>
