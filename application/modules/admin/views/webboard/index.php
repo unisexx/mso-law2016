@@ -3,7 +3,7 @@
 <div id="searchBox">
 <form class="form-inline">
   <div class="col-xs-3">
-    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อหัวข้อกระทู้">
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="ชื่อหัวข้อกระทู้" name="search" value="<?=@$_GET['search']?>">
     </div>
   <!-- <input type="text" class="form-control" id="exampleInputName10" style="width:110px;" />
     <img src="images/calendar.png" alt="" width="24" height="24" /> -->

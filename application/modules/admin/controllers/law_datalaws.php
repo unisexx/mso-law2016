@@ -9,9 +9,11 @@ class Law_datalaws extends Admin_Controller {
 	function index()
 	{
 		$data['rs'] = new Law_datalaw();
-		if(@$_GET['search']){
-			$data['rs']->where('name LIKE "%'.$_GET['search'].'%"');
-		}
+		if(@$_GET['search']){$data['rs']->where('name_th LIKE "%'.$_GET['search'].'%" or name_eng LIKE "%'.$_GET['search'].'%"');}
+		if(@$_GET['law_group_id']){$data['rs']->where('law_group_id = '.$_GET['law_group_id']);}
+		if(@$_GET['law_type_id']){$data['rs']->where('law_type_id = '.$_GET['law_type_id']);}
+		if(@$_GET['law_maintype_id']){$data['rs']->where('law_maintype_id = '.$_GET['law_maintype_id']);}
+		if(@$_GET['law_submaintype_id']){$data['rs']->where('law_submaintype_id = '.$_GET['law_submaintype_id']);}
 
 		$data['rs']->order_by('id','desc')->get_page();
 		// $data['rs']->check_last_query();

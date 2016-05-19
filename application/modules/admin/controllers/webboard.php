@@ -9,6 +9,10 @@ class Webboard extends Admin_Controller {
 	function index()
 	{
 		$data['rs'] = new Law_quiz();
+		if(@$_GET['search']){
+			$data['rs']->where('quiz_title LIKE "%'.$_GET['search'].'%"');
+		}
+		
 		$data['rs']->order_by('quiz_sticky','desc')->order_by('id','desc')->get_page();
 		$this->template->build('webboard/index',$data);
 	}

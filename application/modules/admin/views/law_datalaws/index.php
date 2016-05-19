@@ -1,23 +1,23 @@
 <h3>ข้อมูลกฎหมาย</h3>
 <div id="search">
 <div id="searchBox">
-<form class="form-inline">
+<form id="cross_law_form" class="form-inline">
   <div class="col-xs-4">
-    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อกฎหมาย">
-    </div>
-    <select name="select" class="form-control" style="width:auto;">
-    <option>-- ทุกกลุ่มกฎหมาย --</option>
-    <option>ในภารกิจ</option>
-    <option>กฎหมายประกอบภารกิจ</option>
-  </select>
-  <select name="select" class="form-control" style="width:auto;">
-    <option>-- ทุกหน่วยงานผู้นำเข้า --</option>
-    <option>ศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร</option>
-    <option>สำนักงานปลัด(กองนิติการ)</option>
-    <option>กรมพัฒนาสังคมและสวัสดิการ</option>
-    <option>สำนักงานกิจการสตรีและสถาบันครอบครัว</option>
-  </select>
-  <button type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
+    <input type="text" class="form-control " id="exampleInputName2" placeholder="ชื่อกฎหมาย" name="search" value="<?=@$_GET['search']?>">
+  </div><br><br>
+  <div>
+	  <?=form_dropdown('law_group_id',get_option('id','name','law_groups order by id asc'),@$_GET['law_group_id'],'class="form-control" style="width:auto;"','-- ทุกกลุ่มกฎหมาย --');?>
+	  <span id="lawtype">
+    	<?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" id="input-cat-group" style="width:auto;"','--- เลือกหมวดกฎหมาย ---');?>
+    </span>
+  </div>
+  <div style="margin-top: 6px;">
+	   <?=form_dropdown('law_maintype_id',get_option('id','typeName','law_maintypes order by typeName asc'),@$_GET['law_maintype_id'],'class="form-control" style="width:auto;"','-- ทุกประเภทกฎหมาย --');?>
+	  <span id="lawsubmaintype">
+        <?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes order by id asc'), @$_GET['law_submaintype_id'],'class="form-control" style="width:auto;"','--- เลือกประเภทย่อยกฎหมาย ---');?>
+      </span>
+	<button id="searchCrossLawBtn" type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
+</div>
 </form>
 
   
@@ -53,3 +53,30 @@
 </table>
 
 <?php echo $rs->pagination()?>
+
+<script>
+$(document).ready(function(){
+	// select กลุ่มกฏหมาย -> หมวดกฏหมาย
+	$('form').on('change', "select[name='law_group_id']", function() {
+		$('.loading').show();
+		$.get('ajax/get_select_lawtype',{
+			'law_group_id' : $(this).val()
+		},function(data){
+			$('.loading').hide();
+			$("#lawtype").html(data);
+		});
+	});
+
+	// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
+	$('form').on('change', "select[name='law_maintype_id']", function() {
+		var law_maintype_id = $(this).val();
+		$('.loading').show();
+		$.get('ajax/get_select_submaintype',{
+			'law_maintype_id' : $(this).val()
+		},function(data){
+			$('.loading').hide();
+			$("#lawsubmaintype").html(data);
+		});
+	});
+});
+</script>
