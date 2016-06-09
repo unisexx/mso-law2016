@@ -50,7 +50,7 @@ class serach {
     $this->m_resultfieldparameter = 'ID SourceCode Headline Highlight Story Reference AttachText';
     $this->m_searchtime=1;
 
-    include 'class.db.php';
+
     $this->setPath("uploads/lawfile/");
     $this->db = new db_w();
     }
@@ -131,7 +131,7 @@ class serach {
       * @date   2009-10-28
       */
     function inject(){
-        include 'nusoap.php';
+        require_once 'nusoap.php';
         $this->web_service = new soapclientx($this->wsdl, true);
         //$this->web_service->getHTTPContentTypeCharset();
         $this->web_service->soap_defencoding = 'utf-8';

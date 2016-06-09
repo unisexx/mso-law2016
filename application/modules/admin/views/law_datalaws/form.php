@@ -446,25 +446,23 @@ $(function() {
 	//----------------------- ฟอร์มหลัก -----------------------------------
 		// เปลี่ยนภาษา
 		// $("[rel=en]").hide();
-// 
+//
 		// $(".lang a").click(function(){
 			// $("[rel=" + $(this).attr("href") + "]").show().siblings().hide();
 			// $(this).closest('li').addClass('active').siblings().removeClass('active');
 			// return false;
 		// });
-		
+
 		$("#law_datalaw_frm").validate({
 		    rules:
 		    {
-		    	name_th:{required: true},
-	        	name_eng:{required: true},
+		    	name_th:{required: true},	        	
 		    	gazette_numerative:{required: true},
 		    	gazete_notice_date:{required: true}
 		    },
 		    messages:
 		    {
 		    	name_th:{required: "กรุณากรอกชื่อกฎหมาย (ไทย)"},
-	        	name_eng:{required: "ชื่อกฎหมาย (อังกฤษ)"},
 		    	gazette_numerative:{required: "กรุณากรอกเล่มที่"},
 		    	gazete_notice_date:{required: "กรุณากรอกวันที่ประกาศในราชกิจจานุเบกษา"}
 		    }
@@ -491,10 +489,10 @@ $(function() {
 				$('.loading').hide();
 				$("#lawsubmaintype").html(data);
 			});
-			
+
 			$("select[name=apply_power_group],select[name=apply_power_id]").val('').attr("disabled", true);
 		});
-		
+
 		// select ประเภทกฎหมายย่อยที่อาศัยอำนาจ
 		$('table').on('change', "select[name='law_submaintype_id']",function(){
 			var law_maintype_id = $("select[name=law_maintype_id]").val();
@@ -507,10 +505,10 @@ $(function() {
 					$("#applypowergroup").html(data);
 				});
 			}
-			
+
 			$("select[name=apply_power_id]").val('').attr("disabled", true);
 		});
-		
+
 		// select กฏหมายที่ต้องการอาศัยอำนาจ
 		$('table').on('change', "select[name='apply_power_group']", function() {
 			$('.loading').show();
@@ -539,7 +537,7 @@ $(function() {
 				$('.loading').hide();
 				$("#lawsubmaintype").html(data);
 			});
-			
+
 			var law_maintype_id = $("select[name=law_maintype_id]").val();
 			var law_submaintype_id = <?=$rs->law_submaintype_id?>;
 			if(law_maintype_id <= 2 && law_submaintype_id > 1 ){
@@ -552,7 +550,7 @@ $(function() {
 					$("#applypowergroup").html(data);
 				});
 			}
-			
+
 			$.get('ajax/get_select_apply_power_id',{
 				'apply_power_group' : <?=$rs->apply_power_group?>,
 				'apply_power_id' : <?=$rs->apply_power_id?>

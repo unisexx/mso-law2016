@@ -14,8 +14,11 @@ class Law_datalaws extends Admin_Controller {
 		if(@$_GET['law_type_id']){$data['rs']->where('law_type_id = '.$_GET['law_type_id']);}
 		if(@$_GET['law_maintype_id']){$data['rs']->where('law_maintype_id = '.$_GET['law_maintype_id']);}
 		if(@$_GET['law_submaintype_id']){$data['rs']->where('law_submaintype_id = '.$_GET['law_submaintype_id']);}
-
-		$data['rs']->order_by('id','desc')->get_page();
+		if(@$_GET['sortDate']){$data['rs']->order_by($_GET['sortDate']);}
+		if(@$_GET['sortName']){$data['rs']->order_by($_GET['sortName']);}
+		if(@!$_GET['sortDate'] && @!$_GET['sortName']){$data['rs']->order_by('id','desc');}
+		
+		$data['rs']->get_page();
 		// $data['rs']->check_last_query();
 		$this->template->build('law_datalaws/index',$data);
 	}
@@ -43,7 +46,10 @@ class Law_datalaws extends Admin_Controller {
 	function save($id=false){
 		if($_POST){
 			$rs = new Law_datalaw($id);
-
+			include 'include/config.inc.php';
+			include 'include/class.db.php';
+			include 'include/nusoap.php';
+			include "include/class.serach.php";
 			// แนบไฟล์เอกสาร ภาษาไทย
 			if($_FILES['filename_th']['name'])
 			{
@@ -71,7 +77,7 @@ class Law_datalaws extends Admin_Controller {
                             "disclaimer"=>"",
                 );
 
-				include 'include/class.serach.php';
+
 				$cSerach = new serach();
 				//var_dump(checkFileType($_POST['filename_th']));
 				if($id>0){
@@ -108,7 +114,7 @@ class Law_datalaws extends Admin_Controller {
                             "disclaimer"=>"",
                 );
 
-				include 'include/class.serach.php';
+				//include 'include/class.serach.php';
 				$cSerach = new serach();
 				//var_dump(checkFileType($_POST['filename_th']));
 				if($id>0){

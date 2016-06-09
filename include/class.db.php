@@ -24,8 +24,7 @@ class db_w {
        * Start Class
        *
        */
-       function __construct() {
-            include 'config.inc.php';
+       function __construct() {            
             $Conf=new Conf();
             $this->dbtype=$Conf->dbtype;
             $this->db=$Conf->db;

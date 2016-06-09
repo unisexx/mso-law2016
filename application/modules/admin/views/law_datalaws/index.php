@@ -16,6 +16,10 @@
 	  <span id="lawsubmaintype">
         <?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes order by id asc'), @$_GET['law_submaintype_id'],'class="form-control" style="width:auto;"','--- เลือกประเภทย่อยกฎหมาย ---');?>
       </span>
+</div>
+<div style="margin-top: 6px;">
+	<?=form_dropdown('sortDate', array('notic_date asc'=>'ก่อน - หลัง','notic_date desc'=>'หลัง - ก่อน'), @$_GET['sortDate'],' class="form-control" id="input-cat-group" style="width:auto;"','--- เรียงตามวัน ---');?>
+	<?=form_dropdown('sortName', array('name_th asc'=>'ก - ฮ','name_th desc'=>'ฮ - ก'), @$_GET['sortName'],' class="form-control" id="input-cat-group" style="width:auto;"','--- เรียงตามตัวอักษร ---');?>
 	<button id="searchCrossLawBtn" type="submit" class="btn btn-info"><img src="themes/admin/images/search.png" width="16" height="16" />Search</button>
 </div>
 </form>
