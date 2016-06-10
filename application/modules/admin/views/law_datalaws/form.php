@@ -43,13 +43,13 @@
             </td>
         </tr>
         <tr>
-          <th>ชื่อกฎหมาย (อังกฤษ)<span class="Txt_red_12"> *</span></th>
+          <th>ชื่อกฎหมาย (อังกฤษ)</th>
           <td>
           	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" name="name_eng" value="<?=str_replace("|"," ",$rs->name_eng)?>" />
             </td>
         </tr>
         <tr>
-          <th>เล่มที่ / ตอน<span class="Txt_red_12"> *</span></th>
+          <th>เล่มที่ / ตอน</th>
           <td>
           	<span class="form-inline"><input type="text" class="form-control" id="exampleInputName7" style="width:100px; margin-right:30px;" name="gazette_numerative" value="<?=$rs->gazette_numerative?>" />
             <input name="gazette_section" value="1" type="radio" <?=$rs->gazette_section==1?"checked":"";?> /> ตอน  
@@ -122,7 +122,8 @@
             <table class="tbSublist tbRelatedSublist">
               <tr>
                 <th style="width:10%">#</th>
-              <th style="width:60%">ชื่อกฎหมาย</th>
+              <th style="width:40%">ชื่อกฎหมาย</th>
+              <th style="width:20%">รายละเอียด</th>
               <th style="width:20%">รูปแบบ</th>
               <th style="width:10%">ลบ</th>
               </tr>
@@ -131,6 +132,7 @@
 			    <tr>
 			    	<td><?=$key+1?></td>
 			    	<td><?=get_law_name($row->law_id_select)?></td>
+			    	<td><?=$row->version_txt?></td>
 			    	<td><?=get_law_version_versiontype_status($row->version_type)?></td>
 			    	<td>
 			    		<input type="hidden" name="version_id[]" value="<?=$row->id?>">
@@ -146,7 +148,7 @@
             </table></td>
         </tr>
         <tr>
-          <th>วันที่ประกาศใช้</th>
+          <th>วันที่ประกาศใช้ <span class="Txt_red_12"> *</span></th>
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
@@ -176,7 +178,7 @@
 		 </td>
         </tr>
         <tr>
-          <th>สถานะการใช้</th>
+          <th>สถานะการใช้ <span class="Txt_red_12"> *</span></th>
           <td>
           	<span><input type="radio" name="status" id="radio" value="1" <?=$rs->status == 1?"checked":"";?> />บังคับใช้ </span>
           	<span><input type="radio" name="status" id="radio2" value="3" <?=$rs->status == 3?"checked":"";?> />อยู่ระหว่างพิจารณา</span>
@@ -456,39 +458,60 @@ $(function() {
 		$("#law_datalaw_frm").validate({
 		    rules:
 		    {
-		    	name_th:{required: true},	        	
-		    	gazette_numerative:{required: true},
-		    	gazete_notice_date:{required: true}
+		    	law_group_id:{required: true},
+		    	law_type_id:{required: true},
+		    	law_maintype_id:{required: true},
+		    	law_submaintype_id:{required: true},
+		    	name_th:{required: true},
+		    	notic_date:{required: true},
+		    	// gazette_numerative:{required: true},
+		    	gazete_notice_date:{required: true},
+		    	status:{required: true}
 		    },
 		    messages:
 		    {
+		    	law_group_id:{required: "กรุณาเลือกกลุ่มกฎหมาย"},
+		    	law_type_id:{required: "กรุณาเลือกหมวดกฎหมาย"},
+		    	law_maintype_id:{required: "กรุณาเลือกประเภทกฎหมาย"},
+		    	law_submaintype_id:{required: "กรุณาเลือกประเภทย่อยกฎหมาย"},
 		    	name_th:{required: "กรุณากรอกชื่อกฎหมาย (ไทย)"},
-		    	gazette_numerative:{required: "กรุณากรอกเล่มที่"},
-		    	gazete_notice_date:{required: "กรุณากรอกวันที่ประกาศในราชกิจจานุเบกษา"}
+		    	notic_date:{required: "กรุณากรอกวันที่ประกาศใช้"},
+		    	// gazette_numerative:{required: "กรุณากรอกเล่มที่"},
+		    	gazete_notice_date:{required: "กรุณากรอกวันที่ประกาศในราชกิจจานุเบกษา"},
+		    	status:{required: "กรุณากรอกสถานะการใช้"}
 		    }
 	    });
 
 		// select กลุ่มกฏหมาย -> หมวดกฏหมาย
 		$('table').on('change', "select[name='law_group_id']", function() {
-			$('.loading').show();
-			$.get('ajax/get_select_lawtype',{
-				'law_group_id' : $(this).val()
-			},function(data){
-				$('.loading').hide();
-				$("#lawtype").html(data);
-			});
+			var law_group_id = $(this).val();
+			// $('.loading').show();
+			if(law_group_id == ""){
+					$("#lawtype").find('select').val('').attr("disabled", true);
+			}else{
+				$.get('ajax/get_select_lawtype',{
+					'law_group_id' : law_group_id
+				},function(data){
+					$('.loading').hide();
+					$("#lawtype").html(data);
+				});
+			}
 		});
 
 		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
 		$('table').on('change', "select[name='law_maintype_id']", function() {
 			var law_maintype_id = $(this).val();
-			$('.loading').show();
-			$.get('ajax/get_select_submaintype',{
-				'law_maintype_id' : $(this).val()
-			},function(data){
-				$('.loading').hide();
-				$("#lawsubmaintype").html(data);
-			});
+			// $('.loading').show();
+			if(law_maintype_id == ""){
+					$("#lawsubmaintype").find('select').val('').attr("disabled", true);
+			}else{
+				$.get('ajax/get_select_submaintype',{
+					'law_maintype_id' : law_maintype_id
+				},function(data){
+					$('.loading').hide();
+					$("#lawsubmaintype").html(data);
+				});
+			}
 
 			$("select[name=apply_power_group],select[name=apply_power_id]").val('').attr("disabled", true);
 		});
@@ -511,20 +534,25 @@ $(function() {
 
 		// select กฏหมายที่ต้องการอาศัยอำนาจ
 		$('table').on('change', "select[name='apply_power_group']", function() {
-			$('.loading').show();
-			$.get('ajax/get_select_apply_power_id',{
-				'apply_power_group' : $(this).val()
-			},function(data){
-				$('.loading').hide();
-				$("#applypowerid").html(data);
-			});
+			// $('.loading').show();
+			var apply_power_group = $(this).val();
+			if(apply_power_group == ""){
+					$("#applypowerid").find('select').val('').attr("disabled", true);
+			}else{
+				$.get('ajax/get_select_apply_power_id',{
+					'apply_power_group' : apply_power_group
+				},function(data){
+					$('.loading').hide();
+					$("#applypowerid").html(data);
+				});
+			}
 		});
 
 		//ถ้าเป็นฟอร์มแก้ไขให้ select หมวดกฏหมาย, ประเภทย่อยกฏหมาย, ประเภทกฎหมายย่อยที่อาศัยอำนาจ แบบ auto
 		<?php if(@$rs->id != ""):?>
 			$.get('ajax/get_select_lawtype',{
 				'law_group_id' : $('select[name=law_group_id]').val(),
-				'law_type_id' : <?=$rs->law_type_id?>
+				'law_type_id' : '<?=@$rs->law_type_id?>'
 			},function(data){
 				$('.loading').hide();
 				$("#lawtype").html(data);
@@ -532,19 +560,22 @@ $(function() {
 
 			$.get('ajax/get_select_submaintype',{
 				'law_maintype_id' : $('select[name=law_maintype_id]').val(),
-				'law_submaintype_id' : <?=$rs->law_submaintype_id?>
+				'law_submaintype_id' : '<?=@$rs->law_submaintype_id?>'
 			},function(data){
 				$('.loading').hide();
 				$("#lawsubmaintype").html(data);
 			});
 
 			var law_maintype_id = $("select[name=law_maintype_id]").val();
-			var law_submaintype_id = <?=$rs->law_submaintype_id?>;
+			var law_submaintype_id = '<?=$rs->law_submaintype_id?>';
+			var apply_power_group = '<?=$rs->apply_power_group?>';
+			var apply_power_id = '<?=$rs->apply_power_id?>';
+			
 			if(law_maintype_id <= 2 && law_submaintype_id > 1 ){
 				$('.loading').show();
 				$.get('ajax/get_select_power_group',{
 					'law_submaintype_id' : law_submaintype_id,
-					'apply_power_group' : <?=$rs->apply_power_group?>
+					'apply_power_group' : apply_power_group
 				},function(data){
 					$('.loading').hide();
 					$("#applypowergroup").html(data);
@@ -552,8 +583,8 @@ $(function() {
 			}
 
 			$.get('ajax/get_select_apply_power_id',{
-				'apply_power_group' : <?=$rs->apply_power_group?>,
-				'apply_power_id' : <?=$rs->apply_power_id?>
+				'apply_power_group' : apply_power_group,
+				'apply_power_id' : apply_power_id
 			},function(data){
 				$('.loading').hide();
 				$("#applypowerid").html(data);

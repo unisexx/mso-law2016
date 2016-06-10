@@ -8,13 +8,17 @@
   <div>
 	  <?=form_dropdown('law_group_id',get_option('id','name','law_groups order by id asc'),@$_GET['law_group_id'],'class="form-control" style="width:auto;"','-- ทุกกลุ่มกฎหมาย --');?>
 	  <span id="lawtype">
-    	<?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" id="input-cat-group" style="width:auto;"','--- เลือกหมวดกฎหมาย ---');?>
+    	<select name="select3" class="form-control" style="width:auto;" disabled="disabled">
+          <option selected="selected">-- เลือกหมวดกฎหมาย --</option>
+        </select>
     </span>
   </div>
   <div style="margin-top: 6px;">
 	   <?=form_dropdown('law_maintype_id',get_option('id','typeName','law_maintypes order by typeName asc'),@$_GET['law_maintype_id'],'class="form-control" style="width:auto;"','-- ทุกประเภทกฎหมาย --');?>
 	  <span id="lawsubmaintype">
-        <?=form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes order by id asc'), @$_GET['law_submaintype_id'],'class="form-control" style="width:auto;"','--- เลือกประเภทย่อยกฎหมาย ---');?>
+        <select name="select5" class="form-control" style="width:auto;" disabled="disabled">
+          <option>-- เลือกประเภทย่อยกฎหมาย --</option>
+        </select>
       </span>
 </div>
 <div style="margin-top: 6px;">
@@ -61,26 +65,53 @@
 <script>
 $(document).ready(function(){
 	// select กลุ่มกฏหมาย -> หมวดกฏหมาย
-	$('form').on('change', "select[name='law_group_id']", function() {
-		$('.loading').show();
-		$.get('ajax/get_select_lawtype',{
-			'law_group_id' : $(this).val()
-		},function(data){
-			$('.loading').hide();
-			$("#lawtype").html(data);
+		$('#searchBox').on('change', "select[name='law_group_id']", function() {
+			var law_group_id = $(this).val();
+			// $('.loading').show();
+			if(law_group_id == ""){
+					$("#lawtype").find('select').val('').attr("disabled", true);
+			}else{
+				$.get('ajax/get_select_lawtype',{
+					'law_group_id' : law_group_id
+				},function(data){
+					$('.loading').hide();
+					$("#lawtype").html(data);
+				});
+			}
 		});
-	});
 
-	// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
-	$('form').on('change', "select[name='law_maintype_id']", function() {
-		var law_maintype_id = $(this).val();
-		$('.loading').show();
-		$.get('ajax/get_select_submaintype',{
-			'law_maintype_id' : $(this).val()
-		},function(data){
-			$('.loading').hide();
-			$("#lawsubmaintype").html(data);
+		// select ประเภทกฏหมาย -> ประเภทย่อยกฏหมาย
+		$('#searchBox').on('change', "select[name='law_maintype_id']", function() {
+			var law_maintype_id = $(this).val();
+			// $('.loading').show();
+			if(law_maintype_id == ""){
+					$("#lawsubmaintype").find('select').val('').attr("disabled", true);
+			}else{
+				$.get('ajax/get_select_submaintype',{
+					'law_maintype_id' : law_maintype_id
+				},function(data){
+					$('.loading').hide();
+					$("#lawsubmaintype").html(data);
+				});
+			}
 		});
-	});
+		
+		<?php if(@$_GET):?>
+			$.get('ajax/get_select_lawtype',{
+				'law_group_id' : $('select[name=law_group_id]').val(),
+				'law_type_id' : '<?=@$_GET['law_type_id']?>'
+			},function(data){
+				$('.loading').hide();
+				$("#lawtype").html(data);
+			});
+
+			$.get('ajax/get_select_submaintype',{
+				'law_maintype_id' : $('select[name=law_maintype_id]').val(),
+				'law_submaintype_id' : '<?=@$_GET['law_submaintype_id']?>'
+			},function(data){
+				$('.loading').hide();
+				$("#lawsubmaintype").html(data);
+			});
+		<?php endif;?>
 });
 </script>

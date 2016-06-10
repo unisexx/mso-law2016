@@ -10,7 +10,7 @@
         <td class="td-poll"><?=$pollTitleArray[$row->score]?></td>
         <td>
           <div class="percent">
-            <div style="margin-left:-6px; padding-left:35px; width:<?=$row->percentage?>%;background-color:#e9e7e7;"><?=$row->percentage?>%</div>
+            <div style="margin-left:-6px; width:<?=$row->percentage?>%;background-color:#e9e7e7;"><span style="margin-left: 5px;"><?=$row->percentage?>%</span></div>
           </div>
         </td>
       </tr>

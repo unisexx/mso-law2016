@@ -23,7 +23,12 @@
     <br>
     <input class="form-control" type="text" name="answer_who" placeholder="ชื่อ">
     <br>
-    <input type="hidden" name="law_quiz_id" value="<?=$quiz->id?>">
+    <img src="users/captcha" />
+    <Br>
+    <input class="form-control" type="text" name="captcha" id="inputCaptcha" placeholder="รหัสป้องกันสแปม" style="width:125px;">
+    <Br>
+    	<input type="hidden" name="law_quiz_id" value="<?=$quiz->id?>">
+	  <button type="submit" class="btn btn-info">ตั้งคำถาม</button>
     <input class="btn btn-info" type="submit" value="ตอบคำถาม">
   </form>
 </div>
@@ -34,12 +39,22 @@ $(document).ready(function(){
 	    rules:
 	    {
 	    	answer_detail:{required: true},
-        answer_who:{required: true}
+        	answer_who:{required: true},
+        	captcha:
+	        {
+	            required: true,
+	            remote: "users/check_captcha"
+	        }
 	    },
 	    messages:
 	    {
-	    	answer_detail:{required: "กรุณากรอกรายละเอียด"},
-        answer_who:{required: "กรุณากรอกชื่อ"}
+	    	answer_detail:{required: "ฟิลด์นี้ห้ามเป็นค่าว่าง"},
+        	answer_who:{required: "ฟิลด์นี้ห้ามเป็นค่าว่าง"},
+        	captcha:
+	        {
+	            required: "กรุณากรอกตัวอักษรตัวที่เห็นในภาพ",
+	            remote: "กรุณากรอกตัวอักษรให้ตรงกับภาพ"
+	        }
 	    }
     });
 });

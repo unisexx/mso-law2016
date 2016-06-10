@@ -65,7 +65,7 @@ $(document).ready(function(){
 			var lawrelatedTypeValue = $(this).closest('tr').find('select[name=relatedType] option:selected').val();
 			var lawDetail = $(this).closest('tr').find('textarea').val();
 			var lawVersionFilename = $(this).closest('tr').find('input[name=version_filename]').val();
-			$('.tbRelatedSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawrelatedTypeTxt+'</td><td><input type="hidden" name="law_id_select[]" value="'+lawId+'"><input type="hidden" name="version_type[]" value="'+lawrelatedTypeValue+'"><input type="hidden" name="version_txt[]" value="'+lawDetail+'"><input type="hidden" name="version_filename[]" value="'+lawVersionFilename+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
+			$('.tbRelatedSublist tr:last').after('<tr><td></td><td>'+lawName+'</td><td>'+lawDetail+'</td><td>'+lawrelatedTypeTxt+'</td><td><input type="hidden" name="law_id_select[]" value="'+lawId+'"><input type="hidden" name="version_type[]" value="'+lawrelatedTypeValue+'"><input type="hidden" name="version_txt[]" value="'+lawDetail+'"><input type="hidden" name="version_filename[]" value="'+lawVersionFilename+'"><img class="delLawBtn" src="themes/admin/images/remove.png" alt="" width="32" height="32" class="vtip" title="ลบรายการนี้"   style="cursor:pointer;"/></td></tr>');
 		});
 		
 		// เคลียร์ฟอร์มค้นหา

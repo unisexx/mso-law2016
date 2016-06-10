@@ -50,6 +50,7 @@ class Law_datalaws extends Admin_Controller {
 			include 'include/class.db.php';
 			include 'include/nusoap.php';
 			include "include/class.serach.php";
+			
 			// แนบไฟล์เอกสาร ภาษาไทย
 			if($_FILES['filename_th']['name'])
 			{
@@ -128,6 +129,14 @@ class Law_datalaws extends Admin_Controller {
 			$_POST['notic_date'] = Date2DB($_POST['notic_date']);
 			$_POST['import_date'] = Date2DB($_POST['import_date']);
 			$_POST['use_date'] = Date2DB($_POST['use_date']);
+			
+			if($id){
+				$_POST['updated_user_id'] = user_login()->id;
+				$_POST['updated_user_group_id'] = user_login()->user_group_id;
+			}else{
+				$_POST['created_user_id'] = user_login()->id;
+				$_POST['created_user_group_id'] = user_login()->user_group_id;
+			}
 
 			$rs->from_array($_POST);
 			$rs->save();

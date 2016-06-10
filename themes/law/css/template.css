@@ -158,7 +158,7 @@ label.error{color:#F44336;}
 
 
 .download{color:white; float:left; width:50%; }
-	.text-download{background-color:#21b7c6;  float:left; padding:25px; width:50%; }
+	.text-download{background-color:#21b7c6;  float:left; padding:25px; width:50%; min-height:210px;}
 	.text-download ul{ padding:0; margin:0;}
 	.text-download ul li { padding:0; margin:0;list-style: square url("../images/sqpurple.gif"); margin-left:15px; padding-top:10px;}
 	.text-download ul li a{ color:white; }
