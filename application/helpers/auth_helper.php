@@ -5,7 +5,8 @@ function login($username,$password)
 	// $password = md5(sha1($password."secret"));
 	$CI =& get_instance();
 	$user = new Sys_user();
-	$user->where(array('username'=>$username,'password'=>$password))->get();
+	// $user->where(array('username'=>$username,'password'=>$password))->get();
+	$user->where("username ='".$username."' AND password='".$password."' ")->get();
 	// $user->check_last_query();
 	if($user->exists())
 	{

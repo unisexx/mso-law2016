@@ -38,6 +38,7 @@
          </li>-->
       </ul>
    </li>
+   <li><a href='users/logout'><span>ออกจากระบบ</span></a></li>
 </ul>
 </div>
 

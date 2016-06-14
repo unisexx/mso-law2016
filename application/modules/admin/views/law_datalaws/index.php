@@ -55,7 +55,11 @@
 	  <td><?=get_law_group_text($row->id)?></td>
 	  <!-- <td>-</td> -->
 	  <td><?=get_datalaw_status($row->status)?></td>
-	  <td><a href="admin/law_datalaws/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_datalaws/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
+	  <td>
+	  	<?if((user_login()->user_group_id == 1) || (user_login()->user_group_id == $row->created_user_group_id)):?>
+	  	<a href="admin/law_datalaws/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/law_datalaws/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a>
+	  	<?endif;?>
+	  </td>
   </tr>
   <?endforeach;?>
 </table>

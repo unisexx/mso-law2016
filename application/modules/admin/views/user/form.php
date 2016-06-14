@@ -33,10 +33,10 @@
 	  	<?=form_dropdown('user_group_id',get_option('id','name','user_groups order by id asc'),@$rs->user_group_id,'id="group" class="form-control" style="width:auto;" onchange="frm=this.form; check_permit();"','-- เลือกสังกัด --');?>
 	</td>
 	</tr>
-	<tr>
+	<!-- <tr>
 	  <th>สิทธ์การใช้งาน</th>
 	  <td id="premission2"><input name="textarea6" type="text" disabled="disabled" class="form-control" style="width:300px;" value=""/></td>
-	</tr>
+	</tr> -->
 	<tr>
 	  <th>อีเมล์<span class="Txt_red_12"> *</span></th>
 	  <td><input name="email" type="text" class="form-control" id="textarea2" value="<?=$rs->email?>" style="width:300px;"/></td>
