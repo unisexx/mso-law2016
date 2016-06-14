@@ -218,6 +218,30 @@ if(!function_exists('file_icon'))
 	}
 }
 
+if(!function_exists('file_icon_th'))
+{
+	function file_icon_th($file){
+	    $ext = pathinfo($file, PATHINFO_EXTENSION);
+		if($ext == 'doc'){
+			return '<img src="themes/law/images/word_th.png">';
+		}else{
+			return '<img src="themes/law/images/pdf_th.png">';
+		}
+	}
+}
+
+if(!function_exists('file_icon_en'))
+{
+	function file_icon_en($file){
+	    $ext = pathinfo($file, PATHINFO_EXTENSION);
+		if($ext == 'doc'){
+			return '<img src="themes/law/images/word_en.png">';
+		}else{
+			return '<img src="themes/law/images/pdf_en.png">';
+		}
+	}
+}
+
 if(!function_exists('get_law_group_text'))
 {
 	function get_law_group_text($id){
