@@ -304,4 +304,8 @@ if(!function_exists('getIMType'))
         }   
     }
 }
+
+// function user_logs(){
+	// $rs = new User_log();
+// }
 ?>

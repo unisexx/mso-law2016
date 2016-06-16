@@ -25,7 +25,6 @@
   <th align="left">สังกัด</th>
   <th align="left">เบอร์โทร</th>
   <th align="left">อีเมล์</th>
-  <th align="left">สิทธิ์การใช้งาน</th>
   <th align="left">จัดการ</th>
   </tr>
   <?foreach($rs as $key=>$row):?>
@@ -36,7 +35,6 @@
 	  <td><?=$row->user_group->name?></td>
 	  <td><?=$row->tel?></td>
 	  <td><?=$row->email?></td>
-	  <td>ผู้ดูแลระบบ</td>
 	  <td><a href="admin/user/form/<?=$row->id?>"><img src="themes/admin/images/edit.png" width="24" height="24" style="margin-right:10px;" class="vtip" title="แก้ไขรายการนี้" /></a> <a href="admin/user/delete/<?=$row->id?>"><img src="themes/admin/images/remove.png" width="32" height="32" class="vtip" title="ลบรายการนี้"  onclick="return confirm('<?php echo lang('notice_confirm_delete');?>')" /></a></td>
   </tr>
   <?endforeach;?>

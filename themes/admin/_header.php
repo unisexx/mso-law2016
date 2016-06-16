@@ -8,13 +8,13 @@
    <li><a href='admin/law_committees'><span>คณะกรรมการ</span></a></li>
    <li class='has-sub'><a href='javascript:void(0)' style="cursor:default;"><span>รายงาน</span></a>
    		<ul>
-        	<li><a href='#'><span>รายงานสถิติจำนวนผู้เข้าชม</span></a></li>
-        	<li><a href='#'><span>รายงานสถิติข้อมูลคำค้น</span></a></li>
-            <li><a href='#'><span>รายงานสถิติการใช้ข้อมูล(ดาวน์โหลด)</span></a></li>
-            <li><a href='#'><span>รายงานการใช้งานระบบของผู้นำเข้ากฎหมาย</span></a></li>
-            <li><a href='#'><span>รายงานแสดงจำนวนกฎหมาย	</span></a></li>
-            <li><a href='#'><span>รายงานการใช้งานระบบบริหารจัดการผู้ใช้	</span></a></li>
-            <li><a href='#'><span>รายงานจำนวนผู้ใช้งานระบบ</span></a></li>
+        	<li><a href='admin/report/report_1'><span>รายงานสถิติจำนวนผู้เข้าชม</span></a></li>
+        	<li><a href='admin/report/report_2'><span>รายงานสถิติข้อมูลคำค้น</span></a></li>
+            <li><a href='admin/report/report_3'><span>รายงานสถิติการใช้ข้อมูล(ดาวน์โหลด)</span></a></li>
+            <li><a href='admin/report/report_4'><span>รายงานการใช้งานระบบของผู้นำเข้ากฎหมาย</span></a></li>
+            <li><a href='admin/report/report_5'><span>รายงานแสดงจำนวนกฎหมาย	</span></a></li>
+            <li><a href='admin/report/report_6'><span>รายงานการใช้งานระบบบริหารจัดการผู้ใช้	</span></a></li>
+            <li><a href='admin/report/report_7'><span>รายงานจำนวนผู้ใช้งานระบบ</span></a></li>
         </ul>
    </li>
 
