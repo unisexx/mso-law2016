@@ -305,7 +305,15 @@ if(!function_exists('getIMType'))
     }
 }
 
-// function user_logs(){
-	// $rs = new User_log();
-// }
+function user_logs($module=false,$action=false,$ref=false){
+	$rs = new User_log();
+	$data['module'] =  $module;
+	$data['action'] = $action;
+	$data['ref'] = $ref;
+	$data['id_login'] = user_login()->id;
+	$data['username'] = user_login()->username;
+	$data['ip'] = $_SERVER['REMOTE_ADDR'];
+	$rs->from_array($data);
+	$rs->save();
+}
 ?>
