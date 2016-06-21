@@ -1,6 +1,7 @@
 <h3>รายงานแสดงจำนวนกฏหมาย</h3>
 
 <h4>แยกตามกลุ่มกฏหมาย</h4>
+
 <!-- <div id="search">
 <div id="searchBox">
 <form class="form-inline" method="get" action'admin/law_plans'>
@@ -21,6 +22,5 @@
   <th>ดาวน์โหลด</th>
   <th>จัดการ</th>
   </tr>
-  
 </table>
 -->
