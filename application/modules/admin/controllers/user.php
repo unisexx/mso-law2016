@@ -35,6 +35,12 @@ class User extends Admin_Controller {
 			$rs->from_array($_POST);
 			$rs->save();
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
+			
+			if($id != ""){
+				user_logs('user','แก้ไข้บุคลากร '.$_POST['username'],$_POST['current']);
+			}else{
+				user_logs('user','เพิ่มบุคลากร '.$_POST['username'],$_POST['current']);
+			}
 		}
 		redirect('admin/user');
 	}
@@ -42,6 +48,9 @@ class User extends Admin_Controller {
 	function delete($id){
 		if($id){
 			$rs = new Sys_user($id);
+			
+			user_logs('user','ลบบุคลากร '.$rs->username,current_url());
+			
 			$rs->delete();
 			set_notify('success', 'ลบข้อมูลเรียบร้อย');
 		}

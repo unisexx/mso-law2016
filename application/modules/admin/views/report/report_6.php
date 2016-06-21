@@ -9,6 +9,8 @@
 </div>
 </div>
 
+<?php echo $pagination?>
+
 <table class="tblist">
 	<tr>
 	  <th align="left">ลำดับ</th>
@@ -21,11 +23,13 @@
 	<?foreach($rs as $key=>$row):?>
 	<tr class="<?=alternator('','odd');?>">
 		<td><?=($key+1)?></td>
-		<td><?=$row->time?></td>
+		<td><?=mysql_to_th($row->created,'s',true)?></td>
 		<td><?=$row->username?></td>
-		<td></td>
+		<td><?=$row->ip?></td>
 		<td><?=$row->action?></td>
 		<td><?=$row->ref?></td>
 	</tr>
 	<?endforeach;?>
 </table>
+
+<?php echo $pagination?>

@@ -15,9 +15,16 @@ class Report extends Admin_Controller {
 	// รายงานการใช้งานระบบบริหารจัดการผู้ใช้
 	function report_6()
 	{
-		$data['rs'] = new User_log();
+		if(@$_GET['user_group_id']){ $condition = " where sys_users.user_group_id = ".$_GET['user_group_id']; }
+		$sql = "SELECT
+				user_logs.*
+				FROM
+				user_logs
+				LEFT JOIN sys_users ON user_logs.id_login = sys_users.id ".@$condition;
+		$user_log = new User_log();
+        $data['rs'] = $user_log->sql_page($sql, 20);
+		$data['pagination'] = $user_log->sql_pagination;
 		
-		$data['rs']->order_by('id','desc')->get();
 		$this->template->build('report/report_6',$data);
 	}
 	
