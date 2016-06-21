@@ -12,6 +12,12 @@ class Report extends Admin_Controller {
 		$this->template->build('report/report_1');
 	}
 	
+	// รายงานแสดงจำนวนกฏหมาย
+	function report_5()
+	{
+		$this->template->build('report/report_5');
+	}
+	
 	// รายงานการใช้งานระบบบริหารจัดการผู้ใช้
 	function report_6()
 	{
