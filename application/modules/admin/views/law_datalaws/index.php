@@ -40,8 +40,21 @@
 <table class="tblist">
 <tr>
   <th>#</th>
-  <th>วันที่ประกาศใช้</th>
-  <th width="40%">ชื่อกฎหมาย</th>
+  <th>
+  	<? $symbol = count($_GET)?'&':'?';?>
+  	<?if(@$_GET['sortDate'] == 'notic_date asc'):?>
+  	<a href="<?=url_current();?><?=$symbol?>sortDate=notic_date+desc">วันที่ประกาศใช้ <i class="fa fa-sort" aria-hidden="true"></i></a>
+  	<?else:?>
+  	<a href="<?=url_current();?><?=$symbol?>sortDate=notic_date+asc">วันที่ประกาศใช้ <i class="fa fa-sort" aria-hidden="true"></i></a>
+  	<?endif;?>
+  </th>
+  <th width="40%">
+  	<?if(@$_GET['sortName'] == 'name_th asc'):?>
+  	<a href="<?=url_current();?><?=$symbol?>sortName=name_th+desc">ชื่อกฎหมาย <i class="fa fa-sort" aria-hidden="true"></i></a>
+  	<?else:?>
+  	<a href="<?=url_current();?><?=$symbol?>sortName=name_th+asc">ชื่อกฎหมาย <i class="fa fa-sort" aria-hidden="true"></i></a>
+  	<?endif;?>
+  </th>
   <th width="25%">หมวดกฎหมาย</th>
   <!-- <th>กฎหมายที่เกี่ยวข้อง</th> -->
   <th>สถานะ</th>

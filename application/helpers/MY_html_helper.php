@@ -305,10 +305,10 @@ if(!function_exists('getIMType'))
     }
 }
 
-// function current_url(){
-	// $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	// return $actual_link;
-// }
+function url_current(){
+	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	return $actual_link;
+}
 
 function user_logs($module=false,$action=false,$ref=false){
 	$rs = new User_log();
