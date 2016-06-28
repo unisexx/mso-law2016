@@ -31,7 +31,7 @@
 				<div>ประเภทกฎหมายย่อยอาศัยอำนาจ  :  <?=$rs->apply_power_group != ""? get_law_submaintype_name($rs->apply_power_group) : '-' ;?></div>
 				<div>อาศัยอำนาจกฎหมาย  : 
 					<?if(@$rs->apply_power_id != ""):?>
-						<?=get_law_name($rs->apply_power_id,'link');?>
+						<?=@get_law_name($rs->apply_power_id,'link');?>
 					<?else:?>
 						-
 					<?endif;?>
