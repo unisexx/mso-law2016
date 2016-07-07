@@ -241,6 +241,12 @@ class Law_datalaws extends Admin_Controller {
 
 
 			set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
+			
+			if($id != ""){
+				user_logs('law_datalaws','แก้ไข้กฏหมาย '.$_POST['name_th'],$_POST['current']);
+			}else{
+				user_logs('law_datalaws','เพิ่มกฏหมาย '.$_POST['name_th'],$_POST['current']);
+			}
 		}
 		// redirect($_SERVER['HTTP_REFERER']);
 		redirect('admin/law_datalaws');
@@ -249,6 +255,9 @@ class Law_datalaws extends Admin_Controller {
 	function delete($id){
 		if($id){
 			$rs = new Law_datalaw($id);
+			
+			user_logs('law_datalaws','ลบกฏหมาย '.$rs->name_th,current_url());
+			
 			$rs->delete();
 			set_notify('success', 'ลบข้อมูลเรียบร้อย');
 		}
