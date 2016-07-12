@@ -12,6 +12,35 @@ class Report extends Admin_Controller {
 		$this->template->build('report/report_1');
 	}
 	
+	// รายงานสถิติการใช้ข้อมูล (download)
+	function report_3(){
+		$condition = " 1=1 ";
+		
+		if(@$_GET['s_date'] != "" and $_GET['e_date'] == ""){ $condition .= " and (law_downloads.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date('Y-m-d')."') "; }
+		
+		if(@$_GET['s_date'] == "" and $_GET['e_date'] != ""){ $condition .= " and (law_downloads.created < '".Date2DB($_GET['e_date'])."') "; }
+		
+		if(@$_GET['s_date'] != "" and $_GET['e_date'] != ""){ $condition .= " and (law_downloads.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date2DB($_GET['e_date'])."') "; }
+		
+		$sql = "SELECT
+					law_datalaws.name_th,
+					law_downloads.filename,
+					Count(law_downloads.filename) AS total
+				FROM
+					law_downloads
+				INNER JOIN law_datalaws ON law_downloads.law_datalaw_id = law_datalaws.id
+				WHERE ".@$condition."
+				GROUP BY
+					filename
+				ORDER BY
+					total DESC";
+		$rs = new Law_download();
+        $data['rs'] = $rs->sql_page($sql, 20);
+		$data['pagination'] = $rs->sql_pagination;
+		
+		$this->template->build('report/report_3',$data);
+	}
+	
 	// รายงานการใช้งานระบบของผู้นำเข้ากฎหมาย
 	function report_4()
 	{
