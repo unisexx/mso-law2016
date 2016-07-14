@@ -82,7 +82,8 @@ class Law extends Public_Controller {
         $this->load->helper('file');
         $media->file = 'http://law.m-society.go.th/law2016/'.$path;
         $user_type = $this->session->userdata('id') != '' ? 2 : 1;
-        $this->db->query("INSERT INTO law_download (filename,time_download,user_download)values('".$filename."','".date("Y-m-d H:i:s")."',".$user_type.")");
+		$ip = $_SERVER['REMOTE_ADDR'];
+        $this->db->query("INSERT INTO law_downloads (law_datalaw_id,filename,time_download,user_download,created,ip)values(".$law_id.",'".$filename."','".date("Y-m-d H:i:s")."',".$user_type.",'".date("Y-m-d H:i:s")."','".$ip."')");
 
         if(!get_mime_by_extension($media->file))
         {

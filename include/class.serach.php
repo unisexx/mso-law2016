@@ -795,6 +795,20 @@ class serach {
         }
     }
 
+
+    // fix for api
+    var $api_session;
+    var $api_ip;
+    var $api_keyword;
+    function getApiSearchValue() {
+        $data = array(
+            'session_id' => $this->api_session,
+            'ip' => $this->api_ip,
+            'keyword' => $this->api_keyword
+        );
+        return $data;
+    }
+
     /**
       * @desc  เพิ่มข้อมูล search ลงในตาราง temp_law
       * @param mixed $keyword
@@ -808,6 +822,11 @@ class serach {
         $time = date("Y/m/d : H/i/s");
         $time_session = date("H/i/s",time()-3600);
         $day_session = date("Y/m/d");
+
+        // fix for api
+        $this->api_session = $sess;
+        $this->api_ip = $ipp;
+        $this->api_keyword = $keyword;
 
         $sql_chk = "select * from temp_law where replace(substr(time,14,8),'/','') < replace('$time_session','/','')";
         $countChk = $this->db->quick_num($sql_chk);

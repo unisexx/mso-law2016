@@ -48,7 +48,7 @@ define('LAW_OVSK','law_overlap_or_skip');
 define('LAW_OPTIONFILE','law_optionfile');
 define('LAW_OPTIONINLAW','law_optioninlaw');
 define('LAW_VERSION','law_version');
-define('LAW_DOWNLOAD','law_download');
+define('LAW_DOWNLOAD','law_downloads');
 define('LAW_LOG','law_log');
 define('LAW_SEARCHLOG','law_searchlog');
 define('LAW_POLL','law_poll');
