@@ -13,6 +13,8 @@ class Law_Search extends Public_Controller{
 		$next = @$_GET['next'];
 		$html = '';
 		if($tools == "b"){
+				include 'include/config.inc.php';
+				include 'include/class.db.php';
         include "include/class.serach.php";
         $cSearch = new serach();
         if(@$todo == ""){
@@ -34,6 +36,13 @@ class Law_Search extends Public_Controller{
         $htmlSearch = $html;
     }
 		$data['htmlSearch'] = $htmlSearch;
+		
+		
+		// save law_searchlog
+		$user_type = $this->session->userdata('id') != '' ? 2 : 1;
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$this->db->query("INSERT INTO law_searchlog (keyword,keytime,keyuser,created,ip)values('".$searchtext."','".date("Y-m-d H-i-s")."',".$user_type.",'".date("Y-m-d H:i:s")."','".$ip."')");
+		
 		$this->template->build('index',$data);
 	}
 }

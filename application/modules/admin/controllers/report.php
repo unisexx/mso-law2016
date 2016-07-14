@@ -12,15 +12,54 @@ class Report extends Admin_Controller {
 		$this->template->build('report/report_1');
 	}
 	
+	// รายงานสถิติข้อมูลคำค้น
+	function report_2(){
+		//convert date function
+		// $sql = "select id, keytime from law_searchlog order by id asc";
+		// $rs = $this->db->query($sql)->result_array();
+		// foreach($rs as $row){
+			// $exp = explode(" ", $row['keytime']);
+			// $date = $exp[0];
+			// $time = str_replace("-",":",$exp[1]);
+			// $newDateTime = $date." ".$time;
+// 			
+			// $this->db->query("UPDATE law_searchlog SET created = '".$newDateTime."' where id = ".$row['id']);
+		// }
+		
+		$condition = " 1=1 ";
+		
+		if(@$_GET['s_date'] != "" and @$_GET['e_date'] == ""){ $condition .= " and (law_searchlog.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date('Y-m-d')."') "; }
+		
+		if(@$_GET['s_date'] == "" and @$_GET['e_date'] != ""){ $condition .= " and (law_searchlog.created < '".Date2DB($_GET['e_date'])."') "; }
+		
+		if(@$_GET['s_date'] != "" and @$_GET['e_date'] != ""){ $condition .= " and (law_searchlog.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date2DB($_GET['e_date'])."') "; }
+		
+		$sql = "SELECT
+					count(id) AS total,
+					keyword
+				FROM
+					law_searchlog
+				WHERE ".@$condition." and keyword <> ''
+				GROUP BY
+					keyword
+				ORDER BY
+					total DESC";
+		$rs = new Law_download();
+        $data['rs'] = $rs->sql_page($sql, 20);
+		$data['pagination'] = $rs->sql_pagination;
+		
+		$this->template->build('report/report_2',$data);
+	}
+	
 	// รายงานสถิติการใช้ข้อมูล (download)
 	function report_3(){
 		$condition = " 1=1 ";
 		
-		if(@$_GET['s_date'] != "" and $_GET['e_date'] == ""){ $condition .= " and (law_downloads.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date('Y-m-d')."') "; }
+		if(@$_GET['s_date'] != "" and @$_GET['e_date'] == ""){ $condition .= " and (law_downloads.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date('Y-m-d')."') "; }
 		
-		if(@$_GET['s_date'] == "" and $_GET['e_date'] != ""){ $condition .= " and (law_downloads.created < '".Date2DB($_GET['e_date'])."') "; }
+		if(@$_GET['s_date'] == "" and @$_GET['e_date'] != ""){ $condition .= " and (law_downloads.created < '".Date2DB($_GET['e_date'])."') "; }
 		
-		if(@$_GET['s_date'] != "" and $_GET['e_date'] != ""){ $condition .= " and (law_downloads.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date2DB($_GET['e_date'])."') "; }
+		if(@$_GET['s_date'] != "" and @$_GET['e_date'] != ""){ $condition .= " and (law_downloads.created BETWEEN '".Date2DB($_GET['s_date'])."' AND '".Date2DB($_GET['e_date'])."') "; }
 		
 		$sql = "SELECT
 					law_datalaws.name_th,
