@@ -15,6 +15,11 @@
 	font-style: normal;
 }
 
+body{
+	color: #000000;
+	background-color: #ffffff;
+}
+
 /*:focus {outline: 0;}*/
 label.error{color:#F44336;}
 

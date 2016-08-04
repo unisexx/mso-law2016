@@ -13,24 +13,24 @@
   <div class="menu-textsize">
     <ul class="c">
       <li>
-        <a href="#">&nbsp;<img src="themes/law/images/c1.png" width="19" height="20">&nbsp;</a>
+        <a rel="themes/demo-law-white/css/" href="#">&nbsp;<img src="themes/law/images/c1.png" width="19" height="20">&nbsp;</a>
       </li>
       <li>
-        <a href="#">&nbsp;<img src="themes/law/images/c2.png" width="21" height="22">&nbsp;</a>
+        <a rel="themes/law/css/" href="#">&nbsp;<img src="themes/law/images/c2.png" width="21" height="22">&nbsp;</a>
       </li>
       <li>
-        <a href="#">&nbsp;<img src="themes/law/images/c3.png" width="19" height="20">&nbsp;</a>
+        <a rel="themes/demo-law-yellow/css/" href="#">&nbsp;<img src="themes/law/images/c3.png" width="19" height="20">&nbsp;</a>
       </li>
     </ul>
     <ul class="c">
       <li>
-        <a href="#"><img src="themes/law/images/a1.png" width="24" height="11"></a>
+        <a rel="14" href="#"><img src="themes/law/images/a1.png" width="24" height="11"></a>
       </li>
       <li>
-        <a href="#"><img src="themes/law/images/a2.png" width="28" height="15"></a>
+        <a rel="20" href="#"><img src="themes/law/images/a2.png" width="28" height="15"></a>
       </li>
       <li>
-        <a href="#"><img src="themes/law/images/a3.png" width="26" height="14"></a>
+        <a rel="30" href="#"><img src="themes/law/images/a3.png" width="26" height="14"></a>
       </li>
     </ul>
     <div class="clearfix">&nbsp;</div>

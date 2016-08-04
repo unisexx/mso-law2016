@@ -1089,8 +1089,8 @@ body {
   font-family: Lato;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #000000;
-  background-color: #ffffff;
+  /*color: #000000;
+  background-color: #ffffff;*/
 }
 input,
 button,
