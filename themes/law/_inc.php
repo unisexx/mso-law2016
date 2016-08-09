@@ -22,6 +22,7 @@ jQuery(document).ready(function($){
 </script>
 <script>
 $(document).ready(function() { 
+	// เปลี่ยนธีม
 	if(Cookies.get('css')) {
 		var $this = Cookies.get('css');
 		var webCssPath = $this+'template.css';
@@ -31,7 +32,7 @@ $(document).ready(function() {
 		$("#bootstrap_themes").attr("href",bootstrapCssPath);
 	}
 	
-	$("ul.c li a").click(function() { 
+	$("ul.ulTheme li a").click(function() { 
 		var $this = $(this).attr('rel');
 		var webCssPath = $this+'template.css';
 		var bootstrapCssPath = $this+'bootstrap.css';
@@ -41,6 +42,35 @@ $(document).ready(function() {
 		
 		//set cookie
 		Cookies.set('css', $this, { expires: 365 });
+		
+		return false;
+	});
+	
+	// ขนาดตัวอักษร
+	var ChangeElement = $('.filter,#news-law,#cat-group,.title-law1,.title-filter,.td-line a,#webboard,#tb-plan tr,tbody,.text-muted,.tb-result td');
+	if(Cookies.get('front')) {
+		var $this = Cookies.get('front');
+		ChangeElement.css("font-size", $this + "px", 'important');
+	}
+	
+	$("ul.ulFront li a").click(function() { 
+		var $this = $(this).attr('rel');
+		// if($this == 'defaultFont'){
+			// $(ChangeElement).css("font-size","14px", 'important');
+		// }else if($this == 'incFont'){
+			// curSize= parseInt(ChangeElement.css('font-size')) + 2;
+			// if(curSize<=20){
+	        	// $(ChangeElement).css('font-size', curSize, 'important');
+	        // }
+		// }else if($this == 'decFont'){
+			// curSize= parseInt(ChangeElement.css('font-size')) - 2;
+			// if(curSize>=12)
+	        	// $(ChangeElement).css('font-size', curSize, 'important');
+	        // }
+		// }
+		ChangeElement.css("font-size", $this + "px", 'important');
+		//set cookie
+		Cookies.set('front', $this, { expires: 365 });
 		
 		return false;
 	});
