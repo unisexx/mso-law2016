@@ -60,7 +60,7 @@ class Home extends Public_Controller {
 		$data['laws']->order_by('law_maintype_id','asc')->order_by('law_submaintype_id','asc')->order_by('name_th','asc')->get(10);
 		$this->load->view('inc_group_list',$data);
 	}
-	
+
 	function info(){
 		// phpinfo();
 	}

@@ -37,10 +37,10 @@
     <div class="flag">
       <ul>
         <li>
-          <a href="#"><img src="themes/law/images/flag-th.jpg" width="30" height="20"></a>
+          <a href="home/lang/th"><img src="themes/law/images/flag-th.jpg" width="30" height="20"></a>
         </li>
         <li>
-          <a href="#"><img src="themes/law/images/flag-eng.jpg" width="30" height="20"></a>
+          <a href="home/lang/en"><img src="themes/law/images/flag-eng.jpg" width="30" height="20"></a>
         </li>
       </ul>
     </div>
