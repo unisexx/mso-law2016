@@ -1,5 +1,5 @@
 <div id="news-law">
-  <span class="title-law1">กฎหมายใหม่...</span>
+  <span class="title-law1"><?=lang("ho_new_law")?></span>
   <div class="line1">&nbsp;</div>
   <ul>
     <?foreach($rs as $row):?>
@@ -8,7 +8,13 @@
         <?=mysql_to_th($row->notic_date)?>
       </span>
       <span id="<?=alternator('news-law1', 'news-law2');?>">
-        <a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a>
+        <a href="law/view/<?=$row->id?>" target="_blank">
+        	<?if(@$this->session->userdata('lang') == "th"):?>
+		            <?=str_replace("|"," ",$row->name_th)?>
+			<?elseif(@$this->session->userdata('lang') == "en"):?>
+		            <?=str_replace("|"," ",$row->name_eng)?>
+		    <?endif;?>
+        </a>
       </span>
     </li>
     <?endforeach;?>

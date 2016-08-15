@@ -49,19 +49,19 @@
 <div class="topmenu">
   <ul>
     <a href="home">
-      <li class="active-home">หน้าแรก</li>
+      <li class="active-home"><?=lang("h_home")?></li>
     </a>
     <li>
-      <a href="law/group_list">แสดงข้อมูลแบบกลุ่ม</a>
+      <a href="law/group_list"><?=lang("h_group")?></a>
     </li>
     <li>
-      <a href="webboard">กระทู้ ถาม-ตอบ</a>
+      <a href="webboard"><?=lang("h_webboard")?></a>
     </li>
     <li>
-      <a href="law_plans">แผนพัฒนากฎหมาย</a>
+      <a href="law_plans"><?=lang("h_plan")?></a>
     </li>
     <li>
-      <a href="weblinks">หน่วยงานกฎหมายอื่น</a>
+      <a href="weblinks"><?=lang("h_other")?></a>
     </li>
   </ul>
 </div>

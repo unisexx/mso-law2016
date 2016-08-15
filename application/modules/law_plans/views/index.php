@@ -1,13 +1,13 @@
 <div id="plan">
-  <span class="title-law2">แผนพัฒนากฎหมาย</span>
+  <span class="title-law2"><?=lang("h_plan")?></span>
   <div class="line1">&nbsp;</div>
 
   <table class="table table-striped" id="tb-plan">
     <thead>
       <tr>
-        <th>ปี</th>
-        <th>เอกสาร</th>
-        <th colspan="2" class="col-sm-1 text-center">ไฟล์</th>
+        <th><?=lang("p_year")?></th>
+        <th><?=lang("p_doc")?></th>
+        <th colspan="2" class="col-sm-1 text-center"><?=lang("p_file")?></th>
       </tr>
       <tr>
       	<th></th>

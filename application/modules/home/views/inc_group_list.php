@@ -1,10 +1,10 @@
 <div id="cat-group">
-  <span class="title-law1">กฎหมาย แสดงข้อมูลแบบกลุ่ม</span>
+  <span class="title-law1"><?=lang("ho_group")?></span>
   <div id="bgcat-group">
   	
-    <label class="text-cat-group">กลุ่มกฎหมาย :</label>
+    <label class="text-cat-group"><?=lang("ho_group_select")?> :</label>
     <?=form_dropdown('law_group_id', get_option('id','name','law_groups order by id asc'), @$_GET['law_group_id'],'class="form-control" id="input-cat-group"','--- เลือกกลุ่มกฎหมาย ---');?>
-    <label class="text-cat-group">หมวดกฎหมาย :</label>
+    <label class="text-cat-group"><?=lang("ho_group_select2")?> :</label>
     <span id="lawtype" style="width:30%;">
     <?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" id="input-cat-group"','--- เลือกหมวดกฎหมาย ---');?>
     </span>
@@ -15,8 +15,8 @@
         <tbody>
           <tr>
             <td width="7">&nbsp;</td>
-            <td valign="top">กฎหมาย</td>
-            <td colspan="2" valign="top" align="center">ดาวน์โหลด</td>
+            <td valign="top"><?=lang("ho_law")?></td>
+            <td colspan="2" valign="top" align="center"><?=lang("ho_download")?></td>
           </tr>
           <tr>
             <td width="10">&nbsp;</td>
@@ -56,7 +56,13 @@
                   		<img src="themes/law/images/icon-page-blue.png" width="13" height="18">
                   	<?endif;?>
                   </td>
-                  <td class="td-line"><a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a></td>
+                  <td class="td-line"><a href="law/view/<?=$row->id?>" target="_blank">
+                  	<?if(@$this->session->userdata('lang') == "th"):?>
+				            <?=str_replace("|"," ",$row->name_th)?>
+					<?elseif(@$this->session->userdata('lang') == "en"):?>
+				            <?=str_replace("|"," ",$row->name_eng)?>
+				    <?endif;?>
+                  </a></td>
                   <td valign="top" width="35" class="td-line text-center">
                   	<?if($row->filename_th != ""):?>
                     <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>"><?=file_icon_th($row->filename_th)?></a>
@@ -83,7 +89,13 @@
                   <td width="20" valign="top" class="td-line">
                     <img src="themes/law/images/icon-page-gray.png" width="10" height="14">
                   </td>
-                  <td valign="top" class="td-line"><a href="law/view/<?=$sublaw->id?>" target="_blank"><?=str_replace("|"," ",$sublaw->name_th)?></a></td>
+                  <td valign="top" class="td-line"><a href="law/view/<?=$sublaw->id?>" target="_blank">
+                  	<?if(@$this->session->userdata('lang') == "th"):?>
+				            <?=str_replace("|"," ",$sublaw->name_th)?>
+					<?elseif(@$this->session->userdata('lang') == "en"):?>
+				            <?=str_replace("|"," ",$sublaw->name_eng)?>
+				    <?endif;?>
+                  </a></td>
                   <td valign="top" width="33" class="td-line text-center">
                     <?if($sublaw->filename_th != ""):?>
                     <a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_th?>"><?=file_icon_th($sublaw->filename_th)?></a>

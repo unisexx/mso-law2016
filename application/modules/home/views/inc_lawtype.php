@@ -34,7 +34,7 @@
 </style>
 
 <div id="cat-law">
-  <span class="title-law1">กฎหมายประเภทต่างๆ</span>
+  <span class="title-law1"><?=lang("ho_law_type")?></span>
   <div class="line1">&nbsp;</div>
   
   <div id="cat-laww" data-interval="false" class="carousel slide" data-ride="carousel">

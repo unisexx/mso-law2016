@@ -1,12 +1,12 @@
 <div id="plan">
-  <span class="title-law2">หน่วยงานกฎหมายอื่น</span>
+  <span class="title-law2"><?=lang("h_other")?></span>
   <div class="line1">&nbsp;</div>
 
   <table class="table table-striped" id="tb-plan">
     <thead>
       <tr>
-        <th>ชื่อหน่วยงาน</th>
-        <th>เว็บไซต์</th>
+        <th><?=lang("o_name")?></th>
+        <th><?=lang("o_web")?></th>
       </tr>
     </thead>
     <tbody>

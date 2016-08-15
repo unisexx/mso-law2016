@@ -58,7 +58,7 @@
 
         <div class="filter">
           <label>
-            <span class="title-filter">ค้นหากฎหมาย</span>
+            <span class="title-filter"><?=lang("ho_search")?></span>
           </label>
           <br>
 		  <form method="get" action="law_search" >
@@ -68,7 +68,7 @@
 		  </form>
           <div class="key-filter">
             <img src="themes/law/images/icon-triangle.png" width="13" height="15">
-            <a href="#">คำค้นหายอดนิยม</a>
+            <a href="#"><?=lang("ho_search_top")?></a>
           </div>
         </div>
         <div class="clearfix">&nbsp;</div>
@@ -85,7 +85,7 @@
         
         <div class="download">
           <div class="text-download">
-            <strong>ดาวน์โหลดเอกสาร</strong>
+            <strong><?=lang("ho_download_doc")?></strong>
             <ul>
               <li>
                 <a href="http://law.m-society.go.th/law/download/L0001.pdf" target="_blank">คู่มือการใช้งานระบบฐานข้อมูลกฎหมายของผู้ใช้งานทั่วไป</a>

@@ -1,16 +1,16 @@
 <div id="webboard">
-  <span class="title-law2">กระทู้ ถาม-ตอบ</span>
+  <span class="title-law2"><?=lang("h_webboard")?></span>
   <div class="line1">&nbsp;</div>
 
-  <a href="webboard/form"><i class="fa fa-pencil-square-o"></i> ตั้งคำถามใหม่</a>
+  <a href="webboard/form"><i class="fa fa-pencil-square-o"></i> <?=lang("b_create")?></a>
   <table class="table table-striped" id="tb-plan">
     <thead>
       <tr>
-        <th>คำถามที่</th>
-        <th>หัวข้อ</th>
-        <th>โดย</th>
-        <th>อ่าน</th>
-        <th>ตอบ</th>
+        <th><?=lang("b_no")?></th>
+        <th><?=lang("b_question")?></th>
+        <th><?=lang("b_by")?></th>
+        <th><?=lang("b_read")?></th>
+        <th><?=lang("b_ans")?></th>
       </tr>
     </thead>
     <tbody>

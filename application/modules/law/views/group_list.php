@@ -4,7 +4,7 @@
 	.search{padding:10px; background: rgba(158, 158, 158, 0.46);}
 </style>
 <div id="type-list">
-  <span class="title-law2">แสดงข้อมูลแบบกลุ่ม</span>
+  <span class="title-law2"><?=lang("h_group")?></span>
   <div class="line1">&nbsp;</div>
 	
 	<form class="form-inline search">
@@ -20,7 +20,7 @@
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-info">ค้นหา</button>
+	      <button type="submit" class="btn btn-info"><?=lang("g_search")?></button>
 	    </div>
 	  </div>
 	</form>
@@ -28,8 +28,8 @@
   <table class="table table-striped" id="tb-plan">
     <thead>
       <tr>
-        <th class="col-sm-9">ชื่อกฎหมาย</th>
-        <th colspan="2" class="col-sm-1 text-center">ดาวน์โหลด</th>
+        <th class="col-sm-9"><?=lang("g_law_name")?></th>
+        <th colspan="2" class="col-sm-1 text-center"><?=lang("ho_download")?></th>
       </tr>
       <tr>
       	<th></th>
