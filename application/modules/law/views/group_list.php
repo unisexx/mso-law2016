@@ -46,6 +46,7 @@
       		<?
       			$sql = "SELECT law_datalaws.id,
 					        law_datalaws.name_th,
+					        law_datalaws.name_eng,
 					        law_datalaws.filename_th,
 					        law_datalaws.filename_eng
 					      FROM law_datalaws
@@ -67,7 +68,15 @@
                   		<img src="themes/law/images/icon-page-blue.png" width="13" height="18">
                   	<?endif;?>
                   </td>
-                  <td class="td-line"><a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a></td>
+                  <td class="td-line">
+                  	<a href="law/view/<?=$row->id?>" target="_blank">
+                  		<?if(@$this->session->userdata('lang') == "th"):?>
+					            <?=str_replace("|"," ",$row->name_th)?>
+						<?elseif(@$this->session->userdata('lang') == "en"):?>
+					            <?=str_replace("|"," ",$row->name_eng)?>
+					    <?endif;?>
+                  	</a>
+                  </td>
                   <td valign="top" width="48" class="td-line text-center">
                   	<?if($row->filename_th != ""):?>
                     <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>"><?=file_icon_th($row->filename_th)?></a>
@@ -94,7 +103,15 @@
                   <td width="20" valign="top" class="td-line">
                     <img src="themes/law/images/icon-page-gray.png" width="10" height="14">
                   </td>
-                  <td valign="top" class="td-line"><a href="law/view/<?=$sublaw->id?>" target="_blank"><?=str_replace("|"," ",$sublaw->name_th)?></a></td>
+                  <td valign="top" class="td-line">
+                  	<a href="law/view/<?=$sublaw->id?>" target="_blank">
+                  		<?if(@$this->session->userdata('lang') == "th"):?>
+					            <?=str_replace("|"," ",$sublaw->name_th)?>
+						<?elseif(@$this->session->userdata('lang') == "en"):?>
+					            <?=str_replace("|"," ",$sublaw->name_eng)?>
+					    <?endif;?>
+                  	</a>
+                  </td>
                   <td valign="top" width="45" class="td-line text-center">
                     <?if($sublaw->filename_th != ""):?>
                     <a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_th?>"><?=file_icon_th($sublaw->filename_th)?></a>

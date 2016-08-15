@@ -35,6 +35,7 @@
       		<?
       			$sql = "SELECT law_datalaws.id,
 					        law_datalaws.name_th,
+					        law_datalaws.name_eng,
 					        law_datalaws.filename_th,
 					        law_datalaws.filename_eng
 					      FROM law_datalaws

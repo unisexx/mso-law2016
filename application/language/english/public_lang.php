@@ -42,6 +42,7 @@ $lang['b_name'] = "Name";
 //----------------- แสดงข้อมูลแบบกลุ่ม --------------------
 $lang['g_search'] = "Search";
 $lang['g_law_name'] = "Law Name";
+$lang['g_status'] = "Status";
 
 //----------------- แผนพัฒนากฏหมาย --------------------
 $lang['p_year'] = "Year";

@@ -24,7 +24,7 @@
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-info">ค้นหา</button>
+	      <button type="submit" class="btn btn-info"><?=lang("g_search")?></button>
 	    </div>
 	  </div>
 	</form>
@@ -32,9 +32,9 @@
   <table class="table table-striped" id="tb-plan">
     <thead>
       <tr>
-        <th class="col-sm-9">ชื่อกฎหมาย</th>
-        <th class="col-sm-2 text-center">สถานะ</th>
-        <th class="col-sm-1 text-center" colspan="2">ดาวน์โหลด</th>
+        <th class="col-sm-9"><?=lang("g_law_name")?></th>
+        <th class="col-sm-2 text-center"><?=lang("g_status")?></th>
+        <th class="col-sm-1 text-center" colspan="2"><?=lang("ho_download")?></th>
       </tr>
       <tr>
       	<th></th>
@@ -46,7 +46,13 @@
     <tbody>
     	<?foreach($laws as $row):?>
     	<tr>
-    		<td><a href="law/view/<?=$row->id?>" target="_blank"><?=str_replace("|"," ",$row->name_th)?></a></td>
+    		<td><a href="law/view/<?=$row->id?>" target="_blank">
+    			<?if(@$this->session->userdata('lang') == "th"):?>
+			            <?=str_replace("|"," ",$row->name_th)?>
+				<?elseif(@$this->session->userdata('lang') == "en"):?>
+			            <?=str_replace("|"," ",$row->name_eng)?>
+			    <?endif;?>
+    		</a></td>
     		<td class="text-center"><?=get_datalaw_status($row->status)?></td>
     		<td valign="top" width="48" class="text-center">
           	<?if($row->filename_th != ""):?>
