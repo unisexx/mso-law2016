@@ -9,7 +9,7 @@
        <br><br>
        <!-- <a href="#"><img src="themes/law/images/banner-w3c.png" width="68" height="24" title="w3c"></a>
        <a href="#"><img src="themes/law/images/banner-accessibility.png" width="99" height="25" title="Thai Accessibility"></a> -->
-       <img src="themes/law/images/icon-key.png" width="15" height="16"> &nbsp;<a href="admin" target="_blank">เข้าสู่ระบบ</a>
+       <img src="themes/law/images/icon-key.png" width="15" height="16"> &nbsp;<a href="admin" target="_blank"><?=lang("f_login")?></a>
        <br><br>
            <div>
               <a href="#"><img src="themes/law/images/icon-twitter.png" width="34" height="34" class="social"></a>

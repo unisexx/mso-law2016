@@ -36,6 +36,11 @@ if($this->uri->segment(1) == "law" && $this->uri->segment(2) == "group_list"){
 if($this->uri->segment(1) == "law" && $this->uri->segment(2) == "view" && is_numeric($this->uri->segment(3))){
 	$breadcrumb = '<li><a href="home">'.lang("h_home").'</a></li><li class="active">'.lang("v_law_detail").'</li>';
 }
+
+/************** Law Search **************/
+if($this->uri->segment(1) == "law_search"){
+ 	$breadcrumb = '<li><a href="home">'.lang("h_home").'</a></li><li class="active">'.lang("ho_search").'</li>';
+}
 ?>
 
 <ol class="breadcrumb2">

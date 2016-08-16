@@ -8,7 +8,7 @@ $lang['h_other'] = "Weblink";
 
 //----------------- Footer --------------------
 $lang['f_address'] = "";
-$lang['f_login'] = "";
+$lang['f_login'] = "Login";
 
 //----------------- Home Page --------------------
 $lang['ho_search'] = "search";

@@ -40,10 +40,10 @@
 </div>
 <!-----------------------------------EnD Slide------------------------------------------------------------------------------------------------->
 <div class="filter" style="margin-top:22px!important;">
-  <label> <span class="title-filter">ค้นหากฎหมาย</span> </label> <br>
+  <label> <span class="title-filter"><?=lang("ho_search")?></span> </label> <br>
   <form method="get" action="law_search" data-toggle="validator" role="form">
     <input type="text" id="searchtext" name="searchtext" class="input-filter" placeholder="" value="<?php echo @$_GET['searchtext'];?>" required="true" data-error="กรุณากรอกคำค้นหา">
     <input type="hidden" name="tools" value="b" class="input-filter" placeholder=""> <button type="submit" class="btn-filter">Search</button>
   </form>
-  <div class="key-filter"> <img src="themes/law/images/icon-triangle.png" width="13" height="15"> <a href="#">คำค้นหายอดนิยม</a> </div> </div>
+  <div class="key-filter"> <img src="themes/law/images/icon-triangle.png" width="13" height="15"> <a href="#"><?=lang("ho_search_top")?></a> </div> </div>
 <?php echo $htmlSearch;?>
