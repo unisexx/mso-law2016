@@ -5,6 +5,7 @@
     <title><?php echo $template['title'] ?></title>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=EDGE" />
       <? include "_inc.php";?>
       <?php echo $template['metadata'] ?>
   </head><body>
