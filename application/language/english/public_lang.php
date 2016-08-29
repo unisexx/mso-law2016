@@ -5,14 +5,22 @@ $lang['h_group'] = "Law Group";
 $lang['h_webboard'] = "Webboard";
 $lang['h_plan'] = "Law Plan";
 $lang['h_other'] = "Weblink";
+$lang['h_logo'] = '<img src="themes/law/images/logo-en.png" width="726" height="78" title="กฎหมายการพัฒนาสังคมและความมั่นคงของมนุษย์">';
+$lang['h_a1'] = '<img src="themes/law/images/a1-en.png" width="24" height="11">';
+$lang['h_a2'] = '<img src="themes/law/images/a2-en.png" width="28" height="15">';
+$lang['h_a3'] = '<img src="themes/law/images/a3-en.png" width="26" height="14">';
 
 //----------------- Footer --------------------
-$lang['f_address'] = "";
+$lang['f_address'] = '<span class="title-footer">Law Division</span><br>
+Officer Ministry of Social Development and Human Security <br>
+Tel : 0 2202 9020, Email : <a href="mailto:law.m@society.go.th" target="_blank">law.m@society.go.th</a><br>
+Copyright @ 2015. All rights reserved. <a href="#">http://law.m-society.go.th</a>';
 $lang['f_login'] = "Login";
 
 //----------------- Home Page --------------------
 $lang['ho_search'] = "search";
 $lang['ho_search_placeholder'] = "search";
+$lang['ho_search_placeholder2'] = "Insert for search";
 $lang['ho_search_top'] = "top search";
 $lang['ho_new_law'] = "New Law";
 $lang['ho_law_type'] = "Law Type";
@@ -55,4 +63,7 @@ $lang['o_web'] = "URL";
 
 //----------------- รายละเอียดกฎหมาย --------------------
 $lang['v_law_detail'] = "Law Detail";
+
+//----------------- โพล --------------------
+$lang['po_title'] = "Do you think the content of the database, as the law does.";
 ?>

@@ -6,7 +6,8 @@
     <span class="icon-bar"></span>
   </button>
   <div class="name">
-    <img src="themes/law/images/logo.png" width="726" height="78" title="กฎหมายการพัฒนาสังคมและความมั่นคงของมนุษย์">
+    <!-- <img src="themes/law/images/logo.png" width="726" height="78" title="กฎหมายการพัฒนาสังคมและความมั่นคงของมนุษย์"> -->
+    <?=lang("h_logo")?>
   </div>
 </div>
 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
@@ -24,13 +25,13 @@
     </ul>
     <ul class="c ulFront">
       <li>
-        <a rel="12" href="#"><img src="themes/law/images/a1.png" width="24" height="11"></a>
+        <a rel="12" href="#"><?=lang("h_a1")?></a>
       </li>
       <li>
-        <a rel="14" href="#"><img src="themes/law/images/a2.png" width="28" height="15"></a>
+        <a rel="14" href="#"><?=lang("h_a2")?></a>
       </li>
       <li>
-        <a rel="18" href="#"><img src="themes/law/images/a3.png" width="26" height="14"></a>
+        <a rel="18" href="#"><?=lang("h_a3")?></a>
       </li>
     </ul>
     <div class="clearfix">&nbsp;</div>

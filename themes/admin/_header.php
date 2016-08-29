@@ -22,6 +22,7 @@
       <ul>
       	 <li><a href='admin/user'><span>ผู้ใช้งาน</span></a></li>
          <li><a href='#' style="border-bottom:1px dotted #ccc; margin:0; padding:0;"></a></li>
+         <li><a href="admin/hilights"><span>ไฮไลท์</span></a></li>
          <li><a href='admin/user_groups'><span>สังกัด</span></a></li>
 		 <li><a href='admin/user_positions'><span>ตำแหน่ง</span></a></li>
          <li><a href='admin/law_groups'><span>กลุ่มกฎหมาย</span></a></li>

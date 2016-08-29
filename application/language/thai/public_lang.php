@@ -5,14 +5,21 @@ $lang['h_group'] = "แสดงข้อมูลแบบกลุ่ม";
 $lang['h_webboard'] = "กระทู้ ถาม-ตอบ";
 $lang['h_plan'] = "แผนพัฒนากฎหมาย";
 $lang['h_other'] = "หน่วยงานกฎหมายอื่น";
+$lang['h_logo'] = '<img src="themes/law/images/logo.png" width="726" height="78" title="กฎหมายการพัฒนาสังคมและความมั่นคงของมนุษย์">';
+$lang['h_a1'] = '<img src="themes/law/images/a1.png" width="24" height="11">';
+$lang['h_a2'] = '<img src="themes/law/images/a2.png" width="28" height="15">';
+$lang['h_a3'] = '<img src="themes/law/images/a3.png" width="26" height="14">';
 
 //----------------- Footer --------------------
-$lang['f_address'] = "";
+$lang['f_address'] = '<span class="title-footer">กองกฎหมาย</span><br>
+  สำนักงานปลัด กระทรวงการพัฒนาสังคมและความมั่นคงของมนุษย์ <br>โทรศัพท์ : 0 2202 9020, อีเมล์ : <a href="mailto:law.m@society.go.th" target="_blank">law.m@society.go.th</a><br>
+  Copyright @ 2015. All rights reserved. <a href="#">http://law.m-society.go.th</a>';
 $lang['f_login'] = "เข้าสู่ระบบ";
 
 //----------------- Home Page --------------------
 $lang['ho_search'] = "ค้นหากฏหมาย";
 $lang['ho_search_placeholder'] = "กรอกคำค้นหา";
+$lang['ho_search_placeholder2'] = "กรอกคำค้นหา";
 $lang['ho_search_top'] = "คำค้นหายอดนิยม";
 $lang['ho_new_law'] = "กฎหมายใหม่";
 $lang['ho_law_type'] = "กฎหมายประเภทต่างๆ";
@@ -55,4 +62,7 @@ $lang['o_web'] = "เว็บไซต์";
 
 //----------------- รายละเอียดกฎหมาย --------------------
 $lang['v_law_detail'] = "รายละเอียดกฎหมาย";
+
+//----------------- โพล --------------------
+$lang['po_title'] = "คุณคิดว่าเนื้อหาของระบบฐานข้อมูลกฎหมายเป็นอย่างไรบ้าง";
 ?>

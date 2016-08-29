@@ -1,9 +1,7 @@
 <div class="footer">
   <div class="container">
     <div class="footer-left">
-          <span class="title-footer">กองกฎหมาย</span><br>
-  สำนักงานปลัด กระทรวงการพัฒนาสังคมและความมั่นคงของมนุษย์ <br>โทรศัพท์ : 0 2202 9020, อีเมล์ : <a href="mailto:law.m@society.go.th" target="_blank">law.m@society.go.th</a><br>
-  Copyright @ 2015. All rights reserved. <a href="#">http://law.m-society.go.th</a>
+          <?=lang("f_address")?>
     </div>
       <div class="footer-right">
        <br><br>

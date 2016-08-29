@@ -19,6 +19,12 @@ class Home extends Public_Controller {
 
 		redirect($this->agent->referrer());
 	}
+	
+	function inc_hilight(){
+		$data['rs'] = new Hilight();
+		$data['rs']->order_by('id','desc')->get(10);
+		$this->load->view('inc_hilight',$data);
+	}
 
 	function inc_newlaw(){
 		$data['rs'] = new Law_datalaw();
