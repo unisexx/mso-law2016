@@ -66,4 +66,5 @@ $lang['v_law_detail'] = "Law Detail";
 
 //----------------- โพล --------------------
 $lang['po_title'] = "Do you think the content of the database, as the law does.";
+$lang['po_vote'] = "vote";
 ?>

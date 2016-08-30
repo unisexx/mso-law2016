@@ -25,7 +25,7 @@
     </tbody>
   </table>
   <div id="btnBlock" align="center">
-  	<button id="voteBtn" type="button" class="btn btn-info btn-xs center-block">โหวตคะแนน</button>
+  	<button id="voteBtn" type="button" class="btn btn-info btn-xs center-block"><?=lang("po_vote")?></button>
   </div>
 </div>
 
