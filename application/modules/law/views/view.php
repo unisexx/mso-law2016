@@ -7,8 +7,12 @@
 	<div class="pull-right" style="margin-bottom:10px;"><small class="text-muted"><?=get_law_group_text($rs->id)?></small></div>
 	<table class="table table-bordered">
 		<tr>
-			<th>ชื่อกฎหมาย</th>
+			<th>ชื่อกฎหมาย (ไทย)</th>
 			<td><?=str_replace("|"," ",$rs->name_th)?></td>
+		</tr>
+		<tr>
+			<th>ชื่อกฎหมาย (อังกฤษ)</th>
+			<td><?=str_replace("|"," ",$rs->name_eng)?></td>
 		</tr>
 		<tr>
 			<th>สถานะการใช้</th>

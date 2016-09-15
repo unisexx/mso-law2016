@@ -23,6 +23,8 @@ class Law_submaintypes extends Admin_Controller {
 
 	function save($id=false){
 		if($_POST){
+			$_POST['typeName'] = lang_encode($_POST['typeName']);
+			
 			$rs = new Law_submaintype($id);
 			$rs->from_array($_POST);
 			$rs->save();

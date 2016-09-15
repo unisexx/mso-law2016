@@ -2,9 +2,15 @@
 <form id="law_maintypes_frm" action="admin/law_maintypes/save/<?=$rs->id?>" method="post">
 <table class="tbadd">
 <tr>
-  <th>ชื่อประเภทกฎหมาย<span class="Txt_red_12"> *</span></th>
+  <th>ชื่อประเภทกฎหมาย (ไทย)<span class="Txt_red_12"> *</span></th>
   <td class="chkPermiss">
-    <input type="text" class="form-control" name="typeName" value="<?=$rs->typeName?>" style="width:500px;" />
+    <input rel="th" type="text" class="form-control" name="typeName[th]" value="<?=lang_decode($rs->typeName,'th')?>" style="width:500px;" />
+  </td>
+</tr>
+<tr>
+  <th>ชื่อประเภทกฎหมาย (อังกฤษ)<span class="Txt_red_12"> *</span></th>
+  <td class="chkPermiss">
+    <input rel="en" type="text" class="form-control" name="typeName[en]" value="<?=lang_decode($rs->typeName,'en')?>" style="width:500px;" />
   </td>
 </tr>
 </table>

@@ -8,9 +8,15 @@
   </td>
 </tr>
 <tr>
-  <th>ชื่อประเภทย่อยกฎหมาย<span class="Txt_red_12"> *</span></th>
+  <th>ชื่อประเภทย่อยกฎหมาย (ไทย)<span class="Txt_red_12"> *</span></th>
   <td class="chkPermiss">
-    <input type="text" class="form-control" name="typeName" value="<?=$rs->typeName?>" style="width:500px;" />
+    <input type="text" class="form-control" name="typeName[th]" value="<?=lang_decode($rs->typeName,'th')?>" style="width:500px;" />
+  </td>
+</tr>
+<tr>
+  <th>ชื่อประเภทย่อยกฎหมาย (อังกฤษ)<span class="Txt_red_12"> *</span></th>
+  <td class="chkPermiss">
+    <input rel="en" type="text" class="form-control" name="typeName[en]" value="<?=lang_decode($rs->typeName,'en')?>" style="width:500px;" />
   </td>
 </tr>
 </table>
