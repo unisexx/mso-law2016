@@ -25,8 +25,8 @@ class Webboard extends Public_Controller {
 	
 	function save_quiz(){
 		if($_POST){
-			$captcha = $this->session->userdata('captcha');
-            if(($_POST['captcha'] == $captcha) && !empty($captcha)){
+			// $captcha = $this->session->userdata('captcha');
+            // if(($_POST['captcha'] == $captcha) && !empty($captcha)){
 				$_POST['quiz_status'] = 1;
 				$_POST['quiz_createdate'] = date("Y-m-d H:i:s");
 	
@@ -34,18 +34,18 @@ class Webboard extends Public_Controller {
 				$rs->from_array($_POST);
 				$rs->save();
 				set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
-			}else{
-                set_notify('error','กรอกรหัสไม่ถูกต้อง');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
+			// }else{
+                // set_notify('error','กรอกรหัสไม่ถูกต้อง');
+                // redirect($_SERVER['HTTP_REFERER']);
+            // }
 		}
 		redirect('webboard');
 	}
 
 	function save_answer(){
 		if($_POST){
-			$captcha = $this->session->userdata('captcha');
-            if(($_POST['captcha'] == $captcha) && !empty($captcha)){
+			// $captcha = $this->session->userdata('captcha');
+            // if(($_POST['captcha'] == $captcha) && !empty($captcha)){
 				$_POST['answer_status'] = 1;
 				$_POST['answer_createdate'] = date("Y-m-d H:i:s");
 	
@@ -54,10 +54,10 @@ class Webboard extends Public_Controller {
 				$rs->save();
 				
 				set_notify('success', 'บันทึกข้อมูลเรียบร้อย');
-			}else{
-                set_notify('error','กรอกรหัสไม่ถูกต้อง');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
+			// }else{
+                // set_notify('error','กรอกรหัสไม่ถูกต้อง');
+                // redirect($_SERVER['HTTP_REFERER']);
+            // }
 		}
 		redirect($_SERVER['HTTP_REFERER']);
 	}

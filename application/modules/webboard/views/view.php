@@ -22,10 +22,10 @@
     <textarea class="form-control" name="answer_detail" rows="8" placeholder="<?=lang("b_detail")?>"></textarea>
     <br>
     <input class="form-control" type="text" name="answer_who" placeholder="<?=lang("b_name")?>">
-    <br>
+    <!-- <br>
     <img src="users/captcha" />
     <Br>
-    <input class="form-control" type="text" name="captcha" id="inputCaptcha" placeholder="<?=lang("captcha")?>" style="width:125px;">
+    <input class="form-control" type="text" name="captcha" id="inputCaptcha" placeholder="<?=lang("captcha")?>" style="width:125px;"> -->
     <Br>
     	<input type="hidden" name="law_quiz_id" value="<?=$quiz->id?>">
 	  <!-- <button type="submit" class="btn btn-info">ตั้งคำถาม</button> -->
