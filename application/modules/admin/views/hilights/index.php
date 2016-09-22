@@ -12,7 +12,7 @@
 </div>
 </div>
 <div id="btnBox">
-  <input type="button" title="เพิ่มแผนพัฒนากฎหมาย" value="เพิ่มแผนพัฒนากฎหมาย" onclick="document.location='admin/hilights/form'" class="btn btn-warning vtip" />
+  <input type="button" title="เพิ่มรายการ" value="เพิ่มรายการ" onclick="document.location='admin/hilights/form'" class="btn btn-warning vtip" />
 </div>
 
 <?php echo $rs->pagination()?>

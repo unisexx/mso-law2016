@@ -12,9 +12,9 @@
     		<div class="item <?=($key==0)?'active':'';?>">
     			<a href="<?=$row->url?>">
 	        <?if(@$this->session->userdata('lang') == "th"):?>
-		            <img src="uploads/hilight/<?=$rs->img_th?>" width="863" height="266">
+		            <img src="uploads/hilight/<?=$row->img_th?>" width="863" height="266">
 			<?elseif(@$this->session->userdata('lang') == "en"):?>
-		            <img src="uploads/hilight/<?=$rs->img_en?>" width="863" height="266">
+		            <img src="uploads/hilight/<?=$row->img_en?>" width="863" height="266">
 		    <?endif;?>
 				</a>
 	      </div>

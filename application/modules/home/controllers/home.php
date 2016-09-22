@@ -53,6 +53,11 @@ class Home extends Public_Controller {
 					score
 				ORDER BY score DESC";
 		$data['rs'] = $this->db->query($sql)->result();
+		
+		// check ip
+		$sql = 'select DISTINCT(ip) from law_polls where ip = "'.$_SERVER['REMOTE_ADDR'].'"';
+		$data['check_ip'] = $this->db->query($sql)->result_array();
+		
 		$this->load->view('inc_poll',$data);
 	}
 	
@@ -69,6 +74,23 @@ class Home extends Public_Controller {
 
 	function info(){
 		// phpinfo();
+	}
+	
+	function inc_top_search(){
+		$sql = "SELECT
+					count(id) AS total,
+					keyword
+				FROM
+					law_searchlog
+				WHERE keyword <> ''
+				GROUP BY
+					keyword
+				ORDER BY
+					total DESC limit 10";
+		$rs = $this->db->query($sql)->result();
+		foreach($rs as $key=>$row){
+			echo '<a href="law_search?searchtext='.$row->keyword.'&tools=b">'.$row->keyword.'</a>, ';
+		}
 	}
 }
 ?>

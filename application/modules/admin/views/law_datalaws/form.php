@@ -39,13 +39,13 @@
         <tr>
           <th>ชื่อกฎหมาย (ไทย)<span class="Txt_red_12"> *</span></th>
           <td>
-          	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" name="name_th" value="<?=str_replace("|"," ",$rs->name_th)?>" />
+          	<input type="text" class="form-control" id="exampleInputName7" style="width:100%;" name="name_th" value="<?=str_replace("|"," ",$rs->name_th)?>" />
             </td>
         </tr>
         <tr>
           <th>ชื่อกฎหมาย (อังกฤษ)</th>
           <td>
-          	<input type="text" class="form-control" id="exampleInputName7" style="width:800px;" name="name_eng" value="<?=str_replace("|"," ",$rs->name_eng)?>" />
+          	<input type="text" class="form-control" id="exampleInputName7" style="width:100%;" name="name_eng" value="<?=str_replace("|"," ",$rs->name_eng)?>" />
             </td>
         </tr>
         <tr>
@@ -57,7 +57,7 @@
             <input type="text" class="form-control" id="exampleInputName3" style="width:200px;" name="gazette_data" value="<?=$rs->gazette_data?>" /></span></td>
         </tr>
         <tr>
-          <th>วันที่ประกาศในราชกิจจานุเบกษา<span class="Txt_red_12"> *</span></th>
+          <th>วันที่ประกาศในราชกิจจานุเบกษา</th>
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
@@ -148,7 +148,7 @@
             </table></td>
         </tr>
         <tr>
-          <th>วันที่ประกาศใช้ <span class="Txt_red_12"> *</span></th>
+          <th>วันที่ประกาศ <span class="Txt_red_12"> *</span></th>
           <td>
           	<span class="form-inline">
 		    <div class="input-group date">
@@ -466,7 +466,7 @@ $(function() {
 		    	name_th:{required: true},
 		    	notic_date:{required: true},
 		    	// gazette_numerative:{required: true},
-		    	gazete_notice_date:{required: true},
+		    	// gazete_notice_date:{required: true},
 		    	status:{required: true}
 		    },
 		    messages:
@@ -476,9 +476,9 @@ $(function() {
 		    	law_maintype_id:{required: "กรุณาเลือกประเภทกฎหมาย"},
 		    	law_submaintype_id:{required: "กรุณาเลือกประเภทย่อยกฎหมาย"},
 		    	name_th:{required: "กรุณากรอกชื่อกฎหมาย (ไทย)"},
-		    	notic_date:{required: "กรุณากรอกวันที่ประกาศใช้"},
+		    	notic_date:{required: "กรุณากรอกวันที่ประกาศ"},
 		    	// gazette_numerative:{required: "กรุณากรอกเล่มที่"},
-		    	gazete_notice_date:{required: "กรุณากรอกวันที่ประกาศในราชกิจจานุเบกษา"},
+		    	// gazete_notice_date:{required: "กรุณากรอกวันที่ประกาศในราชกิจจานุเบกษา"},
 		    	status:{required: "กรุณากรอกสถานะการใช้"}
 		    }
 	    });

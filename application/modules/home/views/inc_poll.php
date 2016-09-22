@@ -25,7 +25,9 @@
     </tbody>
   </table>
   <div id="btnBlock" align="center">
-  	<button id="voteBtn" type="button" class="btn btn-info btn-xs center-block"><?=lang("po_vote")?></button>
+  	<?if(@$check_ip[0]['ip'] == ""):?>
+  		<button id="voteBtn" type="button" class="btn btn-info btn-xs center-block"><?=lang("po_vote")?></button>
+  	<?endif?>
   </div>
 </div>
 

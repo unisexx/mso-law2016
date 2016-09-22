@@ -70,6 +70,7 @@ Class Ajax extends Public_Controller
 
 	function vote(){
 		if($_GET){
+			$_GET['ip'] = $_SERVER['REMOTE_ADDR'];
 			$rs = new Law_poll();
 			$rs->from_array($_GET);
 			$rs->save();

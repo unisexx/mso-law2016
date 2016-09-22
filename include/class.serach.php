@@ -956,11 +956,11 @@ class serach {
                    if($valueData['law_type_id']==10){
                       $txt3 = $this->db->covertID2Name(LAW_TYPE,$valueData['law_maintype_id']);
                       $txt4 = $this->db->covertID2Name(LAW_SUBMAINTYPE,$valueData['law_submaintype_id']);
-                      $groupLaw .=  "> ".$txt3['name']." > ".$txt4['typeName'];
+                      $groupLaw .=  "> ".lang_decode($txt3['name'])." > ".lang_decode($txt4['typeName']);
                    }elseif($valueData['law_type_id']!=11 && $valueData['law_type_id']!=10){
                       $txt3 = $this->db->covertID2Name(LAW_MAINTYPE,$valueData['law_maintype_id']);
                       $txt4 = $this->db->covertID2Name(LAW_SUBMAINTYPE,$valueData['law_submaintype_id']);
-                      $groupLaw .=  "> ".$txt3['typeName']." > ".$txt4['typeName'];
+                      $groupLaw .=  "> ".lang_decode($txt3['typeName'])." > ".lang_decode($txt4['typeName']);
                    }
 
                     $value['file'] ? $attachTxt =  $value['file'] :  $attachTxt = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";

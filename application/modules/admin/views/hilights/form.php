@@ -25,7 +25,7 @@
 		  </td>
         </tr>
         <tr>
-          <th>ไฟล์แนบเอกสาร (ไทย)</th>
+          <th>ไฟล์แนบเอกสาร (ไทย)<br>ขนาด 863 x 266 px</th>
           <td>
           	<?if($rs->img_th != ""):?>
           		<a href="uploads/hilight/<?=$rs->img_th?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->img_th?></a>
@@ -34,7 +34,7 @@
           </td>
         </tr>
         <tr>
-          <th>ไฟล์แนบเอกสาร (อังกฤษ)</th>
+          <th>ไฟล์แนบเอกสาร (อังกฤษ)<br>ขนาด 863 x 266 px</th>
           <td>
           	<?if($rs->img_en != ""):?>
           		<a href="uploads/hilight/<?=$rs->img_en?>" target="_blank"><i class="fa fa-file-pdf-o"></i> <?=$rs->img_en?></a>

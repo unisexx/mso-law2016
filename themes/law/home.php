@@ -30,7 +30,8 @@
 		  </form>
           <div class="key-filter">
             <img src="themes/law/images/icon-triangle.png" width="13" height="15">
-            <a href="#"><?=lang("ho_search_top")?></a>
+            <?=lang("ho_search_top")?> : 
+            <?php echo modules::run('home/inc_top_search'); ?>
           </div>
         </div>
         <div class="clearfix">&nbsp;</div>
