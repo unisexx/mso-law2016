@@ -3,10 +3,10 @@
   <div id="bgcat-group">
   	
     <label class="text-cat-group"><?=lang("ho_group_select")?> :</label>
-    <?=form_dropdown('law_group_id', get_option('id','name','law_groups order by id asc'), @$_GET['law_group_id'],'class="form-control" id="input-cat-group"','--- เลือกกลุ่มกฎหมาย ---');?>
+    <?=form_dropdown('law_group_id', get_option('id','name','law_groups order by id asc'), @$_GET['law_group_id'],'class="form-control" id="input-cat-group"','--- '.lang("ho_select_law_group").' ---');?>
     <label class="text-cat-group"><?=lang("ho_group_select2")?> :</label>
     <span id="lawtype" style="width:30%;">
-    <?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" id="input-cat-group"','--- เลือกหมวดกฎหมาย ---');?>
+    <?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" id="input-cat-group"','--- '.lang("ho_select_law_type").' ---');?>
     </span>
     <i class="loading fa fa-refresh fa-spin fa-2x"></i>
     
@@ -61,7 +61,11 @@
                   	<?if(@$this->session->userdata('lang') == "th"):?>
 				            <?=str_replace("|"," ",$row->name_th)?>
 					<?elseif(@$this->session->userdata('lang') == "en"):?>
-				            <?=str_replace("|"," ",$row->name_eng)?>
+				            <?if($row->name_eng == ""):?>
+				            	<?=str_replace("|"," ",$row->name_th)?>
+				            <?else:?>
+				            	<?=str_replace("|"," ",$row->name_eng)?>
+				            <?endif;?>
 				    <?endif;?>
                   </a></td>
                   <td valign="top" width="35" class="td-line text-center">
@@ -94,7 +98,11 @@
                   	<?if(@$this->session->userdata('lang') == "th"):?>
 				            <?=str_replace("|"," ",$sublaw->name_th)?>
 					<?elseif(@$this->session->userdata('lang') == "en"):?>
-				            <?=str_replace("|"," ",$sublaw->name_eng)?>
+				            <?if($sublaw->name_eng == ""):?>
+				            	<?=str_replace("|"," ",$sublaw->name_th)?>
+				            <?else:?>
+				            	<?=str_replace("|"," ",$sublaw->name_eng)?>
+				            <?endif;?>
 				    <?endif;?>
                   </a></td>
                   <td valign="top" width="33" class="td-line text-center">

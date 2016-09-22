@@ -10,12 +10,12 @@
 	<form class="form-inline search">
 	  <div class="form-group">
 	    <div class="col-sm-3">
-	      <?=form_dropdown('law_group_id', get_option('id','name','law_groups order by id asc'), @$_GET['law_group_id'],'class="form-control" style="width:auto;"','--- เลือกกลุ่มกฎหมาย ---');?>
+	      <?=form_dropdown('law_group_id', get_option('id','name','law_groups order by id asc'), @$_GET['law_group_id'],'class="form-control" style="width:auto;"','--- '.lang("ho_select_law_group").' ---');?>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <div id="lawtype" class="col-sm-3">
-	    	<?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" style="width:auto;"','--- เลือกหมวดกฎหมาย ---');?>
+	    	<?=form_dropdown('law_type_id', get_option('id','name','law_types order by id asc'), @$_GET['law_type_id'],' class="form-control" style="width:auto;"','--- '.lang("ho_select_law_type").' ---');?>
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -73,7 +73,11 @@
                   		<?if(@$this->session->userdata('lang') == "th"):?>
 					            <?=str_replace("|"," ",$row->name_th)?>
 						<?elseif(@$this->session->userdata('lang') == "en"):?>
-					            <?=str_replace("|"," ",$row->name_eng)?>
+					            <?if($row->name_eng == ""):?>
+					            	<?=str_replace("|"," ",$row->name_th)?>
+					            <?else:?>
+					            	<?=str_replace("|"," ",$row->name_eng)?>
+					            <?endif;?>
 					    <?endif;?>
                   	</a>
                   </td>
@@ -108,7 +112,11 @@
                   		<?if(@$this->session->userdata('lang') == "th"):?>
 					            <?=str_replace("|"," ",$sublaw->name_th)?>
 						<?elseif(@$this->session->userdata('lang') == "en"):?>
-					            <?=str_replace("|"," ",$sublaw->name_eng)?>
+					            <?if($sublaw->name_eng == ""):?>
+					            	<?=str_replace("|"," ",$sublaw->name_th)?>
+					            <?else:?>
+					            	<?=str_replace("|"," ",$sublaw->name_eng)?>
+					            <?endif;?>
 					    <?endif;?>
                   	</a>
                   </td>

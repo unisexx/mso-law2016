@@ -29,6 +29,8 @@ $lang['ho_group_select2'] = "หมวดกฎหมาย";
 $lang['ho_law'] = "กฎหมาย";
 $lang['ho_download'] = "ดาวน์โหลด";
 $lang['ho_download_doc'] = "ดาวน์โหลดเอกสาร";
+$lang['ho_select_law_group'] = "เลือกกลุ่มกฏหมาย";
+$lang['ho_select_law_type'] = "เลือกหมวดกฏหมาย";
 
 //----------------- กระทู้ ถาม-ตอบ --------------------
 $lang['b_create'] = "ตั้งคำถามใหม่";

@@ -50,7 +50,11 @@
     			<?if(@$this->session->userdata('lang') == "th"):?>
 			            <?=str_replace("|"," ",$row->name_th)?>
 				<?elseif(@$this->session->userdata('lang') == "en"):?>
-			            <?=str_replace("|"," ",$row->name_eng)?>
+			            <?if($row->name_eng == ""):?>
+			            	<?=str_replace("|"," ",$row->name_th)?>
+			            <?else:?>
+			            	<?=str_replace("|"," ",$row->name_eng)?>
+			            <?endif;?>
 			    <?endif;?>
     		</a></td>
     		<td class="text-center"><?=get_datalaw_status($row->status)?></td>

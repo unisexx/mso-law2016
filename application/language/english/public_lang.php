@@ -30,6 +30,8 @@ $lang['ho_group_select2'] = "Law Type";
 $lang['ho_law'] = "Law";
 $lang['ho_download'] = "Download";
 $lang['ho_download_doc'] = "Download Document";
+$lang['ho_select_law_group'] = "Select Law Group";
+$lang['ho_select_law_type'] = "Select Law Type";
 
 //----------------- กระทู้ ถาม-ตอบ --------------------
 $lang['b_create'] = "New Question";

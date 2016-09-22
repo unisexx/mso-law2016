@@ -895,8 +895,9 @@ class serach {
                 $sqlSerach .="from ".TEMP_LAW." t ,".LAW_DATALAW." l  where t.session_id = '$sess' and t.ip = '$ipp' and trim(t.sourcecode)=l.ref_code and l.status<>'2'";
                 if($serachtext != "null" && $serachtext != "")$sqlSerach .= " and t.keyword = '$serachtext'";
                 //$sqlSerach .= " order by group_null,type_null ,l.law_group_id,l.type_id asc ";
-                $sqlSerach .= " order by type_null, l.import_code, l.law_group_id, l.law_maintype_id, length(l.law_submaintype_id) ,l.law_submaintype_id,t.headline asc ";
-                //echo $sqlSerach;
+                // $sqlSerach .= " order by type_null, l.import_code, l.law_group_id, l.law_maintype_id, length(l.law_submaintype_id) ,l.law_submaintype_id,t.headline asc ";
+				$sqlSerach .= " order by l.notic_date Desc ";
+                // echo $sqlSerach;
 
                 $result = $this->db->execute($sqlSerach,1);
                 $countWord = $this->db->quick_num($sqlSerach);
@@ -923,7 +924,7 @@ class serach {
 
                     $sqlGetData = "select * from ".TEMP_LAW." t,".LAW_DATALAW." l where t.session_id='$sess' and t.ip='$ipp' ";
                     $sqlGetData .= " and t.sourcecode=l.ref_code and l.ref_code='$value[sourcecode]'";
-
+					// echo $sqlGetData;
                     $valueData = $this->db->quick($sqlGetData);
                     $valueData['status']==1 ? $sTxt = "<font color=\"#0000FF\">บังคับใชั</font>" : $sTxt = "<font color=\"#FF0000\">ยกเลิก</font>";
                     $categoryName = $this->db->covertID2Name(LAW_TYPE,$valueData['law_type_id']);
@@ -952,7 +953,7 @@ class serach {
 
                    $txt1 = $this->db->covertID2Name(LAW_GROUP,$valueData['law_group_id']);
                    $txt2 = $this->db->covertID2Name(LAW_TYPE,$valueData['law_type_id']);
-                   $groupLaw = lang_decode($txt1['name'],'th')." > ".lang_decode($txt2['name'],'th')." ";
+                   $groupLaw = lang_decode($txt1['name'])." > ".lang_decode($txt2['name'])." ";
                    if($valueData['law_type_id']==10){
                       $txt3 = $this->db->covertID2Name(LAW_TYPE,$valueData['law_maintype_id']);
                       $txt4 = $this->db->covertID2Name(LAW_SUBMAINTYPE,$valueData['law_submaintype_id']);
