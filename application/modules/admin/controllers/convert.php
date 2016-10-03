@@ -9,7 +9,7 @@ class Convert extends Admin_Controller {
 	// แปลงวันไทยเป็น mysql Date Format (04 พ.ย. 2559 = > 2016-11-04)
 	function thdate2DB(){
 		
-		$sql = "select id, notic_date, import_date, use_date, gazete_notice_date from law_datalaws order by id asc";
+		$sql = "select id, notic_date, import_date, use_date, gazete_notice_date from law_datalaw_old order by id asc";
 		$law_datalaws = $this->db->query($sql)->result();
 		
 		foreach($law_datalaws as $row){
@@ -43,7 +43,7 @@ class Convert extends Admin_Controller {
 			// $use_date = th2mysqldate($row->use_date);
 			// $gazete_notice_date = th2mysqldate($row->gazete_notice_date);
 			
-			$sql = "UPDATE law_datalaws
+			$sql = "UPDATE law_datalaw_old
 						SET 
 						notic_date='".@$notic_date."',
 						import_date='".@$import_date."',
