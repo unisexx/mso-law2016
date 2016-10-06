@@ -6,9 +6,9 @@
     <li>
       <span id="day-law1">
         <?if(@$this->session->userdata('lang') == "th"):?>
-	            <?=mysql_to_th($row->notic_date)?>
+	            <?=preg_replace("/ +/", '<br>', mysql_to_th($row->import_date));?>
 		<?elseif(@$this->session->userdata('lang') == "en"):?>
-	            <?=mysql_to_en($row->notic_date)?>
+	            <?=preg_replace("/ +/", '<br>', mysql_to_en($row->import_date));?>
 	    <?endif;?>
       </span>
       <span id="<?=alternator('news-law1', 'news-law2');?>">

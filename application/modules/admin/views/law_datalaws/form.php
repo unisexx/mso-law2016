@@ -54,6 +54,7 @@
           	<span class="form-inline"><input type="text" class="form-control" id="exampleInputName7" style="width:100px; margin-right:30px;" name="gazette_numerative" value="<?=$rs->gazette_numerative?>" />
             <input name="gazette_section" value="1" type="radio" <?=$rs->gazette_section==1?"checked":"";?> /> ตอน  
         	<input name="gazette_section" value="2" type="radio" <?=$rs->gazette_section==2?"checked":"";?>/> ตอนที่
+        	<input name="gazette_section" value="3" type="radio" <?=$rs->gazette_section==3?"checked":"";?>/> ตอนพิเศษ
             <input type="text" class="form-control" id="exampleInputName3" style="width:200px;" name="gazette_data" value="<?=$rs->gazette_data?>" /></span></td>
         </tr>
         <tr>
