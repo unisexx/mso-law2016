@@ -43,9 +43,9 @@
   <th>
   	<? $symbol = count($_GET)?'&':'?';?>
   	<?if(@$_GET['sortDate'] == 'notic_date asc'):?>
-  	<a href="<?=url_current();?><?=$symbol?>sortDate=notic_date+desc">วันที่ประกาศใช้ <i class="fa fa-sort" aria-hidden="true"></i></a>
+  	<a href="<?=url_current();?><?=$symbol?>sortDate=notic_date+desc">วันที่ประกาศ <i class="fa fa-sort" aria-hidden="true"></i></a>
   	<?else:?>
-  	<a href="<?=url_current();?><?=$symbol?>sortDate=notic_date+asc">วันที่ประกาศใช้ <i class="fa fa-sort" aria-hidden="true"></i></a>
+  	<a href="<?=url_current();?><?=$symbol?>sortDate=notic_date+asc">วันที่ประกาศ <i class="fa fa-sort" aria-hidden="true"></i></a>
   	<?endif;?>
   </th>
   <th width="40%">
