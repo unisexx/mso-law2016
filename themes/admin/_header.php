@@ -6,6 +6,7 @@
    <li><a href='admin/law_plans'><span>แผนพัฒนากฎหมาย</span></a></li>
    <li><a href='admin/law_resolutions'><span>มติ ครม.</span></a></li>
    <li><a href='admin/law_committees'><span>คณะกรรมการ</span></a></li>
+   <li><a href='admin/weblinks'><span>หน่วยงานกฏหมายอื่น</span></a></li>
    <li class='has-sub'><a href='javascript:void(0)' style="cursor:default;"><span>รายงาน</span></a>
    		<ul>
         	<li><a href='admin/report/report_1'><span>รายงานสถิติจำนวนผู้เข้าชม</span></a></li>

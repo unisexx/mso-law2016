@@ -847,7 +847,7 @@ class serach {
                $headline = @str_replace("\\","",@$value['Headline']);
                @is_array($value['Attachs']) ? $file = @$value['Attachs']['AttachmentProperty']['AttachText'] : $file = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";
                $sqlInsert = "insert into ".TEMP_LAW." (session_id, time, ip, keyword, id, sourcecode,headline,file) ";
-               $sqlInsert .= " value ('".$sess."', '".$time."', '".$ipp."', '".$keyword."', '".@$value['ID']."', '".@$value['SourceCode']."','".$headline."','".$file."')";
+               $sqlInsert .= " value ('".$sess."', '".$time."', '".$ipp."', '".$keyword."', '".@$value['ID']."', '".@$value['SourceCode']."','".$headline."','".mysql_real_escape_string($file)."')";
                $this->db->execute($sqlInsert);
            }
              //  echo "<script type=\"text/JavaScript\"> alert('$countSearch delete ตัวเดิม insert ตัวใหม่ !!'); </script>";
