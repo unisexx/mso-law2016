@@ -31,6 +31,8 @@ $lang['ho_download'] = "ดาวน์โหลด";
 $lang['ho_download_doc'] = "ดาวน์โหลดเอกสาร";
 $lang['ho_select_law_group'] = "เลือกกลุ่มกฏหมาย";
 $lang['ho_select_law_type'] = "เลือกหมวดกฏหมาย";
+$lang['ho_select_law_maintype'] = "เลือกประเภทกฎหมาย";
+$lang['ho_select_law_submaintype'] = "เลือกประเภทย่อยกฎหมาย";
 
 //----------------- กระทู้ ถาม-ตอบ --------------------
 $lang['b_create'] = "ตั้งคำถามใหม่";

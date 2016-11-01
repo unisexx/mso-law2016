@@ -8,13 +8,13 @@ Class Ajax extends Public_Controller
 
 	function get_select_submaintype(){
 		if($_GET){
-			echo form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes where law_maintype_id = '.$_GET['law_maintype_id'].' order by id asc'), @$_GET['law_submaintype_id'],'class="form-control" style="width:auto;"','--- เลือกประเภทย่อยกฎหมาย ---');
+			echo form_dropdown('law_submaintype_id', get_option('id','typeName','law_submaintypes where law_maintype_id = '.$_GET['law_maintype_id'].' order by id asc'), @$_GET['law_submaintype_id'],'class="form-control" style="width:auto;"','--- '.lang("ho_select_law_type").' ---');
 		}
 	}
 
 	function get_select_lawtype(){
 		if($_GET){
-			echo form_dropdown('law_type_id', get_option('id','name','law_types where law_group_id = '.$_GET['law_group_id'].' order by id asc'), @$_GET['law_type_id'],'class="form-control" style="width:auto;"','--- เลือกหมวดกฎหมาย ---');
+			echo form_dropdown('law_type_id', get_option('id','name','law_types where law_group_id = '.$_GET['law_group_id'].' order by id asc'), @$_GET['law_type_id'],'class="form-control" style="width:auto;"','--- '.lang("ho_select_law_type").' ---');
 		}
 	}
 
@@ -89,7 +89,7 @@ Class Ajax extends Public_Controller
 			$rs = $this->db->query($sql)->result();
 			// echo $sql;
 
-			echo "<select name='apply_power_id' class='form-control' style='width:100%;'>";
+			echo "<select name='apply_power_id' class='form-control' style='width:100%; font-size:10px;'>";
 			echo "<option value=''>--- กรุณาเลือกกฎหมายที่อาศัยอำนาจ ---</option>";
 			foreach($rs as $row):
 				if($row->id == $_GET['apply_power_id']){ $select = "selected"; }else{ $select = ""; }
