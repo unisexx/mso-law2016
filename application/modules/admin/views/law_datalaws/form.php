@@ -76,9 +76,9 @@
 		              <option>-- กรุณาเลือกประเภทกฎหมายย่อยที่อาศัยอำนาจ --</option>
 		            </select>
             	</span>
-            	&gt;
+            	&gt; <br> <div style="margin:5px 0;"></div>
             	<span id="applypowerid">
-	            	<select name="select3" class="form-control" style="width:auto;" disabled="disabled">
+	            	<select name="select3" class="form-control" style="width:100%;" disabled="disabled">
 		              <option selected="selected">-- กรุณาเลือกกฎหมายที่อาศัยอำนาจ --</option>
 		            </select>
 	            </span>

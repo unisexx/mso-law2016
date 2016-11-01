@@ -89,7 +89,7 @@ Class Ajax extends Public_Controller
 			$rs = $this->db->query($sql)->result();
 			// echo $sql;
 
-			echo "<select name='apply_power_id' class='form-control' style='width:500px;'>";
+			echo "<select name='apply_power_id' class='form-control' style='width:100%;'>";
 			echo "<option value=''>--- กรุณาเลือกกฎหมายที่อาศัยอำนาจ ---</option>";
 			foreach($rs as $row):
 				if($row->id == $_GET['apply_power_id']){ $select = "selected"; }else{ $select = ""; }
