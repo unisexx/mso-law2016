@@ -15,23 +15,23 @@
 	    <label for="title"><?=lang("b_question_name")?></label>
 	    <input type="text" class="form-control" id="quiz_who" placeholder="ชื่อผู้ตั้งคำถาม" name="quiz_who">
 	  </div>
-	  <!-- <div class="form-group">
+	  <div class="form-group">
 	    <label for="title"><?=lang("b_captcha")?></label>
 	    <div>
 		    <img src="users/captcha" /><Br>
 	        <input class="form-control" type="text" name="captcha" id="inputCaptcha" placeholder="<?=lang("b_captcha")?>" style="width:125px;">
         </div>
-	  </div> -->
+	  </div>
 	  <button type="submit" class="btn btn-info"><?=lang("b_created_button")?></button>
 	</form>
-  
-  
+
+
 </div>
 
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#questionForm").validate({
-    rules: 
+    rules:
     {
     	quiz_title:{required: true},
     	quiz_detail:{required: true},
