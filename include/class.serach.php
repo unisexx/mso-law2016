@@ -1003,59 +1003,59 @@ class serach {
                 if($this->db->quick_num($sql)){
                     $sqlGetData = "select * from ".LAW_DATALAW." where ref_code='$value[SourceCode]' ";
                     $valueData = $this->db->quick($sqlGetData);
-                    $valueData[status]==1 ? $sTxt = "<font color=\"#0000FF\">บังคับใชั</font>" : $sTxt = "<font color=\"#FF0000\">ยกเลิก</font>";
-                    $categoryName = $this->db->covertID2Name(LAW_TYPE,$valueData[law_type_id]);
+                    $valueData['status']==1 ? $sTxt = "<font color=\"#0000FF\">บังคับใชั</font>" : $sTxt = "<font color=\"#FF0000\">ยกเลิก</font>";
+                    $categoryName = $this->db->covertID2Name(LAW_TYPE,$valueData['law_type_id']);
 
                    // นับจำนวนครั้ง Download
                     $sqlCheck = "select count(id) as CN from ".LAW_DOWNLOAD." where filename='$valueData[filename_th]' ";
                     $valueCount = $this->db->quick($sqlCheck);
-                    $valueCount[CN] ? $count = $valueCount[CN] : $count = 0;
+                    $valueCount['CN'] ? $count = $valueCount['CN'] : $count = 0;
 
-                     if($valueData[import_code]=="im4"){
+                     if($valueData['import_code']=="im4"){
                         $sqlCheck = "select count(id) as CE from ".LAW_DOWNLOAD." where filename='$valueData[filename_eng]' ";
                         $valueCount = $this->db->quick($sqlCheck);
-                        $valueCount[CE] ? $counte = $valueCount[CE] : $counte = 0;
+                        $valueCount['CE'] ? $counte = $valueCount['CE'] : $counte = 0;
                         $txtDownload = "<font color=\"#00AE00\"><img src=\"images/appicon/download_icon.png\" border=\"0\"  alt=\"Download $valueData[filename_th]\"><a href=\"#$valueData[filename_th]\" onclick=\"window.open('getFile.php?name=$valueData[filename_th]','view_$valueData[id]','width=200,height=200,menubar')\">Download File Thai</a> </font>&nbsp;( <b>$count</b> ครั้ง ) &nbsp;
                                         <font color=\"#00AE00\"><img src=\"images/appicon/download_icon.png\" border=\"0\"  alt=\"Download $valueData[filename_eng]\"><a href=\"#$valueData[filename_eng]\" onclick=\"window.open('getFile.php?name=$valueData[filename_th]','view_$valueData[id]','width=200,height=200,menubar')\">Download File English</a> </font>&nbsp;( <b>$counte</b> ครั้ง )";
                     }else{
                         $txtDownload = "<font color=\"#00AE00\"><img src=\"images/appicon/download_icon.png\" border=\"0\"  alt=\"Download $valueData[filename_th]\"><a href=\"#$valueData[filename_th]\" onclick=\"window.open('getFile.php?name=$valueData[filename_th]','view_$valueData[id]','width=200,height=200,menubar')\">Download File</a> </font>&nbsp;( <b>$count</b> ครั้ง )";
                     }
 
-                    $textName = $valueData[name_th] ? $valueData[name_th] : $value['HeadLine'] ;
+                    $textName = $valueData['name_th'] ? $valueData['name_th'] : $value['HeadLine'] ;
                     //$textName = $value['Headline'] ;
                     $textName = str_replace("|"," ",$textName);
 
                     is_array($value['Attachs']) ? $attachTxt = $value['Attachs']['AttachmentProperty']['AttachText'] : $attachTxt = "ไม่พบข้อมูลในเนื้อไฟล์กฎหมาย";
-                    $valueData[use_date] == "" ? $txtUse = "-" : $txtUse = $valueData[use_date];
+                    $valueData['use_date'] == "" ? $txtUse = "-" : $txtUse = $valueData['use_date'];
 
-                    $resultSerach .= "
+                    @$resultSerach .= "
                         <table width=\"700\" border=\"0\">
                           <tr>
-                            <td><a href=\"law/view/".$valueData['id']."\" target=\"_blank\"> $textName</a> <b>( สถานะ : $sTxt )</b></td>
+                            <td><a href=\"law/view/".$valueData['id']."\" target=\"_blank\"> ".$textName."</a> <b>( สถานะ : ".$sTxt." )</b></td>
                           </tr>
                           <tr>
                             <td>
                             <table width=\"100%\" border=\"0\">
                               <tr>
                                 <td width=\"26%\">หมวดกฎหมาย </td>
-                                <td width=\"74%\">$categoryName[name]</td>
+                                <td width=\"74%\">".lang_decode($categoryName['name'])."</td>
                               </tr>
                               <tr>
                                 <td width=\"26%\">วันที่ประกาศใช้ </td>
-                                <td width=\"74%\">$valueData[notic_date]</td>
+                                <td width=\"74%\">".$valueData['notic_date']."</td>
                               </tr>
                               <tr>
                                 <td width=\"26%\">วันที่บังคับใช้ </td>
-                                <td width=\"74%\">$txtUse</td>
+                                <td width=\"74%\">".$txtUse."</td>
                               </tr>
                               <tr>
                                 <td valign=\"top\">เนื้อหาไฟล์กฎหมาย</td>
-                                <td>$attachTxt</td>
+                                <td>".$attachTxt."</td>
                               </tr>
                             </table></td>
                           </tr>
                           <tr>
-                            <td>$txtDownload</td>
+                            <td>".$txtDownload."</td>
                           </tr>
                         </table>
                         <br>
