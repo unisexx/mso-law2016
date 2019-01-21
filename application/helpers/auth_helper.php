@@ -6,17 +6,20 @@ function login($username,$password)
 	$CI =& get_instance();
 	$user = new Sys_user();
 	// $user->where(array('username'=>$username,'password'=>$password))->get();
-	$user->where("username ='".$username."' AND password='".$password."' ")->get();
+	$user->where("username ='".$username."'")->get();
 	// $user->check_last_query();
-	if($user->exists())
-	{
-		$CI->session->set_userdata('id',$user->id);
-		return TRUE;
+
+	if($user->exists()){
+        if(verifyHashedPassword($password, $user->password)){
+            $CI->session->set_userdata('id',$user->id);
+			return TRUE;
+        } else {
+            return FALSE;
+        }
+    } else {
+        return FALSE;
 	}
-	else
-	{
-		return FALSE;
-	}
+	
 }
 
 function is_login($level_name = FALSE)

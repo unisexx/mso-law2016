@@ -46,12 +46,12 @@
 	  <td><input name="username" type="text" class="form-control" id="textarea4" value="<?=$rs->username?>" style="width:200px;"/></td>
 	</tr>
 	<tr>
-	  <th>รหัสผ่าน<span class="Txt_red_12"> *</span></th>
-	  <td><input name="password" type="text" class="form-control" id="inputPass" value="<?=$rs->password?>" style="width:200px;"/></td>
+	  <th>รหัสผ่านเก่า</th>
+	  <td><input name="old_password" type="text" class="form-control" id="inputPass" value="" style="width:200px;"/></td>
 	</tr>
 	<tr>
-	  <th>ยืนยันรหัสผ่าน<span class="Txt_red_12"> *</span></th>
-	  <td><input name="_password" type="text" class="form-control" id="textarea3" value="<?=$rs->password?>" style="width:200px;"/></td>
+	  <th>รหัสผ่านใหม่</th>
+	  <td><input name="new_password" type="text" class="form-control" id="textarea3" value="" style="width:200px;"/></td>
 	</tr>
 	</table>
 	<div id="btnBoxAdd">
@@ -76,15 +76,19 @@ $(document).ready(function(){
 	            email: true
 	        },
 	        username:{required: true},
-	        password: 
+			new_password: 
 	        {
-	            required: true,
-	            minlength: 4
+	            minlength: 6
 	        },
-	        _password:
-	        {
-	            equalTo: "#inputPass"
-	        }
+	        // password: 
+	        // {
+	        //     required: true,
+	        //     minlength: 4
+	        // },
+	        // _password:
+	        // {
+	        //     equalTo: "#inputPass"
+	        // }
 	    },
 	    messages:
 	    {
@@ -96,15 +100,19 @@ $(document).ready(function(){
 	            email: "กรุณากรอกอีเมล์ให้ถูกต้อง"
 	        },
 	        username:{required: "กรุณากรอกยูสเซอร์เนม"},
-	        password: 
+			new_password: 
 	        {
-	            required: "กรุณากรอกรหัสผ่าน",
-	            minlength: "กรุณากรอกรหัสผ่านอย่างน้อย 4 ตัวอักษร"
+	            minlength: "กรุณากรอกรหัสผ่านอย่างน้อย 6 ตัวอักษร"
 	        },
-	        _password:
-	        {
-	            equalTo: "กรุณากรอกรหัสผ่านให้ตรงกันทั้ง 2 ช่อง"
-	        }
+	        // password: 
+	        // {
+	        //     required: "กรุณากรอกรหัสผ่าน",
+	        //     minlength: "กรุณากรอกรหัสผ่านอย่างน้อย 4 ตัวอักษร"
+	        // },
+	        // _password:
+	        // {
+	        //     equalTo: "กรุณากรอกรหัสผ่านให้ตรงกันทั้ง 2 ช่อง"
+	        // }
 	    }
     });
 });

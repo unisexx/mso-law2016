@@ -4,6 +4,10 @@ class User extends Admin_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('encrypt');
+		
+		// $encodedEmail = $this->encrypt->encode('user_email_address');
+		// $myEmail = $this->encrypt->decode($encodedEmail);
 	}
 
 	function index()
@@ -31,6 +35,13 @@ class User extends Admin_Controller {
 			$rs = new Sys_user($id);
 			
 			$_POST['rdate'] = Date2DB($_POST['rdate']);
+
+			// ถ้ามีการเปลี่ยนรหัสผ่าน ให้ทำการเช็กรหัสผ่านเก่าก่อน ถ้ารหัสผ่านเก่าตรง อนุญาติให้เปลี่ยนได้
+			if(isset($_POST['new_password'])){
+				if(verifyHashedPassword($_POST['old_password'], $rs->password)){
+					$_POST['password'] = getHashedPassword($_POST['new_password']);
+				}
+			}
 			
 			$rs->from_array($_POST);
 			$rs->save();
