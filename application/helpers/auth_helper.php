@@ -2,20 +2,20 @@
 
 function login($username,$password)
 {
-	// $password = md5(sha1($password."secret"));
+	$password = md5(sha1($password."secret"));
 	$CI =& get_instance();
 	$user = new Sys_user();
-	// $user->where(array('username'=>$username,'password'=>$password))->get();
-	$user->where("username ='".$username."'")->get();
+	$user->where(array('username'=>$username,'password'=>$password))->get();
+	// $user->where("username ='".$username."'")->get();
 	// $user->check_last_query();
 
 	if($user->exists()){
-        if(verifyHashedPassword($password, $user->password)){
+        // if(verifyHashedPassword($password, $user->password)){
             $CI->session->set_userdata('id',$user->id);
 			return TRUE;
-        } else {
-            return FALSE;
-        }
+        // } else {
+        //     return FALSE;
+        // }
     } else {
         return FALSE;
 	}

@@ -37,9 +37,15 @@ class User extends Admin_Controller {
 			$_POST['rdate'] = Date2DB($_POST['rdate']);
 
 			// ถ้ามีการเปลี่ยนรหัสผ่าน ให้ทำการเช็กรหัสผ่านเก่าก่อน ถ้ารหัสผ่านเก่าตรง อนุญาติให้เปลี่ยนได้
+			// if(isset($_POST['new_password'])){
+			// 	if(verifyHashedPassword($_POST['old_password'], $rs->password)){
+			// 		$_POST['password'] = getHashedPassword($_POST['new_password']);
+			// 	}
+			// }
+
 			if(isset($_POST['new_password'])){
-				if(verifyHashedPassword($_POST['old_password'], $rs->password)){
-					$_POST['password'] = getHashedPassword($_POST['new_password']);
+				if($rs->password = md5(sha1($_POST['old_password']."secret"))){
+					$_POST['password'] = md5(sha1($_POST['new_password']."secret"));
 				}
 			}
 			
