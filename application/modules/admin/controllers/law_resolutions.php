@@ -27,20 +27,30 @@ class Law_resolutions extends Admin_Controller {
 			
 			$rs = new Law_resolution($id);
 			
+
+			$allowed =  array('doc','docx' ,'xls', 'xlsx','pdf');
+
 			if($_FILES['resolution_file_th']['name'])
 			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/resolutionfile','resolution_file_th');
+				$filename_th = $_FILES['resolution_file_th']['name'];
+				$ext_th = pathinfo($filename_th, PATHINFO_EXTENSION);
+				if(in_array($ext_th,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/resolutionfile','resolution_file_th');
+					}
+					$_POST['resolution_file_th'] = $rs->upload($_FILES['resolution_file_th'],'uploads/resolutionfile/');
 				}
-				$_POST['resolution_file_th'] = $rs->upload($_FILES['resolution_file_th'],'uploads/resolutionfile/');
 			}
 			
-			if($_FILES['resolution_file_en']['name'])
-			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/resolutionfile','resolution_file_en');
+			if($_FILES['resolution_file_en']['name']){
+				$filename_en = $_FILES['resolution_file_en']['name'];
+				$ext_en = pathinfo($filename_en, PATHINFO_EXTENSION);
+				if(in_array($ext_en,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/resolutionfile','resolution_file_en');
+					}
+					$_POST['resolution_file_en'] = $rs->upload($_FILES['resolution_file_en'],'uploads/resolutionfile/');
 				}
-				$_POST['resolution_file_en'] = $rs->upload($_FILES['resolution_file_en'],'uploads/resolutionfile/');
 			}
 			
 			$rs->from_array($_POST);

@@ -35,21 +35,30 @@ class Law_privileges extends Admin_Controller {
 			$_POST['pri_date'] = Date2DB($_POST['pri_date']);
 			
 			$rs = new Law_privilege($id);
-			
+
+			$allowed =  array('doc','docx' ,'xls', 'xlsx','pdf');
+
 			if($_FILES['pri_file_th']['name'])
 			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/privilegefile','pri_file_th');
+				$filename_th = $_FILES['pri_file_th']['name'];
+				$ext_th = pathinfo($filename_th, PATHINFO_EXTENSION);
+				if(in_array($ext_th,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/privilegefile','pri_file_th');
+					}
+					$_POST['pri_file_th'] = $rs->upload($_FILES['pri_file_th'],'uploads/privilegefile/');
 				}
-				$_POST['pri_file_th'] = $rs->upload($_FILES['pri_file_th'],'uploads/privilegefile/');
 			}
 			
-			if($_FILES['pri_file_en']['name'])
-			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/privilegefile','pri_file_en');
+			if($_FILES['pri_file_en']['name']){
+				$filename_en = $_FILES['pri_file_en']['name'];
+				$ext_en = pathinfo($filename_en, PATHINFO_EXTENSION);
+				if(in_array($ext_en,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/privilegefile','pri_file_en');
+					}
+					$_POST['pri_file_en'] = $rs->upload($_FILES['pri_file_en'],'uploads/privilegefile/');
 				}
-				$_POST['pri_file_en'] = $rs->upload($_FILES['pri_file_en'],'uploads/privilegefile/');
 			}
 			
 			$rs->from_array($_POST);

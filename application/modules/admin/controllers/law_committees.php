@@ -33,21 +33,30 @@ class Law_committees extends Admin_Controller {
 			$_POST['committee_dateappoint'] = Date2DB($_POST['committee_dateappoint']);
 			
 			$rs = new Law_committee($id);
-			
+
+			$allowed =  array('doc','docx' ,'xls', 'xlsx','pdf');
+
 			if($_FILES['committee_picfile_th']['name'])
 			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/committeefile','committee_picfile_th');
+				$filename_th = $_FILES['committee_picfile_th']['name'];
+				$ext_th = pathinfo($filename_th, PATHINFO_EXTENSION);
+				if(in_array($ext_th,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/committeefile','committee_picfile_th');
+					}
+					$_POST['committee_picfile_th'] = $rs->upload($_FILES['committee_picfile_th'],'uploads/committeefile/');
 				}
-				$_POST['committee_picfile_th'] = $rs->upload($_FILES['committee_picfile_th'],'uploads/committeefile/');
 			}
 			
-			if($_FILES['committee_picfile_en']['name'])
-			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/committeefile','committee_picfile_en');
+			if($_FILES['committee_picfile_en']['name']){
+				$filename_en = $_FILES['committee_picfile_en']['name'];
+				$ext_en = pathinfo($filename_en, PATHINFO_EXTENSION);
+				if(in_array($ext_en,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/committeefile','committee_picfile_en');
+					}
+					$_POST['committee_picfile_en'] = $rs->upload($_FILES['committee_picfile_en'],'uploads/committeefile/');
 				}
-				$_POST['committee_picfile_en'] = $rs->upload($_FILES['committee_picfile_en'],'uploads/committeefile/');
 			}
 			
 			$rs->from_array($_POST);

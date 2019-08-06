@@ -28,21 +28,31 @@ class Law_plans extends Admin_Controller {
 			
 			$rs = new Law_plan($id);
 			
+			$allowed =  array('doc','docx' ,'xls', 'xlsx','pdf');
+
 			if($_FILES['plan_file_th']['name'])
 			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/planfile','plan_file_th');
+				$filename_th = $_FILES['plan_file_th']['name'];
+				$ext_th = pathinfo($filename_th, PATHINFO_EXTENSION);
+				if(in_array($ext_th,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/planfile','plan_file_th');
+					}
+					$_POST['plan_file_th'] = $rs->upload($_FILES['plan_file_th'],'uploads/planfile/');
 				}
-				$_POST['plan_file_th'] = $rs->upload($_FILES['plan_file_th'],'uploads/planfile/');
 			}
 			
-			if($_FILES['plan_file_en']['name'])
-			{
-				if($rs->id){
-					$rs->delete_file($rs->id,'uploads/planfile','plan_file_en');
+			if($_FILES['plan_file_en']['name']){
+				$filename_en = $_FILES['plan_file_en']['name'];
+				$ext_en = pathinfo($filename_en, PATHINFO_EXTENSION);
+				if(in_array($ext_en,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/planfile','plan_file_en');
+					}
+					$_POST['plan_file_en'] = $rs->upload($_FILES['plan_file_en'],'uploads/planfile/');
 				}
-				$_POST['plan_file_en'] = $rs->upload($_FILES['plan_file_en'],'uploads/planfile/');
 			}
+
 			
 			$rs->from_array($_POST);
 			$rs->save();
