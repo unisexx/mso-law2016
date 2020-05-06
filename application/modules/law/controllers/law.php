@@ -46,9 +46,13 @@ class Law extends Public_Controller {
 		$data['laws'] = new Law_datalaw();
 		if(@$_GET['law_group_id']){$data['laws']->where('law_group_id = '.$_GET['law_group_id']);}
 		if(@$_GET['law_type_id']){$data['laws']->where('law_type_id = '.$_GET['law_type_id']);}
-		$data['laws']->where("law_maintype_id not in ('2', '5')");
+		// $data['laws']->where("law_maintype_id not in ('2', '5')"); // ไม่เอาประเภทอนุบัญญัติ และกฏหมายระหว่างประเทศ
 		$data['laws']->where('apply_power_id is not null');
-		$data['laws']->order_by('law_maintype_id','asc')->order_by('law_submaintype_id','asc')->order_by('name_th','asc')->get_page();
+		// $data['laws']->order_by('law_maintype_id','asc')->order_by('law_submaintype_id','asc')->order_by('name_th','asc')->get_page();
+		$data['laws']->order_by('id','desc')->get_page();
+
+		// echo $this->db->last_query();
+
 		$this->template->build('group_list',$data);
 	}
 	

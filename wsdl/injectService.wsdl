@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.thaiquest.com/search" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://ws.thaiquest.com/search" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.thaiquest.com/search">
+      <s:element name="doAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Document" type="tns:DocumentProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StoryTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Headline" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Story" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Languages" type="tns:DocumentLanguage" />
+          <s:element minOccurs="0" maxOccurs="1" name="Disclaimer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attachs" type="tns:ArrayOfAttachmentProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DocumentLanguage">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Thai" />
+              <s:enumeration value="English" />
+              <s:enumeration value="Chinese" />
+              <s:enumeration value="Japanese" />
+              <s:enumeration value="Korean" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ArrayOfAttachmentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AttachmentProperty" nillable="true" type="tns:AttachmentProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AttachmentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AttachID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachData" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachEncoding" type="tns:AttachmentEncoding" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachType" type="tns:AttachmentType" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachFilename" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAttachConvert" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AttachmentEncoding">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Base64" />
+          <s:enumeration value="HexaString" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AttachmentType">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Text" />
+              <s:enumeration value="Html" />
+              <s:enumeration value="Pdf" />
+              <s:enumeration value="MSWord" />
+              <s:enumeration value="MSExcel" />
+              <s:enumeration value="MSPowerPoint" />
+              <s:enumeration value="Xml" />
+              <s:enumeration value="Mht" />
+              <s:enumeration value="Zip" />
+              <s:enumeration value="Jpg" />
+              <s:enumeration value="Gif" />
+              <s:enumeration value="Bmp" />
+              <s:enumeration value="Tif" />
+              <s:enumeration value="Png" />
+              <s:enumeration value="Pcx" />
+              <s:enumeration value="Ai" />
+              <s:enumeration value="Vsd" />
+              <s:enumeration value="MsWord2007" />
+              <s:enumeration value="MsExcel2007" />
+              <s:enumeration value="MsPowerPoint2007" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="doAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doAddResult" type="tns:InjectResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InjectResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="tns:InjectErrorCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="InjectErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="GeneralError" />
+          <s:enumeration value="PermissionInvalid" />
+          <s:enumeration value="ParameterInvalid" />
+          <s:enumeration value="InjectProcedureFailed" />
+          <s:enumeration value="InjectProcedureFailedBySearch" />
+          <s:enumeration value="InjectProcedureFailedByDB" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="doEdit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Document" type="tns:DocumentProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doEditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doEditResult" type="tns:InjectResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doDeleteResult" type="tns:InjectResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Version">
+        <s:complexType />
+      </s:element>
+      <s:element name="VersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VersionResult" type="tns:VersionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VersionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Build" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReleasedDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="doAddSoapIn">
+    <wsdl:part name="parameters" element="tns:doAdd" />
+  </wsdl:message>
+  <wsdl:message name="doAddSoapOut">
+    <wsdl:part name="parameters" element="tns:doAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="doEditSoapIn">
+    <wsdl:part name="parameters" element="tns:doEdit" />
+  </wsdl:message>
+  <wsdl:message name="doEditSoapOut">
+    <wsdl:part name="parameters" element="tns:doEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="doDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:doDelete" />
+  </wsdl:message>
+  <wsdl:message name="doDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:doDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="VersionSoapIn">
+    <wsdl:part name="parameters" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="VersionSoapOut">
+    <wsdl:part name="parameters" element="tns:VersionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="InjectServiceSoap">
+    <wsdl:operation name="doAdd">
+      <wsdl:input message="tns:doAddSoapIn" />
+      <wsdl:output message="tns:doAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doEdit">
+      <wsdl:input message="tns:doEditSoapIn" />
+      <wsdl:output message="tns:doEditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doDelete">
+      <wsdl:input message="tns:doDeleteSoapIn" />
+      <wsdl:output message="tns:doDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <wsdl:input message="tns:VersionSoapIn" />
+      <wsdl:output message="tns:VersionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="InjectServiceSoap" type="tns:InjectServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="doAdd">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doEdit">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doEdit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doDelete">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/Version" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="InjectServiceSoap12" type="tns:InjectServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="doAdd">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doEdit">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doDelete">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/Version" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InjectService">
+    <wsdl:port name="InjectServiceSoap" binding="tns:InjectServiceSoap">
+      <soap:address location="http://10.11.40.128/ThaiQuest/ThaiQuestWebservice/InjectService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="InjectServiceSoap12" binding="tns:InjectServiceSoap12">
+      <soap12:address location="http://10.11.40.128/ThaiQuest/ThaiQuestWebservice/InjectService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

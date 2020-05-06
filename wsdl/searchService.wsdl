@@ -1,0 +1,1219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.thaiquest.com/search/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://ws.thaiquest.com/search/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.thaiquest.com/search/">
+      <s:element name="doSearch_1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_1Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfDocumentProperty" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsNext" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPrevious" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimateTotal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SearchTime" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="tns:SearchErrorCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cookies" type="tns:SearchCookies" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentProperty" nillable="true" type="tns:DocumentProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StoryTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Headline" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Story" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Languages" type="tns:DocumentLanguage" />
+          <s:element minOccurs="0" maxOccurs="1" name="Disclaimer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attachs" type="tns:ArrayOfAttachmentProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DocumentLanguage">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Thai" />
+              <s:enumeration value="English" />
+              <s:enumeration value="Chinese" />
+              <s:enumeration value="Japanese" />
+              <s:enumeration value="Korean" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ArrayOfAttachmentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AttachmentProperty" nillable="true" type="tns:AttachmentProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AttachmentProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AttachID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachData" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachEncoding" type="tns:AttachmentEncoding" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachType" type="tns:AttachmentType" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachFilename" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAttachConvert" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AttachmentEncoding">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Base64" />
+          <s:enumeration value="HexaString" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AttachmentType">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="Text" />
+              <s:enumeration value="Html" />
+              <s:enumeration value="Pdf" />
+              <s:enumeration value="MSWord" />
+              <s:enumeration value="MSExcel" />
+              <s:enumeration value="MSPowerPoint" />
+              <s:enumeration value="Xml" />
+              <s:enumeration value="Mht" />
+              <s:enumeration value="Zip" />
+              <s:enumeration value="Jpg" />
+              <s:enumeration value="Gif" />
+              <s:enumeration value="Bmp" />
+              <s:enumeration value="Tif" />
+              <s:enumeration value="Png" />
+              <s:enumeration value="Pcx" />
+              <s:enumeration value="Ai" />
+              <s:enumeration value="Vsd" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:simpleType name="SearchErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="GeneralError" />
+          <s:enumeration value="PermissionInvalid" />
+          <s:enumeration value="ParameterInvalid" />
+          <s:enumeration value="SearchProcedureFailed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SearchCookies">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Parameter" type="tns:SearchParameter" />
+          <s:element minOccurs="0" maxOccurs="1" name="CookiesStream" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reserved" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Field" type="tns:SearchField" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OldestFirst" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsStemming" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+          <s:element minOccurs="1" maxOccurs="1" name="StoryLength" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SearchOperator" type="tns:SearchOperatorProperty" />
+          <s:element minOccurs="0" maxOccurs="1" name="SearchHighlight" type="tns:SearchHighlightProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Languages" type="tns:DocumentLanguage" />
+          <s:element minOccurs="1" maxOccurs="1" name="AttachType" type="tns:AttachmentType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SearchResultFieldParameter">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="ID" />
+              <s:enumeration value="SourceCode" />
+              <s:enumeration value="DisplayTime" />
+              <s:enumeration value="StoryTime" />
+              <s:enumeration value="Headline" />
+              <s:enumeration value="Description" />
+              <s:enumeration value="Story" />
+              <s:enumeration value="Categories" />
+              <s:enumeration value="Languages" />
+              <s:enumeration value="Disclaimer" />
+              <s:enumeration value="Reference" />
+              <s:enumeration value="AttachID" />
+              <s:enumeration value="AttachData" />
+              <s:enumeration value="AttachEncoding" />
+              <s:enumeration value="AttachLength" />
+              <s:enumeration value="AttachType" />
+              <s:enumeration value="AttachOrder" />
+              <s:enumeration value="AttachFileName" />
+              <s:enumeration value="IsAttachConvert" />
+              <s:enumeration value="AttachText" />
+              <s:enumeration value="AttachDescription" />
+              <s:enumeration value="AttachReference" />
+              <s:enumeration value="UpdateTime" />
+              <s:enumeration value="Highlight" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="SearchOperatorProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ANDOperator" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="OROperator" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOTOperator" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="NEAROperator" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="STEMOperator" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultOperator" type="tns:SearchOperatorType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForceSTEMOperator" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SearchOperatorType">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="ANDOperator" />
+              <s:enumeration value="OROperator" />
+              <s:enumeration value="NOTOperator" />
+              <s:enumeration value="NEAROperator" />
+              <s:enumeration value="STEMOperator" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="SearchHighlightProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HighlightTagStart" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="HighlightTagStop" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="doSearch_2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_2Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Field" type="tns:SearchField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_3Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_4">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Field" type="tns:SearchField" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_4Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_4Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_5">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Field" type="tns:SearchField" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StoryLength" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_5Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_5Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_6">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Field" type="tns:SearchField" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StoryLength" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_6Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_6Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_7">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter" type="tns:SearchParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_7Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_7Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_8">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Categories" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Languages" type="tns:DocumentLanguage" />
+            <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:AttachmentType" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StoryLength" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="OldestFirst" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsStemming" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_8Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_8Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_9">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cookies" type="tns:SearchCookies" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearch_9Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearch_9Result" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchNext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cookies" type="tns:SearchCookies" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchNextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchNextResult" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchPrevious">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cookies" type="tns:SearchCookies" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchPreviousResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchPreviousResult" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchFromIDResult" type="tns:DocumentProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromAttachID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AttachID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromAttachIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchFromAttachIDResult" type="tns:DocumentProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromIDList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromIDListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchFromIDListResult" type="tns:ArrayOfDocumentProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromAttachIDList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AttachIDs" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="ResultFieldParameter" type="tns:SearchResultFieldParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchFromAttachIDListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchFromAttachIDListResult" type="tns:DocumentProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchHighlight_1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchHighlight_1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchHighlight_1Result" type="tns:ArrayOfSearchHighlightPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSearchHighlightPosition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SearchHighlightPosition" nillable="true" type="tns:SearchHighlightPosition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchHighlightPosition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StartPosition" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PositionLength" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="doSearchHighlight_2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchOperator" type="tns:SearchOperatorProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchHighlight_2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchHighlight_2Result" type="tns:ArrayOfSearchHighlightPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchHighlightList_1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentText" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchHighlightList_1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchHighlightList_1Result" type="tns:ArrayOfArrayOfSearchHighlightPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfSearchHighlightPosition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfSearchHighlightPosition" nillable="true" type="tns:ArrayOfSearchHighlightPosition" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="doSearchHighlightList_2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentText" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="Query" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchOperator" type="tns:SearchOperatorProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doSearchHighlightList_2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doSearchHighlightList_2Result" type="tns:ArrayOfArrayOfSearchHighlightPosition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Version">
+        <s:complexType />
+      </s:element>
+      <s:element name="VersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VersionResult" type="tns:VersionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VersionInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Build" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReleasedDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="doGetSearchOperator">
+        <s:complexType />
+      </s:element>
+      <s:element name="doGetSearchOperatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doGetSearchOperatorResult" type="tns:SearchOperatorProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="doGetSearchHighlight">
+        <s:complexType />
+      </s:element>
+      <s:element name="doGetSearchHighlightResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="doGetSearchHighlightResult" type="tns:SearchHighlightProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="doSearch_1SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_1" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_1SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_1Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_2SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_2" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_2SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_2Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_3SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_3" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_3SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_3Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_4SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_4" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_4SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_4Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_5SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_5" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_5SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_5Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_6SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_6" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_6SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_6Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_7SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_7" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_7SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_7Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_8SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_8" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_8SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_8Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_9SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearch_9" />
+  </wsdl:message>
+  <wsdl:message name="doSearch_9SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearch_9Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearchNextSoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchNext" />
+  </wsdl:message>
+  <wsdl:message name="doSearchNextSoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchNextResponse" />
+  </wsdl:message>
+  <wsdl:message name="doSearchPreviousSoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchPrevious" />
+  </wsdl:message>
+  <wsdl:message name="doSearchPreviousSoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchPreviousResponse" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromIDSoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchFromID" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromIDSoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchFromIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromAttachIDSoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchFromAttachID" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromAttachIDSoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchFromAttachIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromIDListSoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchFromIDList" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromIDListSoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchFromIDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromAttachIDListSoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchFromAttachIDList" />
+  </wsdl:message>
+  <wsdl:message name="doSearchFromAttachIDListSoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchFromAttachIDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlight_1SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchHighlight_1" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlight_1SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchHighlight_1Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlight_2SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchHighlight_2" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlight_2SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchHighlight_2Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlightList_1SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchHighlightList_1" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlightList_1SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchHighlightList_1Response" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlightList_2SoapIn">
+    <wsdl:part name="parameters" element="tns:doSearchHighlightList_2" />
+  </wsdl:message>
+  <wsdl:message name="doSearchHighlightList_2SoapOut">
+    <wsdl:part name="parameters" element="tns:doSearchHighlightList_2Response" />
+  </wsdl:message>
+  <wsdl:message name="VersionSoapIn">
+    <wsdl:part name="parameters" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="VersionSoapOut">
+    <wsdl:part name="parameters" element="tns:VersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="doGetSearchOperatorSoapIn">
+    <wsdl:part name="parameters" element="tns:doGetSearchOperator" />
+  </wsdl:message>
+  <wsdl:message name="doGetSearchOperatorSoapOut">
+    <wsdl:part name="parameters" element="tns:doGetSearchOperatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="doGetSearchHighlightSoapIn">
+    <wsdl:part name="parameters" element="tns:doGetSearchHighlight" />
+  </wsdl:message>
+  <wsdl:message name="doGetSearchHighlightSoapOut">
+    <wsdl:part name="parameters" element="tns:doGetSearchHighlightResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SearchServiceSoap">
+    <wsdl:operation name="doSearch_1">
+      <wsdl:input name="doSearch_1" message="tns:doSearch_1SoapIn" />
+      <wsdl:output name="doSearch_1" message="tns:doSearch_1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_2">
+      <wsdl:input name="doSearch_2" message="tns:doSearch_2SoapIn" />
+      <wsdl:output name="doSearch_2" message="tns:doSearch_2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_3">
+      <wsdl:input name="doSearch_3" message="tns:doSearch_3SoapIn" />
+      <wsdl:output name="doSearch_3" message="tns:doSearch_3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_4">
+      <wsdl:input name="doSearch_4" message="tns:doSearch_4SoapIn" />
+      <wsdl:output name="doSearch_4" message="tns:doSearch_4SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_5">
+      <wsdl:input name="doSearch_5" message="tns:doSearch_5SoapIn" />
+      <wsdl:output name="doSearch_5" message="tns:doSearch_5SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_6">
+      <wsdl:input name="doSearch_6" message="tns:doSearch_6SoapIn" />
+      <wsdl:output name="doSearch_6" message="tns:doSearch_6SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_7">
+      <wsdl:input name="doSearch_7" message="tns:doSearch_7SoapIn" />
+      <wsdl:output name="doSearch_7" message="tns:doSearch_7SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_8">
+      <wsdl:input name="doSearch_8" message="tns:doSearch_8SoapIn" />
+      <wsdl:output name="doSearch_8" message="tns:doSearch_8SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_9">
+      <wsdl:input name="doSearch_9" message="tns:doSearch_9SoapIn" />
+      <wsdl:output name="doSearch_9" message="tns:doSearch_9SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchNext">
+      <wsdl:input message="tns:doSearchNextSoapIn" />
+      <wsdl:output message="tns:doSearchNextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchPrevious">
+      <wsdl:input message="tns:doSearchPreviousSoapIn" />
+      <wsdl:output message="tns:doSearchPreviousSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromID">
+      <wsdl:input message="tns:doSearchFromIDSoapIn" />
+      <wsdl:output message="tns:doSearchFromIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromAttachID">
+      <wsdl:input message="tns:doSearchFromAttachIDSoapIn" />
+      <wsdl:output message="tns:doSearchFromAttachIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromIDList">
+      <wsdl:input message="tns:doSearchFromIDListSoapIn" />
+      <wsdl:output message="tns:doSearchFromIDListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromAttachIDList">
+      <wsdl:input message="tns:doSearchFromAttachIDListSoapIn" />
+      <wsdl:output message="tns:doSearchFromAttachIDListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlight_1">
+      <wsdl:input name="doSearchHighlight_1" message="tns:doSearchHighlight_1SoapIn" />
+      <wsdl:output name="doSearchHighlight_1" message="tns:doSearchHighlight_1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlight_2">
+      <wsdl:input name="doSearchHighlight_2" message="tns:doSearchHighlight_2SoapIn" />
+      <wsdl:output name="doSearchHighlight_2" message="tns:doSearchHighlight_2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlightList_1">
+      <wsdl:input name="doSearchHighlightList_1" message="tns:doSearchHighlightList_1SoapIn" />
+      <wsdl:output name="doSearchHighlightList_1" message="tns:doSearchHighlightList_1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlightList_2">
+      <wsdl:input name="doSearchHighlightList_2" message="tns:doSearchHighlightList_2SoapIn" />
+      <wsdl:output name="doSearchHighlightList_2" message="tns:doSearchHighlightList_2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <wsdl:input message="tns:VersionSoapIn" />
+      <wsdl:output message="tns:VersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doGetSearchOperator">
+      <wsdl:input message="tns:doGetSearchOperatorSoapIn" />
+      <wsdl:output message="tns:doGetSearchOperatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="doGetSearchHighlight">
+      <wsdl:input message="tns:doGetSearchHighlightSoapIn" />
+      <wsdl:output message="tns:doGetSearchHighlightSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SearchServiceSoap" type="tns:SearchServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="doSearch_1">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_1" style="document" />
+      <wsdl:input name="doSearch_1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_2">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_2" style="document" />
+      <wsdl:input name="doSearch_2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_3">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_3" style="document" />
+      <wsdl:input name="doSearch_3">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_3">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_4">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_4" style="document" />
+      <wsdl:input name="doSearch_4">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_4">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_5">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_5" style="document" />
+      <wsdl:input name="doSearch_5">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_5">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_6">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_6" style="document" />
+      <wsdl:input name="doSearch_6">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_6">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_7">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_7" style="document" />
+      <wsdl:input name="doSearch_7">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_7">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_8">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_8" style="document" />
+      <wsdl:input name="doSearch_8">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_8">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_9">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearch_9" style="document" />
+      <wsdl:input name="doSearch_9">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_9">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchNext">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchNext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchPrevious">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchPrevious" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromID">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchFromID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromAttachID">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchFromAttachID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromIDList">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchFromIDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromAttachIDList">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchFromAttachIDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlight_1">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlight_1" style="document" />
+      <wsdl:input name="doSearchHighlight_1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlight_1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlight_2">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlight_2" style="document" />
+      <wsdl:input name="doSearchHighlight_2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlight_2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlightList_1">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlightList_1" style="document" />
+      <wsdl:input name="doSearchHighlightList_1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlightList_1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlightList_2">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlightList_2" style="document" />
+      <wsdl:input name="doSearchHighlightList_2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlightList_2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/Version" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doGetSearchOperator">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doGetSearchOperator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doGetSearchHighlight">
+      <soap:operation soapAction="http://ws.thaiquest.com/search/doGetSearchHighlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SearchServiceSoap12" type="tns:SearchServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="doSearch_1">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_1" style="document" />
+      <wsdl:input name="doSearch_1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_2">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_2" style="document" />
+      <wsdl:input name="doSearch_2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_3">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_3" style="document" />
+      <wsdl:input name="doSearch_3">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_3">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_4">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_4" style="document" />
+      <wsdl:input name="doSearch_4">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_4">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_5">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_5" style="document" />
+      <wsdl:input name="doSearch_5">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_5">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_6">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_6" style="document" />
+      <wsdl:input name="doSearch_6">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_6">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_7">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_7" style="document" />
+      <wsdl:input name="doSearch_7">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_7">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_8">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_8" style="document" />
+      <wsdl:input name="doSearch_8">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_8">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearch_9">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearch_9" style="document" />
+      <wsdl:input name="doSearch_9">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearch_9">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchNext">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchNext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchPrevious">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchPrevious" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromID">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchFromID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromAttachID">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchFromAttachID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromIDList">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchFromIDList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchFromAttachIDList">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchFromAttachIDList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlight_1">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlight_1" style="document" />
+      <wsdl:input name="doSearchHighlight_1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlight_1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlight_2">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlight_2" style="document" />
+      <wsdl:input name="doSearchHighlight_2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlight_2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlightList_1">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlightList_1" style="document" />
+      <wsdl:input name="doSearchHighlightList_1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlightList_1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doSearchHighlightList_2">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doSearchHighlightList_2" style="document" />
+      <wsdl:input name="doSearchHighlightList_2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="doSearchHighlightList_2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/Version" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doGetSearchOperator">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doGetSearchOperator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="doGetSearchHighlight">
+      <soap12:operation soapAction="http://ws.thaiquest.com/search/doGetSearchHighlight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SearchService">
+    <wsdl:port name="SearchServiceSoap" binding="tns:SearchServiceSoap">
+      <soap:address location="http://10.11.40.128/ThaiQuest/ThaiQuestWebService/SearchService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SearchServiceSoap12" binding="tns:SearchServiceSoap12">
+      <soap12:address location="http://10.11.40.128/ThaiQuest/ThaiQuestWebService/SearchService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -74,7 +74,7 @@ $db['fd']['swap_pre'] = '';
 $db['fd']['autoinit'] = TRUE;
 $db['fd']['stricton'] = FALSE;
 
-$db['mso']['hostname'] = 'localhost';
+$db['mso']['hostname'] = '127.0.0.1';
 $db['mso']['username'] = 'lawdb';
 $db['mso']['password'] = 'lawpwd';
 $db['mso']['database'] = 'law2016';
