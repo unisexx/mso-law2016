@@ -345,4 +345,18 @@ if(!function_exists('verifyHashedPassword'))
         return password_verify($plainPassword, $hashedPassword) ? true : false;
     }
 }
+
+
+
+if(!function_exists('get_download_count'))
+{
+	function get_download_count($filename)
+	{
+		$CI =& get_instance();
+		$query = $CI->db->query("select count(id) as count from law_downloads where filename='$filename'")->row();
+		
+		$count = $query->count != 0 ? $query->count : 0;
+		return $count;
+	}
+}
 ?>
