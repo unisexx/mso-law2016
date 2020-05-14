@@ -89,7 +89,7 @@ class Home extends Public_Controller {
 					total DESC limit 10";
 		$rs = $this->db->query($sql)->result();
 		foreach($rs as $key=>$row){
-			echo '<a href="law_search?searchtext='.$row->keyword.'&tools=b">'.$row->keyword.'</a>, ';
+			echo '<a href="law_search?searchtext='.$row->keyword.'&tools=b&type=file">'.$row->keyword.'</a>, ';
 		}
 	}
 }

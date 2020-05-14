@@ -45,7 +45,7 @@ $active_record = TRUE;
 $db['local']['hostname'] = 'localhost';
 $db['local']['username'] = 'root';
 $db['local']['password'] = '';
-$db['local']['database'] = 'law2016';
+$db['local']['database'] = '[mso] law-2016';
 $db['local']['dbdriver'] = 'mysql';
 $db['local']['dbprefix'] = '';
 $db['local']['pconnect'] = TRUE;
@@ -58,7 +58,7 @@ $db['local']['swap_pre'] = '';
 $db['local']['autoinit'] = TRUE;
 $db['local']['stricton'] = FALSE;
 
-$db['fd']['hostname'] = 'mysql1.favouritehosting.com';
+$db['fd']['hostname'] = '27.254.33.49';
 $db['fd']['username'] = 'c1law2016';
 $db['fd']['password'] = 'L@w20!6';
 $db['fd']['database'] = 'c1law2016';
@@ -74,7 +74,7 @@ $db['fd']['swap_pre'] = '';
 $db['fd']['autoinit'] = TRUE;
 $db['fd']['stricton'] = FALSE;
 
-$db['mso']['hostname'] = 'localhost';
+$db['mso']['hostname'] = '127.0.0.1';
 $db['mso']['username'] = 'lawdb';
 $db['mso']['password'] = 'lawpwd';
 $db['mso']['database'] = 'law2016';

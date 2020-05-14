@@ -5,7 +5,9 @@ class Public_Controller extends Master_Controller
 	{
 		parent::__construct();
 
-		ini_set('display_errors', 1);
+		ob_start();
+
+		// ini_set('display_errors', 1);
 		ini_set('memory_limit','-1');
 
 		// check login
