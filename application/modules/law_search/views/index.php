@@ -41,8 +41,7 @@
 							<font color="#0000FF"><?php echo get_datalaw_status($row->status)?></font>
 						</div>
 					</td>
-					<td valign="top" class="line-result"><span class="title-result"><a href="law/view/598"
-								target="_blank"><?php echo $row->name_th?></a></span><br>
+					<td valign="top" class="line-result"><span class="title-result"><a href="law/view/<?php echo $row->id?>" target="_blank"><?php echo $row->name_th?></a></span><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tbody>
 								<tr>
