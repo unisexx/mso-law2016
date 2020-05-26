@@ -83,12 +83,14 @@
                   </td>
                   <td valign="top" width="48" class="td-line text-center">
                   	<?if($row->filename_th != ""):?>
-                    <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>"><?=file_icon_th($row->filename_th)?></a>
+                    <!-- <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>"><?=file_icon_th($row->filename_th)?></a> -->
+					<a href="uploads/lawfile/<?=$row->filename_th?>" target="_blank"><?=file_icon_th($row->filename_th)?></a>
                     <?endif;?>
                     </td>
                     <td valign="top" width="48" class="td-line text-center">
 					<?if($row->filename_eng != ""):?>
-					<a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_eng?>"><?=file_icon_en($row->filename_eng)?></a>
+					<!-- <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_eng?>"><?=file_icon_en($row->filename_eng)?></a> -->
+					<a href="uploads/lawfile/<?=$row->filename_eng?>" target="_blank"><?=file_icon_en($row->filename_eng)?></a>
                     <?endif;?>
                     </td>
                 </tr>
@@ -122,12 +124,14 @@
                   </td>
                   <td valign="top" width="45" class="td-line text-center">
                     <?if($sublaw->filename_th != ""):?>
-                    <a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_th?>"><?=file_icon_th($sublaw->filename_th)?></a>
+                    <!-- <a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_th?>"><?=file_icon_th($sublaw->filename_th)?></a> -->
+					<a href="uploads/lawfile/<?=$sublaw->filename_th?>" target="_blank"><?=file_icon_th($sublaw->filename_th)?></a>
                     <?endif;?>
                   </td>
                   <td valign="top" width="45" class="td-line text-center">
                     <?if($sublaw->filename_eng != ""):?>
-					<a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_eng?>"><?=file_icon_en($sublaw->filename_eng)?></a>
+					<!-- <a href="law/download_by_name/<?=$sublaw->id?>?filename=<?=$sublaw->filename_eng?>"><?=file_icon_en($sublaw->filename_eng)?></a> -->
+					<a href="uploads/lawfile/<?=$row->filename_eng?>" target="_blank"><?=file_icon_en($row->filename_eng)?></a>
                     <?endif;?>
                   </td>
                 </tr>

@@ -22,10 +22,12 @@
 			<th>ดาวน์โหลด</th>
 			<td>
 				<?if($rs->filename_th != ""):?>
-					<a href="law/download_by_name/<?=$rs->id?>?filename=<?=$rs->filename_th?>"><?=file_icon_th($rs->filename_th)?></a>
+					<!-- <a href="law/download_by_name/<?=$rs->id?>?filename=<?=$rs->filename_th?>"><?=file_icon_th($rs->filename_th)?></a> -->
+					<a href="uploads/lawfile/<?=$rs->filename_th?>" target="_blank"><?=file_icon_th($rs->filename_th)?></a>
 				<?endif;?>
 				<?if($rs->filename_eng != ""):?>
-					<a href="law/download_by_name/<?=$rs->id?>?filename=<?=$rs->filename_eng?>"><?=file_icon_en($rs->filename_eng)?></a>
+					<!-- <a href="law/download_by_name/<?=$rs->id?>?filename=<?=$rs->filename_eng?>"><?=file_icon_en($rs->filename_eng)?></a> -->
+					<a href="uploads/lawfile/<?=$rs->filename_eng?>" target="_blank"><?=file_icon_en($rs->filename_eng)?></a>
 				<?endif;?>
 			</td>
 		</tr>

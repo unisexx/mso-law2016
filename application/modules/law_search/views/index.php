@@ -72,7 +72,11 @@
 					</td>
 					<td align="center" valign="top" class="line-result">
 						<?if($row->filename_th != ""):?>
-							<a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>">
+							<!-- <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_th?>">
+								<?=file_icon_th($row->filename_th)?>
+								<br> (<?php echo get_download_count($row->filename_th) ?> ครั้ง)
+							</a> -->
+							<a href="uploads/lawfile/<?=$row->filename_th?>" target="_blank">
 								<?=file_icon_th($row->filename_th)?>
 								<br> (<?php echo get_download_count($row->filename_th) ?> ครั้ง)
 							</a>
@@ -80,7 +84,11 @@
 					</td>
 					<td align="center" valign="top" class="line-result">
 						<?if($row->filename_eng != ""):?>
-							<a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_eng?>">
+							<!-- <a href="law/download_by_name/<?=$row->id?>?filename=<?=$row->filename_eng?>">
+								<?=file_icon_en($row->filename_eng)?>
+								<br> (<?php echo get_download_count($row->filename_th) ?> ครั้ง)
+							</a> -->
+							<a href="uploads/lawfile/<?=$row->filename_eng?>" target="_blank">
 								<?=file_icon_en($row->filename_eng)?>
 								<br> (<?php echo get_download_count($row->filename_th) ?> ครั้ง)
 							</a>

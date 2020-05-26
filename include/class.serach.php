@@ -938,13 +938,15 @@ class serach {
                         $sqlCheck = "select count(id) as CE from ".LAW_DOWNLOAD." where filename='".$valueData['filename_eng']."' ";
                         $valueCount = $this->db->quick($sqlCheck);
                         $valueCount['CE'] ? $counte = $valueCount['CE'] : $counte = 0;
-                        $txtDownloadEN = '<a href="law/download_by_name/'.$valueData['id'].'?filename='.$valueData['filename_eng'].'" target="_blank">'.file_icon_th($valueData['filename_eng']).'<br> ('.$counte.' Downloads)</a>';
+                        // $txtDownloadEN = '<a href="law/download_by_name/'.$valueData['id'].'?filename='.$valueData['filename_eng'].'" target="_blank">'.file_icon_th($valueData['filename_eng']).'<br> ('.$counte.' Downloads)</a>';
+                        $txtDownloadEN = '<a href="uploads/lawfile/"'.$valueData['filename_eng'].'" target="_blank">'.file_icon_en($valueData['filename_eng']).'<br> ('.$counte.' Downloads)</a>';
                         /*
                                         <font color=\"#00AE00\"><img src=\"images/appicon/download_icon.png\" border=\"0\"  alt=\"Download ".$valueData['filename_eng']."\"><a href=\"law/download_by_name/".$valueData['id']."?filename=".$valueData['filename_eng']."\" target=\"_blank\">Download File English</a> </font>&nbsp;( <b>".$counte."</b> ครั้ง )";
                       */
 
                     }else{
-                        $txtDownloadTH = '<a href="law/download_by_name/'.$valueData['id'].'?filename='.$valueData['filename_th'].'" target="_blank">'.file_icon_th($valueData['filename_th']).'<br> ('.$count.' ครั้ง)</a>';
+                        // $txtDownloadTH = '<a href="law/download_by_name/'.$valueData['id'].'?filename='.$valueData['filename_th'].'" target="_blank">'.file_icon_th($valueData['filename_th']).'<br> ('.$count.' ครั้ง)</a>';
+                        $txtDownloadTH = '<a href="uploads/lawfile/'.$valueData['filename_th'].'" target="_blank">'.file_icon_th($valueData['filename_th']).'<br> ('.$count.' ครั้ง)</a>';
                         //$txtDownload = "<font color=\"#00AE00\"><img src=\"images/appicon/download_icon.png\" border=\"0\"  alt=\"Download ".$valueData['filename_th']."\"><a href=\"law/download_by_name/".$valueData['id']."?filename=".$valueData['filename_th']."\" target=\"_blank\">Download File</a> </font>&nbsp;( <b>".$count."</b> ครั้ง )";
                     }
 
