@@ -1,5 +1,4 @@
 <?php
-
 function login($username,$password)
 {
 	$password = md5(sha1($password."secret"));

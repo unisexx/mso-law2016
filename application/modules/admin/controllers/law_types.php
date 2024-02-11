@@ -27,6 +27,20 @@ class Law_types extends Admin_Controller {
 			$_POST['name'] = lang_encode($_POST['name']);
 			$_POST['unit_import'] = implode(',', $_POST['unit_import']);
 
+			// ไฟล์แนบ
+			$allowed =  array('jpg','jpeg' ,'png');
+			if($_FILES['pic']['name'])
+			{
+				$pic = $_FILES['pic']['name'];
+				$ext_th = pathinfo($pic, PATHINFO_EXTENSION);
+				if(in_array($ext_th,$allowed) ) {
+					if($rs->id){
+						$rs->delete_file($rs->id,'uploads/law_types','pic');
+					}
+					$_POST['pic'] = $rs->upload($_FILES['pic'],'uploads/law_types/');
+				}
+			}
+
 			$rs = new Law_type($id);
 			$rs->from_array($_POST);
 			$rs->save();
